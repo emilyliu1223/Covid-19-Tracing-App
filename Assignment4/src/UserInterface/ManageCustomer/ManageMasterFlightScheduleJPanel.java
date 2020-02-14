@@ -36,6 +36,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
       private List<Flight>flightl;
    private CustomerDirectory cusDir;
    private AirlinerDirectory airlinerDir;
+   private SimpleDateFormat formatter;
     public ManageMasterFlightScheduleJPanel(JPanel rightPanel, FlightDirectory flightDir,CustomerDirectory cusDir, AirlinerDirectory airlinerDir) {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
@@ -44,7 +45,16 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
         this.flightDir=flightDir;
         this.rightPanel=rightPanel;
         this.cusDir=cusDir;
-        System.out.println(flightDir.getFlightlist());
+         timesec1=LocalTime.of(06, 0, 0);
+        timesec2=LocalTime.of(12, 0, 0);
+        timesec3=LocalTime.of(18, 0, 0);
+         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+        System.out.println(flightDir.getFlightlist().get(1).getFromdate());
+        System.out.println(flightDir.getFlightlist().get(1).getTodate());
+        System.out.println(flightDir.getFlightlist().get(1).getFromtime());
+        System.out.println(flightDir.getFlightlist().get(1).getTotime());
+        System.out.println(flightDir.getFlightlist().get(1).getFrom());
+        System.out.println(flightDir.getFlightlist().get(1).getTo());
     }
     
 
@@ -241,13 +251,10 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
 
     private void rbtnEveningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnEveningActionPerformed
         // TODO add your handling code here:
-         timesec1=LocalTime.of(06, 0, 0);
-        timesec2=LocalTime.of(12, 0, 0);
-        timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       
+      
            if(rbtnEvening1.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
-              
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
@@ -294,7 +301,7 @@ if(!flightl.contains(flight)){
                   flight.getTo().equals(txtDE.getText())&&
                   formatter.format(flight.getFromdate()).equals(formatter.format(jXDatePicker1.getDate()))&&
                   formatter.format(flight.getTodate()).equals(formatter.format(jXDatePicker2.getDate()))){
-                System.out.println("test1");
+               
                     if(
                     rbtnMorning.isSelected()==false&&
                     rbtnMorning1.isSelected()==false
@@ -364,7 +371,7 @@ if(!flightl.contains(flight)){
        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
            if(rbtnEvening.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
-              System.out.println("evening:"+flightl);
+              
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&

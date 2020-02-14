@@ -41,10 +41,8 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
          this.flightl=flightl;
-        System.out.println(flightl);
         this.airliner=airliner;
         this.flight=flight;
-        System.out.println(cusDir.getCustomerlist());
         this.rightPanel=rightPanel;
         this.cusDir=cusDir;
         cuslist=new ArrayList<Customer>();
@@ -104,6 +102,15 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
         }
     
      }}
+      public void populatenullTable(){
+         
+      
+    for(Flight flightlist: flightl){
+        
+        flightl.remove(flightlist);
+            
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,7 +215,8 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:\
+       populatenullTable();
         rightPanel.remove(this);
         CardLayout layout = (CardLayout)rightPanel.getLayout();
         layout.previous(rightPanel);
