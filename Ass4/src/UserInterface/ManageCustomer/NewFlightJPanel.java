@@ -42,10 +42,12 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 fromhour.addItem(i+""+j);
             }
             fromhour.addItem("20");fromhour.addItem("21");fromhour.addItem("22");fromhour.addItem("23");fromhour.addItem("24");
+            fromhour.setSelectedItem(-1);
         }
         for(int k=0; k<6; k++){
             for(int a=0; a<10; a++){
                 frommin.addItem(k+""+a);
+                frommin.setSelectedItem(-1);
             }
         }
         
@@ -54,10 +56,12 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 tohour.addItem(i+""+j);
             }
             tohour.addItem("20");tohour.addItem("21");tohour.addItem("22");tohour.addItem("23");tohour.addItem("24");
+            tohour.setSelectedItem(-1);
         }
         for(int k=0; k<6; k++){
             for(int a=0; a<10; a++){
                 tomin.addItem(k+""+a);
+                tomin.setSelectedItem(-1);
             }
         }
         
@@ -317,8 +321,8 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         flight.setFrom(depart);
         flight.setTo(desti);
         flight.setFromdate(jDateChooser1.getDate());
+        System.out.println("get date from create flight:"+jDateChooser1.getDate());
         flight.setTodate(jDateChooser2.getDate());
-        System.out.println(flight.getFromtime()+","+flight.getTotime());
         JOptionPane.showMessageDialog(null, "flight create sucessfully.");
         txtFlightNum.setText("");
         txtDestination.setText("");

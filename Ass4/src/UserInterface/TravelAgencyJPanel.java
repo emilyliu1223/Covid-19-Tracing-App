@@ -13,10 +13,14 @@ import Business.User.Airliner;
 import Business.User.Customer;
 import UserInterface.ManageAirliner.ManageAirlinersJPanel;
 import java.awt.CardLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -34,12 +38,14 @@ private CustomerDirectory cusDir;
     /**
      * Creates new form TravelAgencyJPanel
      */
-    public TravelAgencyJPanel() {
+    public TravelAgencyJPanel() throws ParseException {
        airlinerlist=new ArrayList<Airliner>();
        cuslist=new ArrayList<Customer>();
        flightDir = new FlightDirectory();
        cusDir=new CustomerDirectory();
+       airlinerDir=new AirlinerDirectory();
         initComponents();
+        initialAirliner();
         initialData();
     }
 
@@ -109,8 +115,7 @@ private CustomerDirectory cusDir;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void initialAirliner(){
         //String name, String nationality, int age, String address, int phone
         Airliner airliner0 = new Airliner("Aloha Airline","Taiwan",23, "Jupiter","8573341577");
         Airliner airliner1=new Airliner("Cooooo Airline","China", 40, "41 Mars Street, Wuhan", "0921041875");
@@ -118,16 +123,20 @@ private CustomerDirectory cusDir;
         Airliner airliner3=new Airliner("Bambo Airline","Ireland",91,"80 Long Wood,Ireland","79201000232");
         Airliner airliner4=new Airliner("Star Airline","Tailand",8,"114442, Pad Thi, Baoleen","1947303553");
         
-        AirlinerDirectory air=new AirlinerDirectory();
-        air.setAirlinerlist(airlinerlist);
+        //AirlinerDirectory air=new AirlinerDirectory();
+        airlinerDir.setAirlinerlist(airlinerlist);
         airlinerlist.add(airliner4);
         airlinerlist.add(airliner3);
         airlinerlist.add(airliner2);
         airlinerlist.add(airliner1);
         airlinerlist.add(airliner0);
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
         
           
-        ManageAirlinersJPanel panel=new ManageAirlinersJPanel  (rightPanel,air,flightDir);
+        ManageAirlinersJPanel panel=new ManageAirlinersJPanel  (rightPanel,airlinerDir,flightDir);
         rightPanel.add("AirlinerManagePanel", panel);
         CardLayout layout=(CardLayout)rightPanel.getLayout();
         layout.next(rightPanel);
@@ -143,7 +152,7 @@ private CustomerDirectory cusDir;
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void initialData(){
+    private void initialData() throws ParseException{
         
         //name,nationality,age,address,phone
         Customer cus=new Customer("stacy","taiwan",22,"143 park","123");
@@ -186,7 +195,7 @@ private CustomerDirectory cusDir;
         cuslist.add(cus3);cuslist.add(cus4);cuslist.add(cus4_2);cuslist.add(cus4_3);
         cuslist.add(cus5);cuslist.add(cus5_2);cuslist.add(cus5_3);cuslist.add(cus5_4);
         
-        System.out.println(cuslist.get(1).getID()+cuslist.get(1).getFlightnumber()+cuslist.get(1).getSeat());
+        //System.out.println(cuslist.get(1).getID()+cuslist.get(1).getFlightnumber()+cuslist.get(1).getSeat());
 
         List<String> list=new ArrayList<String>();
         list.add("Aa");list.add("B");list.add("C");
@@ -199,8 +208,14 @@ private CustomerDirectory cusDir;
         flight1.setTo("taipei");
         flight1.setFromtime(LocalTime.of(6,30,0));
         flight1.setTotime(LocalTime.of(10, 30, 0));
-        flight1.setFromdate(new Date());
-        flight1.setTodate(new Date());
+        String s1="11/03/2020";
+        SimpleDateFormat f1=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d1=f1.parse(s1);
+        String s2="12/03/2020";
+        SimpleDateFormat f2=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d2=f2.parse(s2);
+        flight1.setFromdate(d1);
+        flight1.setTodate(d2);
         
         List<String> list2=new ArrayList<String>();
         list2.add("A");list2.add("D");list2.add("E");
@@ -213,8 +228,14 @@ private CustomerDirectory cusDir;
         flight2.setTo("new york");
         flight2.setFromtime(LocalTime.of(14,30,0));
         flight2.setTotime(LocalTime.of(17, 15, 0));
-        flight2.setFromdate(new Date());
-        flight2.setTodate(new Date());
+        String s3="27/02/2020";
+        SimpleDateFormat f3=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d3=f3.parse(s3);
+        String s4="27/02/2020";
+        SimpleDateFormat f4=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d4=f4.parse(s4);
+        flight2.setFromdate(d3);
+        flight2.setTodate(d4);
         
         List<String> list3=new ArrayList<String>();
         list3.add("D");list3.add("D");
@@ -227,8 +248,14 @@ private CustomerDirectory cusDir;
         flight3.setTo("montreal");
         flight3.setFromtime(LocalTime.of(16,00,0));
         flight3.setTotime(LocalTime.of(21, 30, 0));
-        flight3.setFromdate(new Date());
-        flight3.setTodate(new Date());
+        String s5="19/02/2020";
+        SimpleDateFormat f5=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d5=f5.parse(s5);
+        String s6="19/02/2020";
+        SimpleDateFormat f6=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d6=f6.parse(s6);
+        flight3.setFromdate(d5);
+        flight3.setTodate(d6);
         
         List<String> list4=new ArrayList<String>();
         list4.add("E");list4.add("E");
@@ -241,8 +268,14 @@ private CustomerDirectory cusDir;
         flight4.setTo("england");
         flight4.setFromtime(LocalTime.of(1,15,0));
         flight4.setTotime(LocalTime.of(11, 30, 0));
-        flight4.setFromdate(new Date());
-        flight4.setTodate(new Date());
+        String s7="19/03/2020";
+        SimpleDateFormat f7=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d7=f7.parse(s7);
+        String s8="20/03/2020";
+        SimpleDateFormat f8=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d8=f8.parse(s8);
+        flight4.setFromdate(d7);
+        flight4.setTodate(d8);
         
         List<String> list5=new ArrayList<String>();
         list5.add("E");list5.add("A");list5.add("B");
@@ -255,8 +288,14 @@ private CustomerDirectory cusDir;
         flight5.setTo("thailand");
         flight5.setFromtime(LocalTime.of(3,30,0));
         flight5.setTotime(LocalTime.of(13, 30, 0));
-        flight5.setFromdate(new Date());
-        flight5.setTodate(new Date());
+        String s9="11/05/2020";
+        SimpleDateFormat f9=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d9=f9.parse(s9);
+        String s10="12/05/2020";
+        SimpleDateFormat f10=new SimpleDateFormat("dd/MM/yyyy"); 
+        Date d10=f10.parse(s10);
+        flight5.setFromdate(d9);
+        flight5.setTodate(d10);
     }
     /**
      * @param args the command line arguments
@@ -289,7 +328,12 @@ private CustomerDirectory cusDir;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TravelAgencyJPanel().setVisible(true);
+                try {
+                    new TravelAgencyJPanel().setVisible(true);
+                } catch (ParseException ex) {
+                    System.out.println("date error!");
+                    Logger.getLogger(TravelAgencyJPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
