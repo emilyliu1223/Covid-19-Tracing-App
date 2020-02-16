@@ -98,5 +98,7 @@ public class Lab7 {
     
     private void runAnalysis(){
         // TODO
+        helper.getUserWithMostLike();
+        helper.getFiveCommentWithMostLikes();
     }
 }
