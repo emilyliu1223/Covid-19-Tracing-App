@@ -177,13 +177,9 @@ private CustomerDirectory cusDir;
         cus4.setID("D");cus4.setFlightnumber("b123");cus4.setSeat("B5");
         Customer cus4_2=new Customer("eric","boston",19,"143 park","654");
         cus4_2.setID("D");cus4_2.setFlightnumber("c123");cus4_2.setSeat("E2");
-        Customer cus4_3=new Customer("eric","boston",19,"143 park","654");
-        cus4_3.setID("D");cus4_3.setFlightnumber("c123");cus4_3.setSeat("E3");
         
         Customer cus5=new Customer("brian","taiwan",22,"2 westland","532");
         cus5.setID("E");cus5.setFlightnumber("b123");cus5.setSeat("C6");
-        Customer cus5_2=new Customer("brian","taiwan",22,"2 westland","532");
-        cus5_2.setID("E");cus5_2.setFlightnumber("a456");cus5_2.setSeat("D4");
         Customer cus5_3=new Customer("brian","taiwan",22,"2 westland","532");
         cus5_3.setID("E");cus5_3.setFlightnumber("a456");cus5_3.setSeat("H5");
         Customer cus5_4=new Customer("brian","taiwan",22,"2 westland","532");
@@ -192,8 +188,8 @@ private CustomerDirectory cusDir;
         
         cusDir.setCustomerlist(cuslist);
         cuslist.add(cus);cuslist.add(cus1_2);cuslist.add(cus1_3);cuslist.add(cus2);cuslist.add(cus2_2);
-        cuslist.add(cus3);cuslist.add(cus4);cuslist.add(cus4_2);cuslist.add(cus4_3);
-        cuslist.add(cus5);cuslist.add(cus5_2);cuslist.add(cus5_3);cuslist.add(cus5_4);
+        cuslist.add(cus3);cuslist.add(cus4);cuslist.add(cus4_2);
+        cuslist.add(cus5);cuslist.add(cus5_3);cuslist.add(cus5_4);
         
         //System.out.println(cuslist.get(1).getID()+cuslist.get(1).getFlightnumber()+cuslist.get(1).getSeat());
 

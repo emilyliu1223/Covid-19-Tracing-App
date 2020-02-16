@@ -31,17 +31,20 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="jScrollPane1" pref="728" max="32767" attributes="0"/>
-                              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnGetFlight" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                  <Component id="btnSearchAir" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtSearchAir" min="-2" pref="110" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnGetFlight" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                                      <Component id="btnSearchAir" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              <Component id="txtSearchAir" min="-2" pref="110" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
+                                  <Component id="airlinerdetail" min="-2" pref="121" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -72,9 +75,11 @@
                       <Component id="btnSearchAir" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                       <Component id="btnNewAir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="airlinerdetail" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="35" max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -163,6 +168,14 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="txtSearchAir">
+    </Component>
+    <Component class="javax.swing.JButton" name="airlinerdetail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="details"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="airlinerdetailActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
