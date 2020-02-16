@@ -301,6 +301,15 @@ public class NewFlightJPanel extends javax.swing.JPanel {
             txtFlightNum.setText("");
             return;
         }
+//        else{
+//            for(Flight f:flightDirectory.getFlightlist()){
+//            if(f.getFlightnumber().equals(flightNumber)){
+//                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
+//                txtFlightNum.setText("");
+//                return;
+//            }
+//        }
+//        }
         if(desti.equals("")){
             JOptionPane.showMessageDialog(null, "please enter destination");
             txtDestination.setText("");
@@ -311,10 +320,23 @@ public class NewFlightJPanel extends javax.swing.JPanel {
             txtDepart.setText("");
             return;
         }
+        //check depart and destination
+        if(desti.equals(depart)){
+            JOptionPane.showMessageDialog(null, "departure and destination cannot be the same");
+            txtDepart.setText("");
+            txtDestination.setText("");
+            return;
+        }
         if(estimation.equals("")){
             flight.setEstimation("null");
         }else{
             flight.setEstimation(estimation);
+        }
+        
+        //chack date
+        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
+            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
+            return;
         }
         flight.setAirliner(airlinerName);
         flight.setFlightnumber(flightNumber);

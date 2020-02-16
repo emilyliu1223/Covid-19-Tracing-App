@@ -59,13 +59,13 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
             row[0]=flightlist.getAirliner();
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
-            row[3]=flightlist.getFromtime();
             String strfromDate = formatter.format(flightlist.getFromdate());
-            row[4]=strfromDate;
-            row[5]=flightlist.getTotime();
+            row[3]=flightlist.getFromtime()+" "+strfromDate;
+            //row[4]=strfromDate;
             String strtoDate = formatter.format(flightlist.getTodate());
-            row[6]=strtoDate;
-            row[7]=flightlist.getEstimation();
+            row[4]=flightlist.getTotime()+" "+strtoDate;
+            //row[6]=strtoDate;
+            row[5]=flightlist.getEstimation();
             dtm.addRow(row);
             
         }
@@ -94,17 +94,17 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
 
         tableManageFlight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Airliner", "Flight Number", "From", "FromTime", "FromDate", "ToTime", "ToDate", "Estimation"
+                "Airliner", "Flight Number", "From-To", "Depart Time", "Arrive Time", "Estimation"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,8 +119,6 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
             tableManageFlight.getColumnModel().getColumn(3).setResizable(false);
             tableManageFlight.getColumnModel().getColumn(4).setResizable(false);
             tableManageFlight.getColumnModel().getColumn(5).setResizable(false);
-            tableManageFlight.getColumnModel().getColumn(6).setResizable(false);
-            tableManageFlight.getColumnModel().getColumn(7).setResizable(false);
         }
 
         btnBack.setText("<<Back");
