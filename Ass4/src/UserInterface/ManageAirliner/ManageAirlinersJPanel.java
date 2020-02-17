@@ -221,7 +221,7 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
         }else{
            String findAirliner = (String)tableAirliner.getValueAt(select, 0);
             //System.out.println(findAirliner);
-            rightPanel.add(new ManageAirlinerFlightScheduleJPanel(rightPanel,findAirliner,flightDir));
+            rightPanel.add("ManageAirlinerFlightScheduleJPanel",new ManageAirlinerFlightScheduleJPanel(rightPanel,findAirliner,flightDir));
             CardLayout layout = (CardLayout)rightPanel.getLayout();
             layout.next(rightPanel);
             System.out.println("success find");
@@ -231,7 +231,7 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
 
     private void btnNewAirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewAirActionPerformed
         // TODO add your handling code here:
-            rightPanel.add(new CreateNewAirlinerJPanel(rightPanel,airlinerDir));
+            rightPanel.add("CreateNewAirlinerJPanel",new CreateNewAirlinerJPanel(rightPanel,airlinerDir));
             CardLayout layout = (CardLayout)rightPanel.getLayout();
             layout.next(rightPanel);
     }//GEN-LAST:event_btnNewAirActionPerformed
@@ -249,7 +249,7 @@ public class ManageAirlinersJPanel extends javax.swing.JPanel {
                    this.airliner=air;
                }
            }
-           rightPanel.add(new AirlinerDetailJPanel(rightPanel,airlinerDir,airliner));
+           rightPanel.add("AirlinerDetailJPanel", new AirlinerDetailJPanel(rightPanel,airlinerDir,airliner));
             CardLayout layout = (CardLayout)rightPanel.getLayout();
             layout.next(rightPanel);
         }
