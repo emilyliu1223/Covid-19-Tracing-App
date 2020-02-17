@@ -63,62 +63,57 @@ public class AnalysisHelper {
     }
         
          public void getAverageLikesperComment(){
-             System.out.println("Q1:");
-             // Map<Integer,Integer> commentLikesCount=new HashMap<>();
-          Map<Integer,Comment> comments=DataStore.getInstance().getComments();
-         List<Comment> commentList=new ArrayList<>(comments.values());
-         int commenting=0;
-         int count=0;
-         for(Comment comment:commentList){
-             commenting+=comment.getLikes();
-             count++;
-         }
-         System.out.println("average likes per comment "+commenting/count);
-         System.out.println();
-         }
+            System.out.println("Q1:");
+            Map<Integer,Comment> comments=DataStore.getInstance().getComments();
+            List<Comment> commentList=new ArrayList<>(comments.values());
+            int commenting=0;
+            int count=0;
+            for(Comment comment:commentList){
+                count++;
+                commenting+=comment.getLikes();
+            }
+            System.out.println("average likes per comment "+commenting/count);
+            System.out.println();
+            }
            //post with most liked comments
-//        public void getPostWithMostLikedComments(){
-//            System.out.println("Q2:");
-//            Map<Integer, Integer> LikedCommentCount=new HashMap<>();
-//            Map<Integer, Post> posts = DataStore.getInstance().getPosts();
-//            
-//            for(Post post:posts.values()){
-//                int maxlike=0;
-//                for(Comment c: post.getComments()){
-//                    int like=0;
-//                    if(LikedCommentCount.containsKey(post.getPostId())){
-//                        like=LikedCommentCount.get(post.getPostId());
-//                    }
-//    //               
-//                        like=  Math.max(like,c.getLikes());
-//                        
-//                    
-//                    LikedCommentCount.put(post.getPostId(), like);
-//                }
-//                //LikedCommentCount.put(post.getPostId(), maxlike);
-//            }
-//            int max=0;
-//            int maxId=0;
-//            for(int id:LikedCommentCount.keySet()){
-//                if(LikedCommentCount.get(id)>max){
-//                    max=LikedCommentCount.get(id);
-//                    maxId=id;
-//                    
-//                }
-//            }
-//            int maxprint=0;
-//            int maxIdprint=0;
-//            for(int id:LikedCommentCount.keySet()){
-//                if(LikedCommentCount.get(id)==max){
-//                    maxprint=LikedCommentCount.get(id);
-//                    maxIdprint=id;
-//                    
-//    //            }
-//    //        }
-//            System.out.println("post with most liked comments-- post id:"+maxIdprint+",likes count:"+maxprint);
-//            
-//                }}System.out.println();
-//        }
+        public void getPostWithMostLikedComments(){
+            System.out.println("Q2:");
+            Map<Integer, Integer> LikedCommentCount=new HashMap<>();
+            Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+            
+            for(Post post:posts.values()){
+                int maxlike=0;
+                for(Comment c: post.getComments()){
+                    int like=0;
+                    if(LikedCommentCount.containsKey(post.getPostId())){
+                        like=LikedCommentCount.get(post.getPostId());
+                    }
+                        like=  Math.max(like,c.getLikes());
+                        
+                    LikedCommentCount.put(post.getPostId(), like);
+                }
+                //LikedCommentCount.put(post.getPostId(), maxlike);
+            }
+            int max=0;
+            int maxId=0;
+            for(int id:LikedCommentCount.keySet()){
+                if(LikedCommentCount.get(id)>max){
+                    max=LikedCommentCount.get(id);
+                    maxId=id;
+                    
+                }
+            }
+            int maxprint=0;
+            int maxIdprint=0;
+            for(int id:LikedCommentCount.keySet()){
+                if(LikedCommentCount.get(id)==max){
+                    maxprint=LikedCommentCount.get(id);
+                    maxIdprint=id;
+          
+            System.out.println("post with most liked comments-- post id:"+maxIdprint+",likes count:"+maxprint);
+            
+                }}System.out.println();
+        }
             //post with most cpmments
         public void getPostWithMostComments(){
             System.out.println("Q3:");
