@@ -29,7 +29,7 @@ public class AirlinerDetailJPanel extends javax.swing.JPanel {
          this.airliner=airliner;
          this.airDir=airlinerDir;
          System.out.println(this.airliner.getName()+","+this.airliner.getAddress());
-         //show();
+         show();
          
         
     }

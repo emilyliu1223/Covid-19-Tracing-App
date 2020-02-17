@@ -251,15 +251,15 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
          timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
            if(rbtnEvening1.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
               
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format(jDateChooser1.getDate()))==true&&
-                  formatter.format(flight.getTodate()).equals(formatter.format(jDateChooser2.getDate()))==true&&flight.getFromtime().isAfter(timesec3)){
+                  flight.getFromdate().equals(formatter.format(jDateChooser1.getDate()))==true&&
+                  flight.getTodate().equals(formatter.format(jDateChooser2.getDate()))==true&&flight.getFromtime().isAfter(timesec3)){
 if(!flightl.contains(flight)){
             flightl.add(flight);
                  
@@ -276,7 +276,7 @@ if(!flightl.contains(flight)){
        timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 
            if(txtFlightNum.getText()!=null){
         for(Flight flight:flightDir.getFlightlist()){ 
@@ -299,8 +299,8 @@ if(!flightl.contains(flight)){
             if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format(jDateChooser1.getDate()))&&
-                  formatter.format(flight.getTodate()).equals(formatter.format(jDateChooser2.getDate()))){
+                  flight.getFromdate().equals(formatter.format(jDateChooser1.getDate()))&&
+                  flight.getTodate().equals(formatter.format(jDateChooser2.getDate()))){
                 System.out.println("test1");
                     if(
                     rbtnMorning.isSelected()==false&&
@@ -368,15 +368,15 @@ if(!flightl.contains(flight)){
           timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
            if(rbtnEvening.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
               System.out.println("evening:"+flightl);
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format( jDateChooser2.getDate()))==true&&
-                  formatter.format(flight.getTodate()).equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getTotime().isAfter(timesec3)){
+                  flight.getFromdate().equals(formatter.format( jDateChooser2.getDate()))==true&&
+                  flight.getTodate().equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getTotime().isAfter(timesec3)){
 if(!flightl.contains(flight)){
             flightl.add(flight);
             
@@ -392,15 +392,15 @@ if(!flightl.contains(flight)){
          timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
          if(rbtnAfternoon.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
              
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format(jDateChooser2.getDate()))==true&&
-                  formatter.format(flight.getTodate()).equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getFromtime().isAfter(timesec2)&&flight.getFromtime().isBefore(timesec3)){
+                  flight.getFromdate().equals(formatter.format(jDateChooser2.getDate()))==true&&
+                  flight.getTodate().equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getFromtime().isAfter(timesec2)&&flight.getFromtime().isBefore(timesec3)){
 if(!flightl.contains(flight)){
             flightl.add(flight);}
 
@@ -413,15 +413,15 @@ if(!flightl.contains(flight)){
          timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
         if(rbtnAfternoon1.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
               
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format( jDateChooser2.getDate()))==true&&
-                  formatter.format(flight.getTodate()).equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getTotime().isAfter(timesec2)&&flight.getTotime().isBefore(timesec3)){
+                  flight.getFromdate().equals(formatter.format( jDateChooser2.getDate()))==true&&
+                  flight.getTodate().equals(formatter.format( jDateChooser1.getDate()))==true&&flight.getTotime().isAfter(timesec2)&&flight.getTotime().isBefore(timesec3)){
             if(!flightl.contains(flight)){
                    flightl.add(flight);
         }
@@ -433,15 +433,15 @@ if(!flightl.contains(flight)){
           timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
          if(rbtnMorning.isSelected()){
                    System.out.println("selected");
          for(Flight flight:flightDir.getFlightlist()){
                if(
                  flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format( jDateChooser2.getDate()))==true&&
-                 formatter.format(flight.getTodate()).equals(formatter.format( jDateChooser1.getDate()))==true&&
+                  flight.getFromdate().equals(formatter.format( jDateChooser2.getDate()))==true&&
+                 flight.getTodate().equals(formatter.format( jDateChooser1.getDate()))==true&&
                        flight.getFromtime().isAfter(timesec1)&&
                        flight.getFromtime().isBefore(timesec2)){
             if(!flightl.contains(flight)){
@@ -456,15 +456,15 @@ if(!flightl.contains(flight)){
           timesec1=LocalTime.of(06, 0, 0);
         timesec2=LocalTime.of(12, 0, 0);
         timesec3=LocalTime.of(18, 0, 0);
-       SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
         if(rbtnMorning.isSelected()){
          for(Flight flight:flightDir.getFlightlist()){
               
                if(
                   flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  formatter.format(flight.getFromdate()).equals(formatter.format( jDateChooser2.getDate()))==true&&
-                  formatter.format(flight.getTodate()).equals(formatter.format( jDateChooser1.getDate()))==true&&
+                  flight.getFromdate().equals(formatter.format( jDateChooser2.getDate()))==true&&
+                  flight.getTodate().equals(formatter.format( jDateChooser1.getDate()))==true&&
                        flight.getTotime().isBefore(timesec2)&&
                        flight.getTotime().isAfter(timesec1)){
          if(!flightl.contains(flight)){

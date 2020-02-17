@@ -16,9 +16,11 @@ import java.util.List;
  */
 public class Flight {
     private String flightnumber;
-    private Date fromdate;
+    //private Date fromdate;
+    private String fromdate;
     private LocalTime fromtime;
-    private Date todate;
+    //private Date todate;
+    private String todate;
     private LocalTime totime;
     private String from;
     private String to;
@@ -26,14 +28,29 @@ public class Flight {
     private List<String> IDlist;
     private String airliner;
     
-    public Date getFromdate() {
+//    public Date getFromdate() {
+//        return fromdate;
+//    }
+//
+//    public void setFromdate(Date fromdate) {
+//        this.fromdate = fromdate;
+//    }
+
+    public String getFromdate() {
         return fromdate;
     }
 
-    public void setFromdate(Date fromdate) {
+    public void setFromdate(String fromdate) {
         this.fromdate = fromdate;
     }
 
+    public String getTodate() {
+        return todate;
+    }
+
+    public void setTodate(String todate) {
+        this.todate = todate;
+    }
     public LocalTime getFromtime() {
         return fromtime;
     }
@@ -42,13 +59,13 @@ public class Flight {
         this.fromtime = fromtime;
     }
 
-    public Date getTodate() {
-        return todate;
-    }
-
-    public void setTodate(Date todate) {
-        this.todate = todate;
-    }
+//    public Date getTodate() {
+//        return todate;
+//    }
+//
+//    public void setTodate(Date todate) {
+//        this.todate = todate;
+//    }
 
     public LocalTime getTotime() {
         return totime;

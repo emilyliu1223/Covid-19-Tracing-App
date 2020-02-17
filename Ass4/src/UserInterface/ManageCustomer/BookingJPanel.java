@@ -46,7 +46,7 @@ public class BookingJPanel extends javax.swing.JPanel {
    private void populate(List<String> listcus){
               DefaultTableModel dtm = (DefaultTableModel)tableCusflight.getModel();
         dtm.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy"); 
         //use all flightnumber to find all flight details
         for(int i=0; i<listcus.size();i++){
             for(Flight flightlist: flightDir.getFlightlist()){
@@ -56,11 +56,11 @@ public class BookingJPanel extends javax.swing.JPanel {
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
             row[3]=flightlist.getFromtime();
-            String strfromDate = formatter.format(flightlist.getFromdate());
-            row[4]=strfromDate;
+            //String strfromDate = formatter.format(flightlist.getFromdate());
+            row[4]=flightlist.getFromdate();
             row[5]=flightlist.getTotime();
-            String strtoDate = formatter.format(flightlist.getTodate());
-            row[6]=strtoDate;
+            //String strtoDate = formatter.format(flightlist.getTodate());
+            row[6]=flightlist.getTodate();
             row[7]=flightlist.getEstimation();
             dtm.addRow(row);
             continue;

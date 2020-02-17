@@ -10,6 +10,7 @@ import Business.FlightDirectory;
 import UserInterface.ManageFlight.ManageAirlinerFlightScheduleJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -180,28 +181,28 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                         .addGap(68, 68, 68)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(estimationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtDepart, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtDepart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
                                 .addComponent(txtFlightNum, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtDestination, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                     .addComponent(fromhour, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(frommin, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(310, 310, 310)
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,7 +229,7 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,7 +246,7 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(estimationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnCreate)
                 .addGap(51, 51, 51))
         );
@@ -255,9 +256,9 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addComponent(btnBack)
-                .addContainerGap(691, Short.MAX_VALUE))
+                .addContainerGap(719, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -267,9 +268,9 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(btnBack)
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addContainerGap(484, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 16, Short.MAX_VALUE)
@@ -284,8 +285,7 @@ public class NewFlightJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        Flight flight = flightDirectory.addflight();
-        flight.setAirliner(airlinerName);
+        
         String estimation = estimationtxt.getText();
         String flightNumber=txtFlightNum.getText();
         String depart=txtDepart.getText();
@@ -294,22 +294,21 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         frommin_str=frommin.getSelectedItem().toString();
         tohour_str=tohour.getSelectedItem().toString();
         tomin_str=tomin.getSelectedItem().toString();
-        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
-        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(flightNumber.equals("")){
             JOptionPane.showMessageDialog(null, "please enter flight number");
             txtFlightNum.setText("");
             return;
         }
-//        else{
-//            for(Flight f:flightDirectory.getFlightlist()){
-//            if(f.getFlightnumber().equals(flightNumber)){
-//                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
-//                txtFlightNum.setText("");
-//                return;
-//            }
-//        }
-//        }
+        else{
+            for(Flight f:flightDirectory.getFlightlist()){
+            if(f.getFlightnumber().equals(flightNumber)){
+                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
+                txtFlightNum.setText("");
+                return;
+            }
+        }
+        }
         if(desti.equals("")){
             JOptionPane.showMessageDialog(null, "please enter destination");
             txtDestination.setText("");
@@ -327,25 +326,39 @@ public class NewFlightJPanel extends javax.swing.JPanel {
             txtDestination.setText("");
             return;
         }
+        //chack date validation
+        if(jDateChooser1.getDate()==null||jDateChooser2.getDate()==null){
+            JOptionPane.showMessageDialog(null, "must choose date");
+            return;
+        }
+        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
+            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
+            return;
+        }
+        if(!estimationtxt.equals("")&&!txtFlightNum.equals("")&&!txtDepart.equals("")&&!txtDestination.equals("")&&jDateChooser1.getDate()!=null&&jDateChooser2.getDate()!=null){
+        Flight flight = flightDirectory.addflight();
+        flight.setAirliner(airlinerName);
+        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
+        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(estimation.equals("")){
             flight.setEstimation("null");
         }else{
             flight.setEstimation(estimation);
         }
         
-        //chack date
-        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
-            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
-            return;
-        }
         flight.setAirliner(airlinerName);
         flight.setFlightnumber(flightNumber);
         flight.setFrom(depart);
         flight.setTo(desti);
-        flight.setFromdate(jDateChooser1.getDate());
+        SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
+        flight.setFromdate(formatter.format(jDateChooser1.getDate()));
         System.out.println("get date from create flight:"+jDateChooser1.getDate());
-        flight.setTodate(jDateChooser2.getDate());
+        flight.setTodate(formatter.format(jDateChooser2.getDate()));
         JOptionPane.showMessageDialog(null, "flight create sucessfully.");
+            
+        }
+        
         txtFlightNum.setText("");
         txtDestination.setText("");
         txtDepart.setText("");
