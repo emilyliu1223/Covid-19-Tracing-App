@@ -100,5 +100,13 @@ public class Lab7 {
         // TODO
         helper.getUserWithMostLike();
         helper.getFiveCommentWithMostLikes();
+        helper.getAverageLikesperComment();
+        //bug
+        //helper.getPostWithMostLikedComments();
+        helper.getPostWithMostComments();
+        helper.getInactUser_TotalPostNo();
+        helper.find5UserwithleastComment();
+        helper.UserwithleastEverything();
+        helper.top5inactiveusersoverall();
     }
 }
