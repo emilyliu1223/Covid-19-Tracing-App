@@ -10,6 +10,7 @@ import Business.FlightDirectory;
 import UserInterface.ManageFlight.ManageAirlinerFlightScheduleJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -284,8 +285,7 @@ public class NewFlightJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        Flight flight = flightDirectory.addflight();
-        flight.setAirliner(airlinerName);
+        
         String estimation = estimationtxt.getText();
         String flightNumber=txtFlightNum.getText();
         String depart=txtDepart.getText();
@@ -294,22 +294,21 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         frommin_str=frommin.getSelectedItem().toString();
         tohour_str=tohour.getSelectedItem().toString();
         tomin_str=tomin.getSelectedItem().toString();
-        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
-        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(flightNumber.equals("")){
             JOptionPane.showMessageDialog(null, "please enter flight number");
             txtFlightNum.setText("");
             return;
         }
-//        else{
-//            for(Flight f:flightDirectory.getFlightlist()){
-//            if(f.getFlightnumber().equals(flightNumber)){
-//                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
-//                txtFlightNum.setText("");
-//                return;
-//            }
-//        }
-//        }
+        else{
+            for(Flight f:flightDirectory.getFlightlist()){
+            if(f.getFlightnumber().equals(flightNumber)){
+                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
+                txtFlightNum.setText("");
+                return;
+            }
+        }
+        }
         if(desti.equals("")){
             JOptionPane.showMessageDialog(null, "please enter destination");
             txtDestination.setText("");
@@ -327,25 +326,35 @@ public class NewFlightJPanel extends javax.swing.JPanel {
             txtDestination.setText("");
             return;
         }
+        //chack date
+        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
+            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
+            return;
+        }
+        if(!estimationtxt.equals("")&&!txtFlightNum.equals("")&&!txtDepart.equals("")&&!txtDestination.equals("")){
+        Flight flight = flightDirectory.addflight();
+        flight.setAirliner(airlinerName);
+        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
+        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(estimation.equals("")){
             flight.setEstimation("null");
         }else{
             flight.setEstimation(estimation);
         }
         
-        //chack date
-        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
-            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
-            return;
-        }
         flight.setAirliner(airlinerName);
         flight.setFlightnumber(flightNumber);
         flight.setFrom(depart);
         flight.setTo(desti);
-        flight.setFromdate(jDateChooser1.getDate());
+        SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
+        flight.setFromdate(formatter.format(jDateChooser1.getDate()));
         System.out.println("get date from create flight:"+jDateChooser1.getDate());
-        flight.setTodate(jDateChooser2.getDate());
+        flight.setTodate(formatter.format(jDateChooser2.getDate()));
         JOptionPane.showMessageDialog(null, "flight create sucessfully.");
+            
+        }
+        
         txtFlightNum.setText("");
         txtDestination.setText("");
         txtDepart.setText("");

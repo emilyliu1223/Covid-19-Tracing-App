@@ -189,11 +189,23 @@ public class CreateNewAirlinerJPanel extends javax.swing.JPanel {
         String a_Address=txtAddress.getText();
         String a_Age=txtAge.getText();
         String a_Nation=txtNation.getText();
+        String checkName="";
         //verify input
         if(a_Name.equals("")){
             JOptionPane.showMessageDialog(null, "please enter airliner name");
             txtName.setText("");
             return;
+        }else{
+            for(Airliner a:airlinerDir.getAirlinerlist()){
+                if(!a.getName().toLowerCase().equals(a_Name.toLowerCase())){
+                    checkName=a_Name;
+                    break;
+                }else{
+                    JOptionPane.showMessageDialog(null, "airliner name has already existed");
+                    txtName.setText("");
+                    return;
+                }
+            }
         }
         if(a_Phone.equals("")){
             JOptionPane.showMessageDialog(null, "please enter phone number");
@@ -221,7 +233,7 @@ public class CreateNewAirlinerJPanel extends javax.swing.JPanel {
         //create
         System.out.println("create airliner:"+a_Name+a_Age+a_Nation+a_Phone);
         //airlinerDir = new AirlinerDirectory();
-        airliner = new Airliner(a_Name,a_Nation,Integer.parseInt(a_Age),a_Address,a_Phone);
+        airliner = new Airliner(checkName,a_Nation,Integer.parseInt(a_Age),a_Address,a_Phone);
         airlinerDir.getAirlinerlist().add(airliner);
         JOptionPane.showMessageDialog(null, "create successfully.");
         txtName.setText("");

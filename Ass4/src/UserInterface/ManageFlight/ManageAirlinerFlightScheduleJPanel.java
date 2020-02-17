@@ -47,7 +47,7 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
         
         DefaultTableModel dtm = (DefaultTableModel)tableManageFlight.getModel();
         dtm.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
           
     //check time and date format
     //use airliner name to find all dlight 
@@ -59,11 +59,11 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
             row[0]=flightlist.getAirliner();
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
-            String strfromDate = formatter.format(flightlist.getFromdate());
-            row[3]=flightlist.getFromtime()+" "+strfromDate;
+            //String strfromDate = formatter.format(flightlist.getFromdate());
+            row[3]=flightlist.getFromtime()+" "+flightlist.getFromdate();
             //row[4]=strfromDate;
-            String strtoDate = formatter.format(flightlist.getTodate());
-            row[4]=flightlist.getTotime()+" "+strtoDate;
+            //String strtoDate = formatter.format(flightlist.getTodate());
+            row[4]=flightlist.getTotime()+" "+flightlist.getTodate();
             //row[6]=strtoDate;
             row[5]=flightlist.getEstimation();
             dtm.addRow(row);
