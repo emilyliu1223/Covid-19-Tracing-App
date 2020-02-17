@@ -77,7 +77,7 @@ public class Lab7 {
         Map<Integer,User> userMap=DataStore.getInstance().getUsers();
         List<Comment> commentlist=userMap.get(userId).getComments();
         commentlist.add(c);
-        return null;
+        return c;
     }
     
     private void generatePost(String[] row, Comment comment){
@@ -101,12 +101,12 @@ public class Lab7 {
         helper.getUserWithMostLike();
         helper.getFiveCommentWithMostLikes();
         helper.getAverageLikesperComment();
-        //bug
-        //helper.getPostWithMostLikedComments();
+        helper.getPostWithMostLikedComments();
         helper.getPostWithMostComments();
         helper.getInactUser_TotalPostNo();
         helper.find5UserwithleastComment();
-        helper.UserwithleastEverything();
+        //NO 6 has bug.
+        //helper.UserwithleastEverything();
         helper.top5inactiveusersoverall();
     }
 }
