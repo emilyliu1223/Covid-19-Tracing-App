@@ -41,8 +41,10 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
          this.flightl=flightl;
+        System.out.println(flightl);
         this.airliner=airliner;
         this.flight=flight;
+        System.out.println(cusDir.getCustomerlist());
         this.rightPanel=rightPanel;
         this.cusDir=cusDir;
         cuslist=new ArrayList<Customer>();
@@ -52,7 +54,7 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
         
         DefaultTableModel dtm = (DefaultTableModel)tableFlight.getModel();
         dtm.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
           
     //check time and date format
     //use airliner name to find all dlight 
@@ -64,11 +66,11 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
             row[3]=flightlist.getFromtime();
-            String strfromDate = formatter.format(flightlist.getFromdate());
-            row[4]=strfromDate;
+            //String strfromDate = formatter.format(flightlist.getFromdate());
+            row[4]=flightlist.getFromdate();
             row[5]=flightlist.getTotime();
-            String strtoDate = formatter.format(flightlist.getTodate());
-            row[6]=strtoDate;
+            //String strtoDate = formatter.format(flightlist.getTodate());
+            row[6]=flightlist.getTodate();
             row[7]=flightlist.getEstimation();
             dtm.addRow(row);
             
@@ -79,7 +81,7 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
         
         DefaultTableModel dtm = (DefaultTableModel)tableFlight.getModel();
         dtm.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
           
     //check time and date format
     //use airliner name to find all dlight 
@@ -91,26 +93,17 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
             row[3]=flightlist.getFromtime();
-            String strfromDate = formatter.format(flightlist.getFromdate());
-            row[4]=strfromDate;
+           // String strfromDate = formatter.format(flightlist.getFromdate());
+            row[4]=flightlist.getFromdate();
             row[5]=flightlist.getTotime();
-            String strtoDate = formatter.format(flightlist.getTodate());
-            row[6]=strtoDate;
+            //String strtoDate = formatter.format(flightlist.getTodate());
+            row[6]=flightlist.getTodate();
             row[7]=flightlist.getEstimation();
             dtm.addRow(row);
             
         }
     
      }}
-      public void populatenullTable(){
-         
-      
-    for(Flight flightlist: flightl){
-        
-        flightl.remove(flightlist);
-            
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,8 +208,7 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbackActionPerformed
-        // TODO add your handling code here:\
-       populatenullTable();
+        // TODO add your handling code here:
         rightPanel.remove(this);
         CardLayout layout = (CardLayout)rightPanel.getLayout();
         layout.previous(rightPanel);

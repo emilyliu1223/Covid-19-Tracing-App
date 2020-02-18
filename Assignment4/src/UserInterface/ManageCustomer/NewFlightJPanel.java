@@ -10,6 +10,7 @@ import Business.FlightDirectory;
 import UserInterface.ManageFlight.ManageAirlinerFlightScheduleJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -42,10 +43,12 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 fromhour.addItem(i+""+j);
             }
             fromhour.addItem("20");fromhour.addItem("21");fromhour.addItem("22");fromhour.addItem("23");fromhour.addItem("24");
+            fromhour.setSelectedItem(-1);
         }
         for(int k=0; k<6; k++){
             for(int a=0; a<10; a++){
                 frommin.addItem(k+""+a);
+                frommin.setSelectedItem(-1);
             }
         }
         
@@ -54,10 +57,12 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                 tohour.addItem(i+""+j);
             }
             tohour.addItem("20");tohour.addItem("21");tohour.addItem("22");tohour.addItem("23");tohour.addItem("24");
+            tohour.setSelectedItem(-1);
         }
         for(int k=0; k<6; k++){
             for(int a=0; a<10; a++){
                 tomin.addItem(k+""+a);
+                tomin.setSelectedItem(-1);
             }
         }
         
@@ -93,8 +98,8 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         estimationtxt = new javax.swing.JTextField();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
-        jXDatePicker2 = new org.jdesktop.swingx.JXDatePicker();
+        jDateChooser1 = new org.jdesktop.swingx.JXDatePicker();
+        jDateChooser2 = new org.jdesktop.swingx.JXDatePicker();
 
         btnBack.setText("<<Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -173,32 +178,32 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(jLabel10)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(estimationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jXDatePicker2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDepart, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtFlightNum, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDestination, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(fromhour, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(fromhour, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(frommin, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(12, 12, 12)
+                                    .addComponent(frommin, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtDepart, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                                .addComponent(txtDestination, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(estimationtxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtFlightNum, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(310, 310, 310)
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,25 +226,26 @@ public class NewFlightJPanel extends javax.swing.JPanel {
                     .addComponent(fromhour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(frommin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addGap(16, 16, 16)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jXDatePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(tohour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel9))
+                    .addComponent(tomin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(estimationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(btnCreate)
                 .addGap(51, 51, 51))
         );
@@ -249,9 +255,9 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap()
                 .addComponent(btnBack)
-                .addContainerGap(691, Short.MAX_VALUE))
+                .addContainerGap(719, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -261,14 +267,14 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(btnBack)
-                .addContainerGap(462, Short.MAX_VALUE))
+                .addContainerGap(484, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 22, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 21, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -278,8 +284,7 @@ public class NewFlightJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        Flight flight = flightDirectory.addflight();
-        flight.setAirliner(airlinerName);
+        
         String estimation = estimationtxt.getText();
         String flightNumber=txtFlightNum.getText();
         String depart=txtDepart.getText();
@@ -288,12 +293,20 @@ public class NewFlightJPanel extends javax.swing.JPanel {
         frommin_str=frommin.getSelectedItem().toString();
         tohour_str=tohour.getSelectedItem().toString();
         tomin_str=tomin.getSelectedItem().toString();
-        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
-        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(flightNumber.equals("")){
             JOptionPane.showMessageDialog(null, "please enter flight number");
             txtFlightNum.setText("");
             return;
+        }
+        else{
+            for(Flight f:flightDirectory.getFlightlist()){
+            if(f.getFlightnumber().equalsIgnoreCase(flightNumber)){
+                JOptionPane.showMessageDialog(null, "there is the same flight number already.");
+                txtFlightNum.setText("");
+                return;
+            }
+        }
         }
         if(desti.equals("")){
             JOptionPane.showMessageDialog(null, "please enter destination");
@@ -305,19 +318,46 @@ public class NewFlightJPanel extends javax.swing.JPanel {
             txtDepart.setText("");
             return;
         }
+        //check depart and destination
+        if(desti.equals(depart)){
+            JOptionPane.showMessageDialog(null, "departure and destination cannot be the same");
+            txtDepart.setText("");
+            txtDestination.setText("");
+            return;
+        }
+        //chack date validation
+        if(jDateChooser1.getDate()==null||jDateChooser2.getDate()==null){
+            JOptionPane.showMessageDialog(null, "must choose date");
+            return;
+        }
+        if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate())>0){
+            JOptionPane.showMessageDialog(null, "arrival time cannot be later than department time");
+            return;
+        }
+        if(!estimationtxt.equals("")&&!txtFlightNum.equals("")&&!txtDepart.equals("")&&!txtDestination.equals("")&&jDateChooser1.getDate()!=null&&jDateChooser2.getDate()!=null){
+        Flight flight = flightDirectory.addflight();
+        flight.setAirliner(airlinerName);
+        flight.setFromtime(LocalTime.parse(fromhour_str+":"+frommin_str));
+        flight.setTotime(LocalTime.parse(tohour_str+":"+tomin_str));
+        
         if(estimation.equals("")){
             flight.setEstimation("null");
         }else{
             flight.setEstimation(estimation);
         }
+        
         flight.setAirliner(airlinerName);
         flight.setFlightnumber(flightNumber);
         flight.setFrom(depart);
         flight.setTo(desti);
-        flight.setFromdate(jXDatePicker1.getDate());
-        flight.setTodate(jXDatePicker2.getDate());
-        System.out.println(flight.getFromtime()+","+flight.getTotime());
+        SimpleDateFormat formatter=new SimpleDateFormat("dd/MM/yyyy");
+        flight.setFromdate(formatter.format(jDateChooser1.getDate()));
+        System.out.println("get date from create flight:"+jDateChooser1.getDate());
+        flight.setTodate(formatter.format(jDateChooser2.getDate()));
         JOptionPane.showMessageDialog(null, "flight create sucessfully.");
+            
+        }
+        
         txtFlightNum.setText("");
         txtDestination.setText("");
         txtDepart.setText("");
@@ -362,6 +402,8 @@ public class NewFlightJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField estimationtxt;
     private javax.swing.JComboBox<String> fromhour;
     private javax.swing.JComboBox<String> frommin;
+    private org.jdesktop.swingx.JXDatePicker jDateChooser1;
+    private org.jdesktop.swingx.JXDatePicker jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -373,8 +415,6 @@ public class NewFlightJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker2;
     private javax.swing.JComboBox<String> tohour;
     private javax.swing.JComboBox<String> tomin;
     private javax.swing.JTextField txtDepart;

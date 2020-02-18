@@ -15,6 +15,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,38 +32,23 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
     private FlightDirectory flightDirectory;
     private String str_airliner;
     private List<String> listforId;
-    private Airliner airliner;
-    public ManageAirlinerFlightScheduleJPanel(JPanel rightPanel, Airliner airliner, String str_airliner,FlightDirectory flightDirectory) {
+    //private Airliner airliner;
+    public ManageAirlinerFlightScheduleJPanel(JPanel rightPanel, String str_airliner,FlightDirectory flightDirectory) {
         //To change body of generated methods, choose Tools | Templates.
         initComponents();
         this.rightPanel=rightPanel;
         this.flightDirectory=flightDirectory;
         this.str_airliner=str_airliner;
-        this.airliner=airliner;
+        //this.airliner=airliner;
         populate();
     }
 
-//    private void initialData(){
-//        listforId=new ArrayList<String>();
-//        listforId.add("A1");listforId.add("A2");listforId.add("A3");
-//        flightDirectory = new FlightDirectory();
-//        Flight flight1 = flightDirectory.addflight();
-//        flight1.setAirliner("Aloha Airline");
-//        flight1.setEstimation("null");
-//        flight1.setFlightnumber("a123");
-//        flight1.setID(listforId);
-//        flight1.setFrom("boston");
-//        flight1.setTo("taipei");
-//        flight1.setFromtime(LocalTime.of(6,30,0));
-//        flight1.setTotime(LocalTime.of(10, 30, 0));
-//        flight1.setFromdate(new Date());
-//        flight1.setTodate(new Date());
 //    }
      public void populate(){
         
         DefaultTableModel dtm = (DefaultTableModel)tableManageFlight.getModel();
         dtm.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");  
           
     //check time and date format
     //use airliner name to find all dlight 
@@ -74,13 +60,13 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
             row[0]=flightlist.getAirliner();
             row[1]=flightlist.getFlightnumber();
             row[2]=flightlist.getFrom()+"-"+flightlist.getTo();
-            row[3]=flightlist.getFromtime();
-            String strfromDate = formatter.format(flightlist.getFromdate());
-            row[4]=strfromDate;
-            row[5]=flightlist.getTotime();
-            String strtoDate = formatter.format(flightlist.getTodate());
-            row[6]=strtoDate;
-            row[7]=flightlist.getEstimation();
+            //String strfromDate = formatter.format(flightlist.getFromdate());
+            row[3]=flightlist.getFromtime()+" "+flightlist.getFromdate();
+            //row[4]=strfromDate;
+            //String strtoDate = formatter.format(flightlist.getTodate());
+            row[4]=flightlist.getTotime()+" "+flightlist.getTodate();
+            //row[6]=strtoDate;
+            row[5]=flightlist.getEstimation();
             dtm.addRow(row);
             
         }
@@ -101,6 +87,7 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
 
         btnNewFlight.setText("New Flight");
+        btnNewFlight.setPreferredSize(new java.awt.Dimension(130, 30));
         btnNewFlight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewFlightActionPerformed(evt);
@@ -109,17 +96,17 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
 
         tableManageFlight.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Airliner", "Flight Number", "From", "FromTime", "FromDate", "ToTime", "ToDate", "Estimation"
+                "Airliner", "Flight Number", "From-To", "Depart Time", "Arrive Time", "Estimation"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -134,8 +121,6 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
             tableManageFlight.getColumnModel().getColumn(3).setResizable(false);
             tableManageFlight.getColumnModel().getColumn(4).setResizable(false);
             tableManageFlight.getColumnModel().getColumn(5).setResizable(false);
-            tableManageFlight.getColumnModel().getColumn(6).setResizable(false);
-            tableManageFlight.getColumnModel().getColumn(7).setResizable(false);
         }
 
         btnBack.setText("<<Back");
@@ -150,25 +135,27 @@ public class ManageAirlinerFlightScheduleJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNewFlight))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnNewFlight, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(32, 32, 32)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNewFlight)
-                    .addComponent(btnBack))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnNewFlight, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
