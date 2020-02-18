@@ -77,7 +77,7 @@ public class AnalysisHelper {
             }
            //post with most liked comments
         public void getPostWithMostLikedComments(){
-            System.out.println("Q2:");
+            System.out.println("Q2:post with most liked comments");
             Map<Integer, Integer> LikedCommentCount=new HashMap<>();
             Map<Integer, Post> posts = DataStore.getInstance().getPosts();
             
@@ -110,13 +110,13 @@ public class AnalysisHelper {
                     maxprint=LikedCommentCount.get(id);
                     maxIdprint=id;
           
-            System.out.println("post with most liked comments-- post id:"+maxIdprint+",likes count:"+maxprint);
+            System.out.println("post id:"+maxIdprint+",likes count:"+maxprint);
             
                 }}System.out.println();
         }
             //post with most cpmments
         public void getPostWithMostComments(){
-            System.out.println("Q3:");
+            System.out.println("Q3:post with most comments");
             Map<Integer, Post> posts=DataStore.getInstance().getPosts();
             //List<Post> postList=new ArrayList<>(posts.values());
             Map<Integer, Integer> postCount=new HashMap<>();
@@ -143,7 +143,7 @@ public class AnalysisHelper {
                 if(postCount.get(id)==max){
                     maxprint=postCount.get(id);
                     maxIdprint=id;
-                    System.out.println("post with most comments-- post id:"+maxIdprint+", comments count:"+maxprint);
+                    System.out.println("post id:"+maxIdprint+", comments count:"+maxprint);
                 }
             }
             //System.out.println("post with most comments-- post id:"+maxId+", comments count:"+max);
@@ -154,28 +154,16 @@ public class AnalysisHelper {
             Map<Integer,Integer> postNoCount=new HashMap<>();
             Map<Integer,Post> posts=DataStore.getInstance().getPosts();
             Map<Integer,User> users=DataStore.getInstance().getUsers();
-             
-               for(User p:users.values()){
                 
-                   if(postNoCount.containsKey(p.getId())){
-                  
-                    }
-                else{
-                    postNoCount.put(p.getId(),0);
-                    //System.out.println("shuruid"+p.getId());
-                    }
-               }
-             
-            for(Post p:posts.values()){
-                  int postsNo=0;
-                   
+                for(Post p:posts.values()){
+                    int count=0;
                     if(postNoCount.containsKey(p.getUserId())){
-                       postsNo= postNoCount.get(p.getUserId())+1; 
-                       }
-                    
-                    postNoCount.put(p.getUserId(), postsNo);
-               
-                      }
+                        count=postNoCount.get(p.getUserId())+1;
+                        postNoCount.put(p.getUserId(), count);
+                    }else{
+                        postNoCount.put(p.getUserId(),1);
+                    }
+                }
             List<Map.Entry<Integer,Integer>> postList =new ArrayList<Map.Entry<Integer,Integer>>(postNoCount.entrySet());
     
             Collections.sort(postList, new Comparator<Map.Entry<Integer,Integer>>(){
@@ -183,11 +171,11 @@ public class AnalysisHelper {
                     return o1.getValue()-o2.getValue();
                 }
             });
-            System.out.println("Inactive User based on total posts number: ");
+            System.out.println("5 Inactive User based on total posts number: ");
             for(int i=0;i<postList.size()&&i<5;i++){
                
                 
-                System.out.println("UserId: "+postList.get(i).getKey()+" ,total number: "+postList.get(i).getValue());
+                System.out.println("UserId: "+users.get(postList.get(i).getKey())+" ,total post number: "+postList.get(i).getValue());
             }
             System.out.println();
         }
