@@ -57,42 +57,45 @@ public class Lab7 {
         String firstName=row[1];
         String lastName=row[2];
         User user=new User(userId,firstName,lastName);
-        Map<Integer, User> usermap=DataStore.getInstance().getUsers();
-        if(!usermap.containsKey(userId)){
-            usermap.put(userId, user);
-        }
+//        Map<Integer, User> usermap=DataStore.getInstance().getUsers();
+//        if(!usermap.containsKey(userId)){
+//            usermap.put(userId, user);
+//        }
+        DataStore.getInstance().getUsers().put(userId, user);
     }
     
     private Comment generateComment(String[] row){
         // TODO
-        int commentId=Integer.parseInt(row[0]);
-        int userId=Integer.parseInt(row[4]);
-        int postId=Integer.parseInt(row[1]);
-        String text=row[5];
-        int like=Integer.parseInt(row[3]);
-        Comment c=new Comment(commentId,userId,postId,text,like);
-        Map<Integer, Comment> commentmap=DataStore.getInstance().getComments();
-        commentmap.put(commentId, c);
+        int commentId = Integer.parseInt(row[0]);
+        int commentingUserId = Integer.parseInt(row[4]);
+        int likes = Integer.parseInt(row[3]);
+        int postId = Integer.parseInt(row[1]);
+        String comment = row[5];
         
-        Map<Integer,User> userMap=DataStore.getInstance().getUsers();
-        List<Comment> commentlist=userMap.get(userId).getComments();
-        commentlist.add(c);
+        Comment c = new Comment(commentId, commentingUserId, 
+                postId, comment, likes);
+        DataStore.getInstance().getComments().put(commentId, c);
+        
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        if (users.containsKey(commentingUserId)) {
+            users.get(commentingUserId).getComments().add(c);
+        }
         return c;
     }
     
     private void generatePost(String[] row, Comment comment){
         // TODO
-        int postId=Integer.parseInt(row[1]);
-        int userId=Integer.parseInt(row[4]);
+        int postId = Integer.parseInt(row[1]);
+        int userId = Integer.parseInt(row[2]);
         
-        Map<Integer, Post> postmap=DataStore.getInstance().getPosts();
-        if(!postmap.containsKey(postId)){
-            Post post=new Post(postId,userId);
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        
+        if(posts.containsKey(postId))
+            posts.get(postId).getComments().add(comment);
+        else {
+            Post post = new Post(postId, userId);
             post.getComments().add(comment);
-            postmap.put(postId, post);
-        }else{
-            Post post2=postmap.get(postId); 
-            post2.getComments().add(comment);
+            posts.put(postId, post);
         }
     }
     
@@ -100,13 +103,14 @@ public class Lab7 {
         // TODO
         helper.getUserWithMostLike();
         helper.getFiveCommentWithMostLikes();
+        
         helper.getAverageLikesperComment();
         helper.getPostWithMostLikedComments();
         helper.getPostWithMostComments();
         helper.getInactUser_TotalPostNo();
         helper.find5UserwithleastComment();
         //NO 6 has bug.
-        //helper.UserwithleastEverything();
+        helper.UserwithleastEverything();
         helper.top5inactiveusersoverall();
     }
 }
