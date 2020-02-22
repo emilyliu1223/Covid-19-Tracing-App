@@ -22,63 +22,61 @@ import lab7.entities.User;
 public class AnalysisHelper {
     // find user with Most Likes
     // TODO
-//    public void getUserWithMostLike(){
-//    Map<Integer,Integer> userLikes=new HashMap<>();
-//    Map<Integer,User> userMap=DataStore.getInstance().getUsers();
-//    for(User u: userMap.values()){
-//        for(Comment comment:u.getComments()){
-//            if(userLikes.containsKey(u.getId())){
-//                int commentLikes=userLikes.get(u.getId())+comment.getLikes();
-//                userLikes.put(u.getId(), commentLikes);
-//            }
-//            else{
-//                userLikes.put(u.getId(), comment.getLikes());
-//            }      
-//        }
-//    }
-//    int winner=0;
-//    int maxLikes=0;
-//    for(Integer i:userLikes.keySet()){
-//        if(maxLikes<userLikes.get(i)){
-//            winner=i;
-//            maxLikes=userLikes.get(i);
-//        }
-//    }
-//    System.out.println("1.user with most like:"+winner+",number of likes:"+maxLikes);
-//    }
-//    // find 5 comments which have the most likes
-//    public void getFiveCommentWithMostLikes(){
-//        Map<Integer, Comment> commentMap=DataStore.getInstance().getComments();
-//        List<Comment> comments=new ArrayList<>( commentMap.values());
-//        Collections.sort(comments,new Comparator<Comment>(){
-//        //order: descending
-//        @Override
-//        public int compare(Comment c1,Comment c2){
-//            return c2.getLikes()-c1.getLikes();
-//        }
-//        });
-//        for(int i=0;i<5;i++){
-//            System.out.println("2."+comments.get(i));
-//        }
-//    }
-//        
+        public void getUserWithMostLike(){
+    Map<Integer,Integer> userLikes=new HashMap<>();
+    Map<Integer,User> userMap=DataStore.getInstance().getUsers();
+    for(User u: userMap.values()){
+        for(Comment comment:u.getComments()){
+            if(userLikes.containsKey(u.getId())){
+                int commentLikes=userLikes.get(u.getId())+comment.getLikes();
+                userLikes.put(u.getId(), commentLikes);
+            }
+            else{
+                userLikes.put(u.getId(), comment.getLikes());
+            }      
+        }
+    }
+    int winner=0;
+    int maxLikes=0;
+    for(Integer i:userLikes.keySet()){
+        if(maxLikes<userLikes.get(i)){
+            winner=i;
+            maxLikes=userLikes.get(i);
+        }
+    }
+    System.out.println("1.user with most like:"+winner+",number of likes:"+maxLikes);
+    }
+    // find 5 comments which have the most likes
+    public void getFiveCommentWithMostLikes(){
+        Map<Integer, Comment> commentMap=DataStore.getInstance().getComments();
+        List<Comment> comments=new ArrayList<>( commentMap.values());
+        Collections.sort(comments,new Comparator<Comment>(){
+        //order: descending
+        @Override
+        public int compare(Comment c1,Comment c2){
+            return c2.getLikes()-c1.getLikes();
+        }
+        });
+        for(int i=0;i<5;i++){
+            System.out.println("2."+comments.get(i));
+        }
+    }
          public void getAverageLikesperComment(){
-             System.out.println("Q1:");
-             // Map<Integer,Integer> commentLikesCount=new HashMap<>();
-          Map<Integer,Comment> comments=DataStore.getInstance().getComments();
-         List<Comment> commentList=new ArrayList<>(comments.values());
-         int commenting=0;
-         int count=0;
-         for(Comment comment:commentList){
-             commenting+=comment.getLikes();
-             count++;
-         }
-         System.out.println("average likes per comment "+commenting/count);
-         System.out.println();
-         }
-          
+            System.out.println("Q1:");
+            Map<Integer,Comment> comments=DataStore.getInstance().getComments();
+            List<Comment> commentList=new ArrayList<>(comments.values());
+            int commenting=0;
+            int count=0;
+            for(Comment comment:commentList){
+                count++;
+                commenting+=comment.getLikes();
+            }
+            System.out.println("average likes per comment "+commenting/count);
+            System.out.println();
+            }
+           //post with most liked comments
         public void getPostWithMostLikedComments(){
-            System.out.println("Q2:");
+            System.out.println("Q2:post with most liked comments");
             Map<Integer, Integer> LikedCommentCount=new HashMap<>();
             Map<Integer, Post> posts = DataStore.getInstance().getPosts();
             
@@ -89,10 +87,8 @@ public class AnalysisHelper {
                     if(LikedCommentCount.containsKey(post.getPostId())){
                         like=LikedCommentCount.get(post.getPostId());
                     }
-                 
                         like=  Math.max(like,c.getLikes());
                         
-                    
                     LikedCommentCount.put(post.getPostId(), like);
                 }
                 //LikedCommentCount.put(post.getPostId(), maxlike);
@@ -112,16 +108,14 @@ public class AnalysisHelper {
                 if(LikedCommentCount.get(id)==max){
                     maxprint=LikedCommentCount.get(id);
                     maxIdprint=id;
-                    
-               }
-            }
-            System.out.println("post with most liked comments-- post id:"+maxIdprint+",likes count:"+maxprint);
+          
+            System.out.println("post id:"+maxIdprint+",likes count:"+maxprint);
             
-                }
-        
+                }}System.out.println();
+        }
             //post with most cpmments
         public void getPostWithMostComments(){
-            System.out.println("Q3:");
+            System.out.println("Q3:post with most comments");
             Map<Integer, Post> posts=DataStore.getInstance().getPosts();
             //List<Post> postList=new ArrayList<>(posts.values());
             Map<Integer, Integer> postCount=new HashMap<>();
@@ -148,7 +142,7 @@ public class AnalysisHelper {
                 if(postCount.get(id)==max){
                     maxprint=postCount.get(id);
                     maxIdprint=id;
-                    System.out.println("post with most comments-- post id:"+maxIdprint+", comments count:"+maxprint);
+                    System.out.println("post id:"+maxIdprint+", comments count:"+maxprint);
                 }
             }
             //System.out.println("post with most comments-- post id:"+maxId+", comments count:"+max);
@@ -159,28 +153,16 @@ public class AnalysisHelper {
             Map<Integer,Integer> postNoCount=new HashMap<>();
             Map<Integer,Post> posts=DataStore.getInstance().getPosts();
             Map<Integer,User> users=DataStore.getInstance().getUsers();
-             
-               for(User p:users.values()){
                 
-                   if(postNoCount.containsKey(p.getId())){
-                  
-                    }
-                else{
-                    postNoCount.put(p.getId(),0);
-                    //System.out.println("shuruid"+p.getId());
-                    }
-               }
-             
-            for(Post p:posts.values()){
-                  int postsNo=0;
-                   
+                for(Post p:posts.values()){
+                    int count=0;
                     if(postNoCount.containsKey(p.getUserId())){
-                       postsNo= postNoCount.get(p.getUserId())+1; 
-                       }
-                    
-                    postNoCount.put(p.getUserId(), postsNo);
-               
-                      }
+                        count=postNoCount.get(p.getUserId())+1;
+                        postNoCount.put(p.getUserId(), count);
+                    }else{
+                        postNoCount.put(p.getUserId(),1);
+                    }
+                }
             List<Map.Entry<Integer,Integer>> postList =new ArrayList<Map.Entry<Integer,Integer>>(postNoCount.entrySet());
     
             Collections.sort(postList, new Comparator<Map.Entry<Integer,Integer>>(){
@@ -188,57 +170,14 @@ public class AnalysisHelper {
                     return o1.getValue()-o2.getValue();
                 }
             });
-            System.out.println("Inactive User based on total posts number: ");
+            System.out.println("5 Inactive User based on total posts number: ");
             for(int i=0;i<postList.size()&&i<5;i++){
                
                 
-                System.out.println("UserId: "+postList.get(i).getKey()+" ,total number: "+postList.get(i).getValue());
+                System.out.println("UserId: "+users.get(postList.get(i).getKey())+" ,total post number: "+postList.get(i).getValue());
             }
             System.out.println();
         }
-        
-        public void userWithMostLikes(){
-         Map<Integer,Integer> userLikesCount=new HashMap<>();
-         Map<Integer,User>users=DataStore.getInstance().getUsers();
-         
-         for(User user:users.values()){
-              for(Comment c: user.getComments()){
-              int likes=0;
-              if(userLikesCount.containsKey(user.getId())){
-              likes=userLikesCount.get(user.getId());  
-              }
-              likes+=c.getLikes();
-              userLikesCount.put(user.getId(), likes);
-              }
-         }
-         int max=0;
-         int maxId=0;
-         for(int id:userLikesCount.keySet()){
-         if(userLikesCount.get(id)>max){
-           max=userLikesCount.get(id);
-           maxId=id;
-         }
-         }
-         System.out.println("User with most likes  "+ max+"  \n "+users.get(maxId));
-         System.out.println();
-         }
-        public void getFiveMostLIkedComment(){
-         Map<Integer,Comment> comments=DataStore.getInstance().getComments();
-         List<Comment> commentList=new ArrayList<>(comments.values());
-         
-         Collections.sort(commentList, new Comparator<Comment>(){
-            @Override
-            public int compare(Comment o1,Comment o2){
-            return o2.getLikes()-o1.getLikes();
-            }
-         }
-              );
-                 System.out.println("5 most liked comments");
-                 for(int i=0;i<commentList.size()&&i<5;i++){
-             System.out.println(commentList.get(i));
-    }
-    System.out.println();
-         }
            public void find5UserwithleastComment(){
             System.out.println("Q5:");
                Map<Integer,User>users=DataStore.getInstance().getUsers();
@@ -300,7 +239,9 @@ public class AnalysisHelper {
               Collections.reverse(userList);
               System.out.println("top 5 proactive users overall: ");
              for(int i=0;i<userList.size()&&i<5;i++){
-             System.out.println("points:"+userLikesCount.get(userList.get(i).getId())+userList.get(i).getComments().size()+postCount.get(userList.get(i).getId()));
+                 int overall=userLikesCount.get(userList.get(i).getId())+userList.get(i).getComments().size()+postCount.get(userList.get(i).getId());
+             System.out.println("overall:"+overall+"->id:"+userList.get(i)+",likes:"+userLikesCount.get(userList.get(i).getId())+",comment:"+userList.get(i).getComments().size()+",post:"+postCount.get(userList.get(i).getId()));
+             
              }
              System.out.println();
          }
@@ -347,7 +288,9 @@ public class AnalysisHelper {
               Collections.reverse(userList);
               System.out.println("top 5 inactive users overall: ");
              for(int i=0;i<userList.size()&&i<5;i++){
-             System.out.println("points:"+userLikesCount.get(userList.get(i).getId())+userList.get(i).getComments().size()+postCount.get(userList.get(i).getId()));
+                 int overall=userLikesCount.get(userList.get(i).getId())+userList.get(i).getComments().size()+postCount.get(userList.get(i).getId());
+             System.out.println("overall:"+overall+"->id:"+userList.get(i)+",likes:"+userLikesCount.get(userList.get(i).getId())+",comment:"+userList.get(i).getComments().size()+",post:"+postCount.get(userList.get(i).getId()));
+             
              }
              System.out.println();
          }
