@@ -466,7 +466,7 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
         // TODO add your handling code here:
        
      ArrayList<Flight>ar=new ArrayList<Flight>();
-   
+     int age;
     for(Flight aflight:flightDir.getFlightlist()){
         if(aflight.getID().contains(txtID.getText()))
      ar.add(aflight);
@@ -474,7 +474,14 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
 }                     
         if(flight.getID().isEmpty()){
          if(ar.isEmpty()){
-                 customer=new Customer(txtName.getText(),txtNation.getText(),Integer.parseInt(txtAge.getText()),txtAddress.getText(),txtPhone.getText());
+             try{
+                 age=Integer.parseInt(txtAge.getText());
+             }catch(Exception e){
+                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 txtAge.setText("");
+                 return;
+             }
+                 customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
                              customer.setID(txtID.getText());
@@ -495,7 +502,14 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                                    break; 
                              }
                              if(!isOverlapping(formatter.parse(flightn.getFromdate()),formatter.parse(flightn.getTodate()),formatter.parse(flight.getFromdate()),formatter.parse(flight.getTodate()),flightn.getFromtime(),flightn.getTotime(),flight.getFromtime(),flight.getTotime())){
-                             customer=new Customer(txtName.getText(),txtNation.getText(),Integer.parseInt(txtAge.getText()),txtAddress.getText(),txtPhone.getText());
+                             try{
+                 age=Integer.parseInt(txtAge.getText());
+             }catch(Exception e){
+                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 txtAge.setText("");
+                 return;
+             }
+                                 customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
                              customer.setID(txtID.getText());
@@ -522,7 +536,14 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                  }
                  if(!flight.getID().contains(txtID.getText())){
                  if(ar.isEmpty()){
-                 customer=new Customer(txtName.getText(),txtNation.getText(),Integer.parseInt(txtAge.getText()),txtAddress.getText(),txtPhone.getText());
+                     try{
+                 age=Integer.parseInt(txtAge.getText());
+             }catch(Exception e){
+                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 txtAge.setText("");
+                 return;
+             }
+                 customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
                              customer.setID(txtID.getText());
@@ -543,7 +564,14 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                                    break; 
                              }
                              if(!isOverlapping(formatter.parse(flightn.getFromdate()),formatter.parse(flightn.getTodate()),formatter.parse(flight.getFromdate()),formatter.parse(flight.getTodate()),flightn.getFromtime(),flightn.getTotime(),flight.getFromtime(),flight.getTotime())){
-                             customer=new Customer(txtName.getText(),txtNation.getText(),Integer.parseInt(txtAge.getText()),txtAddress.getText(),txtPhone.getText());
+                             try{
+                 age=Integer.parseInt(txtAge.getText());
+             }catch(Exception e){
+                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 txtAge.setText("");
+                 return;
+             }
+                                 customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
                              customer.setID(txtID.getText());

@@ -36,7 +36,7 @@
                   <Component id="txtNation" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtAge" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtPhone" alignment="0" pref="170" max="32767" attributes="0"/>
+                  <Component id="txtPhone" alignment="0" pref="165" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
           </Group>
@@ -47,7 +47,7 @@
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="235" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                       <Component id="btncancel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
@@ -95,12 +95,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCreate" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btncancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

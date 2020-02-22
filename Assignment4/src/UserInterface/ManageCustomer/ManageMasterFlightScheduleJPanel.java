@@ -76,7 +76,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtFlightNum = new javax.swing.JTextField();
         btnback = new javax.swing.JButton();
-        jXDatePicker1 = new org.jdesktop.swingx.JXDatePicker();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel2.setText("Departure:");
 
@@ -99,16 +99,10 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Flight Number:");
 
-        btnback.setText("back");
+        btnback.setText("<<back");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbackActionPerformed(evt);
-            }
-        });
-
-        jXDatePicker1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jXDatePicker1ActionPerformed(evt);
             }
         });
 
@@ -125,28 +119,30 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFlightNum)
+                    .addComponent(txtDP)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFlightNum)
-                            .addComponent(txtDP)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtDE, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE)))
-                        .addContainerGap(311, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDE, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 1, Short.MAX_VALUE)))
+                .addContainerGap(311, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(btnback)
-                .addGap(246, 246, 246)
-                .addComponent(btnSearch)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(364, 364, 364)
+                        .addComponent(btnSearch))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnback)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap()
+                .addComponent(btnback)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtFlightNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,13 +155,11 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtDE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jXDatePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnback)
-                    .addComponent(btnSearch))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 205, Short.MAX_VALUE)
+                .addComponent(btnSearch)
                 .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -185,7 +179,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
     if(txtFlightNum.getText().equals("")){
              if(txtDP.getText().equals("")||
                  txtDE.getText().equals("")||
-                 jXDatePicker1.getDate()==null
+                 jDateChooser1.getDate()==null
                 )
          {
              JOptionPane.showMessageDialog(null, "imcomplete insert");
@@ -213,7 +207,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
             if(
                 flight.getFrom().equals(txtDP.getText())&&
                   flight.getTo().equals(txtDE.getText())&&
-                  flight.getFromdate().equals(formatter.format(jXDatePicker1.getDate()))&&
+                  flight.getFromdate().equals(formatter.format(jDateChooser1.getDate()))&&
                !flightl.contains(flight)){
                     flightl.add(flight);
                }}
@@ -255,12 +249,12 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnback;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JSeparator jSeparator1;
-    private org.jdesktop.swingx.JXDatePicker jXDatePicker1;
     private javax.swing.JTextField txtDE;
     private javax.swing.JTextField txtDP;
     private javax.swing.JTextField txtFlightNum;
