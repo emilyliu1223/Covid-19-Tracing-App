@@ -408,7 +408,7 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                       txtAge.setEditable(true);
                    txtPhone.setEditable(true);
                    checkbutton.setEnabled(true);
-          
+          btnBook.setEnabled(true);
       int row = tableSeats.getSelectedRow();
       int column = tableSeats.getSelectedColumn();
         Object target= (Object) tableSeats.getValueAt(row, column);

@@ -121,12 +121,10 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFlightNum)
-                            .addComponent(txtDP)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtDE, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 1, Short.MAX_VALUE)))
-                        .addContainerGap(311, Short.MAX_VALUE))
+                            .addComponent(txtFlightNum, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDP, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(312, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -182,6 +180,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
         // TODO add your handling code here:
         
+    try{
     if(txtFlightNum.getText().equals("")){
              if(txtDP.getText().equals("")||
                  txtDE.getText().equals("")||
@@ -189,8 +188,12 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
                 )
          {
              JOptionPane.showMessageDialog(null, "imcomplete insert");
+             return;
         
-         }}
+         }}}catch(Exception e){
+             JOptionPane.showMessageDialog(null, "please insert destination, departure and date");
+             return;
+         }
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); 
            if(!txtFlightNum.getText().equals("")){
         for(Flight flight:flightDir.getFlightlist()){ 
@@ -230,6 +233,7 @@ public class ManageMasterFlightScheduleJPanel extends javax.swing.JPanel {
                    } 
                   else{
                   JOptionPane.showMessageDialog(null, "no flight found");
+                  return ;
                   }
                    
  
