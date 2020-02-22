@@ -407,7 +407,7 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                     txtID.setEditable(true);
                       txtAge.setEditable(true);
                    txtPhone.setEditable(true);
-                   checkbutton.setEnabled(true);
+                   checkbutton.setEnabled(false);
           btnBook.setEnabled(true);
       int row = tableSeats.getSelectedRow();
       int column = tableSeats.getSelectedColumn();
@@ -468,7 +468,7 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
      ArrayList<Flight>ar=new ArrayList<Flight>();
      int age;
     for(Flight aflight:flightDir.getFlightlist()){
-        if(aflight.getID().contains(txtID.getText()))
+        if(aflight.getID().contains(txtID.getText().toUpperCase()))
      ar.add(aflight);
    
 }                     
@@ -477,20 +477,24 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
              try{
                  age=Integer.parseInt(txtAge.getText());
              }catch(Exception e){
-                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 JOptionPane.showMessageDialog(null, "age must be integer or cannot be blank");
                  txtAge.setText("");
                  return;
              }
-                 customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
+             if(txtName.getText().equals("")||txtNation.getText().equals("")||txtAddress.getText().equals("")||txtPhone.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "cannot have blank");
+                 return;
+             }else{
+                customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
-                             customer.setID(txtID.getText());
+                             customer.setID(txtID.getText().toUpperCase());
                              cuslist.add(customer);
                              cusDir.getCustomerlist().add(customer);
-                             flight.getID().add(txtID.getText()); 
+                             flight.getID().add(txtID.getText().toUpperCase()); 
                              JOptionPane.showMessageDialog(null,"OK, you are registered");
                              checkbutton.setEnabled(true);
-                             System.out.println(customer);
+                             System.out.println(customer);}
                  }
                  if(!ar.isEmpty()){
                      try{
@@ -505,19 +509,23 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                              try{
                  age=Integer.parseInt(txtAge.getText());
              }catch(Exception e){
-                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 JOptionPane.showMessageDialog(null, "age must be integer or cannot be blank");
                  txtAge.setText("");
                  return;
              }
+                 if(txtName.getText().equals("")||txtNation.getText().equals("")||txtAddress.getText().equals("")||txtPhone.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "cannot have blank");
+                 return;
+             }else{
                                  customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
-                             customer.setID(txtID.getText());
+                             customer.setID(txtID.getText().toUpperCase());
                              cuslist.add(customer);
                              cusDir.getCustomerlist().add(customer);
-                             flight.getID().add(txtID.getText()); 
+                             flight.getID().add(txtID.getText().toUpperCase()); 
                              JOptionPane.showMessageDialog(null,"OK");
-                             checkbutton.setEnabled(true);
+                             checkbutton.setEnabled(true);}
                              }
                               }          
                      }
@@ -529,29 +537,33 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
  
         
         }else{
-            if(flight.getID().contains(txtID.getText())){
+            if(flight.getID().contains(txtID.getText().toUpperCase())){
                  JOptionPane.showMessageDialog(null, "Same ID is used to book this flight");  
                checkbutton.setEnabled(false);
                       
                  }
-                 if(!flight.getID().contains(txtID.getText())){
+                 if(!flight.getID().contains(txtID.getText().toUpperCase())){
                  if(ar.isEmpty()){
                      try{
                  age=Integer.parseInt(txtAge.getText());
              }catch(Exception e){
-                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 JOptionPane.showMessageDialog(null, "age must be integer or cannot be blank");
                  txtAge.setText("");
                  return;
              }
+                 if(txtName.getText().equals("")||txtNation.getText().equals("")||txtAddress.getText().equals("")||txtPhone.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "cannot have blank");
+                 return;
+             }else{
                  customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
-                             customer.setID(txtID.getText());
+                             customer.setID(txtID.getText().toUpperCase());
                              cuslist.add(customer);
                              cusDir.getCustomerlist().add(customer);
-                             flight.getID().add(txtID.getText()); 
+                             flight.getID().add(txtID.getText().toUpperCase()); 
                              JOptionPane.showMessageDialog(null,"OK, you are registered");
-                             checkbutton.setEnabled(true);
+                             checkbutton.setEnabled(true);}
                        
                  }
                  if(!ar.isEmpty()){
@@ -567,19 +579,23 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                              try{
                  age=Integer.parseInt(txtAge.getText());
              }catch(Exception e){
-                 JOptionPane.showMessageDialog(null, "age must be integer");
+                 JOptionPane.showMessageDialog(null, "age must be integer or cannot be blank");
                  txtAge.setText("");
                  return;
              }
+                 if(txtName.getText().equals("")||txtNation.getText().equals("")||txtAddress.getText().equals("")||txtPhone.getText().equals("")){
+                 JOptionPane.showMessageDialog(null, "cannot have blank");
+                 return;
+             }else{
                                  customer=new Customer(txtName.getText(),txtNation.getText(),age,txtAddress.getText(),txtPhone.getText());
                              customer.setSeat(selecteElement);
                              customer.setFlightnumber(flight.getFlightnumber());
-                             customer.setID(txtID.getText());
+                             customer.setID(txtID.getText().toUpperCase());
                              cuslist.add(customer);
                              cusDir.getCustomerlist().add(customer);
-                             flight.getID().add(txtID.getText()); 
+                             flight.getID().add(txtID.getText().toUpperCase()); 
                              JOptionPane.showMessageDialog(null,"OK");
-                             
+                 }
                              }
                               }          
                      }
@@ -592,7 +608,7 @@ public class FlightdetailJPanel extends javax.swing.JPanel  {
                  }                    
                    }
         
-        for(Flight flightn:flightDir.getFlightsforCustomer(txtID.getText())){
+        for(Flight flightn:flightDir.getFlightsforCustomer(txtID.getText().toUpperCase())){
              flightn.getFlightnumber();
                                  
                              }

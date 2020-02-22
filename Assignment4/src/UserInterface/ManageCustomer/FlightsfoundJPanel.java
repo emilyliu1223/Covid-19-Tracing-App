@@ -239,8 +239,13 @@ public class FlightsfoundJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSelectActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:    
-       populateAirliner();
+        // TODO add your handling code here:
+       if(txtAirliner.getText().equals("")){
+           JOptionPane.showMessageDialog(null, "please enter airliner name to search.");
+           txtAirliner.setText("");
+           return;
+       }else{
+       populateAirliner();}
     }//GEN-LAST:event_btnSearchActionPerformed
 
 

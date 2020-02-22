@@ -21,8 +21,7 @@ public class ConfirmationJPanel extends javax.swing.JPanel {
      * Creates new form ConfirmationJPanel
      */
    private JPanel rightPanel;
-   private Customer customer;
-       
+   private Customer customer;    
 
  
     ConfirmationJPanel(JPanel rightPanel, Customer customer) {
@@ -30,9 +29,9 @@ public class ConfirmationJPanel extends javax.swing.JPanel {
         this.rightPanel=rightPanel;
          initComponents();
          System.out.println(customer);
-        jLabel1.setText("Hi!Please note that Customer name is: "+customer.getName());
+        jLabel1.setText("Hi! Please note that Customer name is: "+customer.getName());
         jLabel2.setText("This is flight: "+customer.getFlightnumber());
-        jLabel3.setText("Your confirmation ID is:"+customer.getID());
+        jLabel3.setText("Your ID is:"+customer.getID());
         jLabel4.setText("Your seat is:"+customer.getSeat());
         
    
