@@ -44,7 +44,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         organizationEmpJComboBox.removeAllItems();
         
         for (Organization organization : organizationDir.getOrganizationList()){
-            organizationEmpJComboBox.addItem(organization);
+           
+                 organizationEmpJComboBox.addItem(organization);
+            
+           
         }
     }
 

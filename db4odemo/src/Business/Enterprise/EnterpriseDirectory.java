@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.util.ArrayList;
 
@@ -33,6 +34,20 @@ public class EnterpriseDirectory {
         Enterprise enterprise=null;
         if(type==Enterprise.EnterpriseType.Hospital){
             enterprise=new HospitalEnterprise(name);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Document);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Pharmacy);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Quarantine);
+            enterpriseList.add(enterprise);
+        }else if(type==Enterprise.EnterpriseType.CDC){
+            enterprise=new CDCEnterprise(name);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Investigation);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Publish);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Reception);
+            enterpriseList.add(enterprise);
+        }else if(type==Enterprise.EnterpriseType.Police){
+            enterprise=new PoliceEnterprise(name);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Police);
             enterpriseList.add(enterprise);
         }
         return enterprise;

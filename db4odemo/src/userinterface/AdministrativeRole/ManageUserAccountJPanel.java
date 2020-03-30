@@ -39,7 +39,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         organizationJComboBox.removeAllItems();
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            
             organizationJComboBox.addItem(organization);
+            
         }
     }
     

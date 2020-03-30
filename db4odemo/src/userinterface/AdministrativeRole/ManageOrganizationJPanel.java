@@ -34,10 +34,15 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     
     private void populateCombo(){
         organizationJComboBox.removeAllItems();
-        for (Type type : Organization.Type.values()){
-            if (!type.getValue().equals(Type.Admin.getValue()))
-                organizationJComboBox.addItem(type);
-        }
+//        for (Type type : Organization.Type.values()){
+//            if (!type.getValue().equals(Type.Admin.getValue()))
+//                organizationJComboBox.addItem(type);
+//        }
+          for(Organization org:directory.getOrganizationList()){
+              
+                  organizationJComboBox.addItem(org);
+              
+          }
     }
 
     private void populateTable(){
@@ -157,8 +162,27 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
 
-        Type type = (Type) organizationJComboBox.getSelectedItem();
-        directory.createOrganization(type);
+//        Type type = (Type) organizationJComboBox.getSelectedItem();
+//        directory.createOrganization(type);
+        Organization org=(Organization) organizationJComboBox.getSelectedItem();
+        directory.getOrganizationList().add(org);
+//        if(org.equals("Document Organization")){
+//            directory.createOrganization(Type.Document);
+//        }else if(org.equals("Pharmacy Organization")){
+//            directory.createOrganization(Type.Pharmacy);
+//        }else if(org.equals("Doctor Organization")){
+//            directory.createOrganization(Type.Doctor);
+//        }else if(org.equals("Quarantine Organization")){
+//            directory.createOrganization(Type.Quarantine);
+//        }else if(org.equals("Reception Organization")){
+//            directory.createOrganization(Type.Reception);
+//        }else if(org.equals("Investigation Organization")){
+//            directory.createOrganization(Type.Reception);
+//        }else if(org.equals("Publish Organization")){
+//            directory.createOrganization(Type.Publish);
+//        }else if(org.equals("Police Organization")){
+//            directory.createOrganization(Type.Police);
+//        }
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 
