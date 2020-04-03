@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
 import Business.Organization.DocumentOrganization;
 import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -21,12 +22,19 @@ public class DocumentWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form DocumentWorkAreaJPanel
      */
-    public DocumentWorkAreaJPanel() {
-        initComponents();
-    }
-
-    public DocumentWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, DocumentOrganization documentOrganization, Enterprise enterprise, EcoSystem business) {
+    private JPanel jpanel;
+    private UserAccount userAccount;
+    private DocumentOrganization organization;
+    private Enterprise enterprise;
+    private EcoSystem system;
+    public DocumentWorkAreaJPanel(JPanel jpanel, UserAccount userAccount, DocumentOrganization organization, Enterprise enterprise, EcoSystem system) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.jpanel=jpanel;
+        this.userAccount=userAccount;
+        this.organization=organization;
+        this.enterprise=enterprise;
+        this.system=system;
     }
 
     /**
@@ -38,19 +46,62 @@ public class DocumentWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        managePatientbtn = new javax.swing.JButton();
+        sendRecordbtn = new javax.swing.JButton();
+
+        managePatientbtn.setText("manage patient");
+        managePatientbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                managePatientbtnActionPerformed(evt);
+            }
+        });
+
+        sendRecordbtn.setText("send patient record to doctor");
+        sendRecordbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendRecordbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sendRecordbtn)
+                    .addComponent(managePatientbtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(managePatientbtn)
+                .addGap(65, 65, 65)
+                .addComponent(sendRecordbtn)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void managePatientbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managePatientbtnActionPerformed
+        // TODO add your handling code here:
+       CardLayout layout=(CardLayout)jpanel.getLayout();
+       jpanel.add("manage patient",new ManagePatientJPanel(jpanel,enterprise,system));
+       layout.next(jpanel);
+    }//GEN-LAST:event_managePatientbtnActionPerformed
+
+    private void sendRecordbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRecordbtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout=(CardLayout)jpanel.getLayout();
+       jpanel.add("send patient to doctor",new SendPatientJPanel(jpanel,userAccount,organization,enterprise,system));
+       layout.next(jpanel);
+    }//GEN-LAST:event_sendRecordbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton managePatientbtn;
+    private javax.swing.JButton sendRecordbtn;
     // End of variables declaration//GEN-END:variables
 }
