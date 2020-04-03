@@ -8,6 +8,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkQueue_documentDoctor;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,7 @@ public abstract class Organization {
 
     private String name;
     private WorkQueue workQueue;
+    private WorkQueue_documentDoctor workQueue_documentDoctor;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -40,6 +42,7 @@ public abstract class Organization {
     public Organization(String name) {
         this.name = name;
         workQueue = new WorkQueue();
+        workQueue_documentDoctor=new WorkQueue_documentDoctor();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
@@ -47,6 +50,15 @@ public abstract class Organization {
     }
 
     public abstract ArrayList<Role> getSupportedRole();
+
+    public WorkQueue_documentDoctor getWorkQueue_documentDoctor() {
+        return workQueue_documentDoctor;
+    }
+
+    public void setWorkQueue_documentDoctor(WorkQueue_documentDoctor workQueue_documentDoctor) {
+        this.workQueue_documentDoctor = workQueue_documentDoctor;
+    }
+    
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;

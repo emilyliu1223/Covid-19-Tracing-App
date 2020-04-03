@@ -9,6 +9,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import People.PeopleDirectory;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class EcoSystem extends Organization{
     
     private static EcoSystem business;
+    private PeopleDirectory peopleDirectory;
     private ArrayList<Network> networkList;
     public static EcoSystem getInstance(){
         if(business==null){
@@ -40,8 +42,13 @@ public class EcoSystem extends Organization{
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
+        this.peopleDirectory=new PeopleDirectory();
     }
 
+    public PeopleDirectory getPeopleDirectory() {
+        return peopleDirectory;
+    }
+    
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }

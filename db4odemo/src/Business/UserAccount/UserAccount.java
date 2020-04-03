@@ -7,6 +7,7 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkQueue_documentDoctor;
 
 /**
  *
@@ -19,12 +20,19 @@ public class UserAccount {
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
-
+    private WorkQueue_documentDoctor workQueue_documentDoctor;
     public UserAccount() {
         workQueue = new WorkQueue();
+        workQueue_documentDoctor=new WorkQueue_documentDoctor();
     }
-    
-    
+
+    public WorkQueue_documentDoctor getWorkQueue_documentDoctor() {
+        return workQueue_documentDoctor;
+    }
+
+    public void setWorkQueue_documentDoctor(WorkQueue_documentDoctor workQueue_documentDoctor) {
+        this.workQueue_documentDoctor = workQueue_documentDoctor;
+    }
     
     public String getUsername() {
         return username;
