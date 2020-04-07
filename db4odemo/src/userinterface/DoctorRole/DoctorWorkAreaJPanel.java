@@ -16,6 +16,10 @@ import Business.WorkQueue.LabTest_documentDoctor;
 import Business.WorkQueue.WorkRequest;
 import Business.WorkQueue.WorkRequest_doctorQuarantine;
 import Business.WorkQueue.WorkRequest_documentDoctor;
+import MedicineCatelog.Medicine;
+import MedicineCatelog.MedicineDetail;
+import MedicineCatelog.MedicineDirectory;
+import People.Diagnosis;
 import People.People;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
@@ -41,6 +45,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private People thispeople;
     private ArrayList<String> medicineArr;
     private WorkRequest_documentDoctor thisrequest;
+    private MedicineDirectory medicineDir;
+    private Medicine thismedicine;
     private int quarantine_id=0;
     /**
      * Creates new form DoctorWorkAreaJPanel
@@ -55,8 +61,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.system=system;
         this.thispeople=null;
         this.thisrequest=null;
+        this.medicineDir=system.getMedicineDir();
+        this.thismedicine=new Medicine();
         valueLabel.setText(userAccount.getUsername());
         finishbtn.setEnabled(false);
+        sendbtn.setEnabled(false);
+        setCombo();
         populateRequestTable();
     }
     
@@ -74,6 +84,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         return toReturn;
     }
         
+    public void setCombo(){
+        medicineCatelogcombo.removeAllItems();
+        for(Medicine m:medicineDir.getMedicines()){
+            medicineCatelogcombo.addItem(m.getMedicineCatelog());
+        }
+    }
     public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
@@ -112,8 +128,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (String str:medicineArr){
             Object[] row = new Object[2];
-            row[0]=str.split(",")[0];
-            row[1]=str.split(",")[1];
+            row[0]=str.split(":")[0];
+            row[1]=str.split(":")[1];
             model.addRow(row);
         }
     }
@@ -152,7 +168,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         medicineTable = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        typefield = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         amountfield = new javax.swing.JTextField();
         addmedicinebtn = new javax.swing.JButton();
@@ -164,6 +179,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         patientbtn = new javax.swing.JButton();
         completebtn = new javax.swing.JButton();
+        medicineCatelogcombo = new javax.swing.JComboBox();
+        medicinescombo = new javax.swing.JComboBox();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -226,10 +243,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         diagnosisArea.setRows(5);
         jScrollPane2.setViewportView(diagnosisArea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 470, 250, 130));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 250, 130));
 
         jLabel7.setText("diagnosis");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 470, -1, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, 20));
 
         medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -256,15 +273,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             medicineTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, 129));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 129));
 
         jLabel8.setText("type");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 620, -1, 20));
-        add(typefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 620, 214, -1));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 570, -1, 20));
 
         jLabel10.setText("amount");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 650, -1, 20));
-        add(amountfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 650, 214, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 570, -1, 20));
+        add(amountfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 570, 170, -1));
 
         addmedicinebtn.setText("add");
         addmedicinebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -272,7 +288,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 addmedicinebtnActionPerformed(evt);
             }
         });
-        add(addmedicinebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 650, -1, -1));
+        add(addmedicinebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 640, 120, -1));
 
         finishbtn.setText("finish");
         finishbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -280,7 +296,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 finishbtnActionPerformed(evt);
             }
         });
-        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 690, 155, 50));
+        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 680, 155, 50));
 
         testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -309,7 +325,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             testTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 516, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 516, 140));
 
         sendbtn.setText("send to quarantine organization");
         sendbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -317,11 +333,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 sendbtnActionPerformed(evt);
             }
         });
-        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 410, 310, -1));
-        add(testingfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 370, 207, -1));
+        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 310, -1));
+        add(testingfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 207, -1));
 
         jLabel9.setText("testing type");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, -1, 20));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, 20));
 
         patientbtn.setText("patient detail");
         patientbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -338,6 +354,22 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(completebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1150, 210, -1, -1));
+
+        medicineCatelogcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        medicineCatelogcombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicineCatelogcomboActionPerformed(evt);
+            }
+        });
+        add(medicineCatelogcombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 570, 160, -1));
+
+        medicinescombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        medicinescombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                medicinescomboActionPerformed(evt);
+            }
+        });
+        add(medicinescombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 160, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -361,6 +393,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             if(request.getAssignedDoctor()==null){
                 this.medicineArr=new ArrayList();
                 finishbtn.setEnabled(true);
+                sendbtn.setEnabled(true);
                 request.setAssignedDoctor(userAccount);
                 request.setStatus("checking");
                 thispeople=request.getPeople();
@@ -371,7 +404,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 popTestTable(thispeople);
                 diagnosisArea.setText("");
             }else{
-                JOptionPane.showMessageDialog(null, "not allowed to see this patient");
+                JOptionPane.showMessageDialog(null, "not allowed to take this patient");
                 return;
             }
                     
@@ -381,18 +414,17 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addmedicinebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addmedicinebtnActionPerformed
         // TODO add your handling code here:
-        String add="";
-        String type=typefield.getText();
+        String addMedicine="";
+        String type=(String)medicinescombo.getSelectedItem();
         String amount=amountfield.getText();
         if(type.equals("")||amount.equals("")){
             JOptionPane.showMessageDialog(null, "type or amount cannot be null");
             return;
         }
-        add=add+type;
-        add=add+","+amount;
-        medicineArr.add(add);
+        addMedicine=type+":"+amount;
+        medicineArr.add(addMedicine);
         popMedicineTable();
-        typefield.setText("");
+        //typefield.setText("");
         amountfield.setText("");
         
     }//GEN-LAST:event_addmedicinebtnActionPerformed
@@ -400,27 +432,37 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void finishbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishbtnActionPerformed
         // TODO add your handling code here:
         Date date = new Date();
-        
+        Diagnosis diagnosis=new Diagnosis();
+        ArrayList<Diagnosis> diagnosisarr=new ArrayList();
+        ArrayList<String>medicinetoAdd=new ArrayList();
         thisrequest.setStatus("finish");
         thisrequest.setDate(date);
         //add diagnosis, medicine record
         String doctorNote=diagnosisArea.getText();
-        String medicine="";
+        //String medicine="";
         if(medicineArr.size()!=0){
             for(String str:medicineArr){
-                medicine=medicine+" "+str;
+                medicinetoAdd.add(str);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "please give medicine");
+            return;
         }
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String d=formatter.format(date);
-        String doctorDiagnosis=d+"@"+doctorNote+"@"+medicine.trim();
-        thispeople.getMedicalRecord().getDoctorNote().add(doctorDiagnosis);
+        diagnosis.setDate(d);
+        diagnosis.setDiagnosis(doctorNote);
+        diagnosis.setMedicine(medicinetoAdd);
+        thispeople.getMedicalRecord().getDoctorNote().add(diagnosis);
+//        String doctorDiagnosis=d+"@"+doctorNote+"@"+medicine.trim();
+//        thispeople.getMedicalRecord().getDoctorNote().add(doctorDiagnosis);
         //System.out.println(doctorDiagnosis);
         populateRequestTable();
         medicineArr=new ArrayList();
         popMedicineTable();
         diagnosisArea.setText("");
         finishbtn.setEnabled(false);
+        sendbtn.setEnabled(false);
     }//GEN-LAST:event_finishbtnActionPerformed
 
     private void sendbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendbtnActionPerformed
@@ -480,9 +522,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }else{
             WorkRequest_documentDoctor request=(WorkRequest_documentDoctor) workRequestJTable.getValueAt(select, 0);
-            if(request.getAssignedDoctor().equals(userAccount)&&!request.getStatus().equals("finish")){
+            if(request.getAssignedDoctor().equals(userAccount)&&request.getStatus().equals("checking")){
                 this.medicineArr=new ArrayList();
                 finishbtn.setEnabled(true);
+                sendbtn.setEnabled(true);
                 request.setAssignedDoctor(userAccount);
                 request.setStatus("checking");
                 thispeople=request.getPeople();
@@ -497,6 +540,28 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_completebtnActionPerformed
+
+    private void medicineCatelogcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicineCatelogcomboActionPerformed
+        // TODO add your handling code here:
+        String medicine=(String)medicineCatelogcombo.getSelectedItem();
+        for(Medicine m:medicineDir.getMedicines()){
+            if(m.getMedicineCatelog().equals(medicine)){
+                thismedicine=m;
+                break;
+            }
+        }
+        setSecondcombo(thismedicine);
+    }//GEN-LAST:event_medicineCatelogcomboActionPerformed
+
+    public void setSecondcombo(Medicine m){
+        medicinescombo.removeAllItems();
+        for(MedicineDetail medicineDetail:m.getMedicinearr()){
+            medicinescombo.addItem(medicineDetail.getName());
+        }
+    }
+    private void medicinescomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicinescomboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_medicinescomboActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -515,13 +580,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JComboBox<String> medicineCatelogcombo;
     private javax.swing.JTable medicineTable;
+    private javax.swing.JComboBox<String> medicinescombo;
     private javax.swing.JButton patientbtn;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton sendbtn;
     private javax.swing.JTable testTable;
     private javax.swing.JTextField testingfield;
-    private javax.swing.JTextField typefield;
     private javax.swing.JLabel valueLabel;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables

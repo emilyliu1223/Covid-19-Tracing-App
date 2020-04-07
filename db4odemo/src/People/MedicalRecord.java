@@ -23,7 +23,7 @@ public class MedicalRecord {
     private ArrayList<String> operation_history;
     private ArrayList<String> chronicDisease;
     private ArrayList<String> medicineAllergy;
-    private ArrayList<String> doctorNote;
+    private ArrayList<Diagnosis> doctorNote;
     private ArrayList<String> testingRecord;
     
 //
@@ -46,7 +46,7 @@ public class MedicalRecord {
         this.family_history=new ArrayList<String>();
         this.operation_history=new ArrayList<String>();
         this.chronicDisease=new ArrayList<String>();
-        this.doctorNote=new ArrayList<String>();
+        this.doctorNote=new ArrayList<Diagnosis>();
         //this.medicineRecord=new ArrayList<String>();
         this.testingRecord=new ArrayList<String>();
         this.medicineAllergy=new ArrayList<String>();
@@ -138,11 +138,11 @@ public class MedicalRecord {
         this.chronicDisease = chronicDisease;
     }
 
-    public ArrayList<String> getDoctorNote() {
+    public ArrayList<Diagnosis> getDoctorNote() {
         return doctorNote;
     }
 
-    public void setDoctorNote(ArrayList<String> doctorNote) {
+    public void setDoctorNote(ArrayList<Diagnosis> doctorNote) {
         this.doctorNote = doctorNote;
     }
 
