@@ -70,7 +70,7 @@ public class AboutPatientJPanel extends javax.swing.JPanel {
     public void popTestTable(People p){
         DefaultTableModel model = (DefaultTableModel) testTable.getModel();
         model.setRowCount(0);
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         for(WorkRequest_doctorQuarantine request:p.getQuarantineTesting().getWorkRequestList()){
             Object row[]=new Object[4];
             row[0]=request.getTestType();

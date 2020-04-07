@@ -90,6 +90,8 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(jTable2);
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -103,7 +105,10 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(medicineTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 153, 653, 172));
+
         jLabel1.setText("Disease Cataloge:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 97, -1, -1));
 
         catelogcombo.setModel(new javax.swing.DefaultComboBoxModel(new Object[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         catelogcombo.addActionListener(new java.awt.event.ActionListener() {
@@ -111,24 +116,34 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 catelogcomboActionPerformed(evt);
             }
         });
+        add(catelogcombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 93, 220, -1));
 
         jLabel2.setText("Medicine Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 383, -1, -1));
 
         jLabel3.setText("Treatment:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 383, -1, -1));
 
         namefield.setColumns(20);
         namefield.setRows(5);
         jScrollPane2.setViewportView(namefield);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 417, 169, -1));
+
         treatmentfield.setColumns(20);
         treatmentfield.setRows(5);
         jScrollPane3.setViewportView(treatmentfield);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 417, 183, -1));
+
         jLabel4.setText("Description:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 383, -1, -1));
 
         descriptionfield.setColumns(20);
         descriptionfield.setRows(5);
         jScrollPane4.setViewportView(descriptionfield);
+
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(523, 417, 176, -1));
 
         addbtn.setText("Add medicine");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +151,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 addbtnActionPerformed(evt);
             }
         });
+        add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 75, -1, 63));
 
         deletebtn.setText("Delete Medicine");
         deletebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +159,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 deletebtnActionPerformed(evt);
             }
         });
+        add(deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 75, 139, 63));
 
         backbtn2.setBackground(new java.awt.Color(255, 255, 255));
         backbtn2.setText("back");
@@ -151,69 +168,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 backbtn2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backbtn2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(backbtn2)
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(backbtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     public void popTable(Medicine m){
@@ -262,14 +217,12 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     private void catelogcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catelogcomboActionPerformed
         // TODO add your handling code here:
         String medicinestr= (String) catelogcombo.getSelectedItem();
-        System.out.println("in combo:"+medicinestr);
         for(Medicine m:medicineDir.getMedicines()){
             if(m.getMedicineCatelog().equals(medicinestr)){
                 this.medicine=m;
                 break;
             }
         }  
-        System.out.println("find success");
         for(int i=0;i<medicine.getMedicinearr().size();i++){
             System.out.println(medicine.getMedicinearr().get(i)+","+medicine.getMedicinearr().get(i).getDescription());
         }
@@ -284,7 +237,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
             return;
         }else{
             Medicine selectMedicine=(Medicine)medicineTable.getValueAt(select, 0);
-            System.out.println("select medicine caelog:"+selectMedicine);
+            //System.out.println("select medicine caelog:"+selectMedicine);
             MedicineDetail medicineDetail=(MedicineDetail) medicineTable.getValueAt(select, 1);
 //            String medicine2=(String) medicineTable.getValueAt(select, 2);
 //            String medicine3=(String) medicineTable.getValueAt(select, 3);
@@ -312,8 +265,6 @@ public class MedicineManagePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbtn;
-    private javax.swing.JButton backbtn;
-    private javax.swing.JButton backbtn1;
     private javax.swing.JButton backbtn2;
     private javax.swing.JComboBox<String> catelogcombo;
     private javax.swing.JButton deletebtn;

@@ -8,6 +8,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkQueue_doctorPharmacy;
 import Business.WorkQueue.WorkQueue_doctorQuarantine;
 import Business.WorkQueue.WorkQueue_documentDoctor;
 import Business.WorkQueue.WorkQueue_quarantineCDC;
@@ -26,6 +27,7 @@ public abstract class Organization {
     private WorkQueue_documentDoctor workQueue_documentDoctor;
     private WorkQueue_doctorQuarantine workQueue_doctorQuarantine;
     private WorkQueue_quarantineCDC workQueue_quarantineCDC;
+    private WorkQueue_doctorPharmacy workQueue_doctorPharmacy;
     private int organizationID;
     private static int counter=0;
     
@@ -51,10 +53,20 @@ public abstract class Organization {
         workQueue_documentDoctor=new WorkQueue_documentDoctor();
         workQueue_doctorQuarantine=new WorkQueue_doctorQuarantine();
         workQueue_quarantineCDC=new WorkQueue_quarantineCDC();
+        workQueue_doctorPharmacy=new WorkQueue_doctorPharmacy();
         organizationID = counter;
         ++counter;
     }
 
+    public WorkQueue_doctorPharmacy getWorkQueue_doctorPharmacy() {
+        return workQueue_doctorPharmacy;
+    }
+
+    public void setWorkQueue_doctorPharmacy(WorkQueue_doctorPharmacy workQueue_doctorPharmacy) {
+        this.workQueue_doctorPharmacy = workQueue_doctorPharmacy;
+    }
+
+    
     public WorkQueue_quarantineCDC getWorkQueue_quarantineCDC() {
         return workQueue_quarantineCDC;
     }

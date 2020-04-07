@@ -8,12 +8,14 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
+import Business.Organization.PharmacyOrganization;
 import Business.Organization.QuarantineOrganization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.LabTestWorkRequest;
 import Business.WorkQueue.LabTest_doctorQuarantine;
 import Business.WorkQueue.LabTest_documentDoctor;
 import Business.WorkQueue.WorkRequest;
+import Business.WorkQueue.WorkRequest_doctorPharmacy;
 import Business.WorkQueue.WorkRequest_doctorQuarantine;
 import Business.WorkQueue.WorkRequest_documentDoctor;
 import MedicineCatelog.Medicine;
@@ -25,6 +27,7 @@ import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -66,10 +69,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText(userAccount.getUsername());
         finishbtn.setEnabled(false);
         sendbtn.setEnabled(false);
+        setField(false);
+        setfieldtext("","","","");
         setCombo();
         populateRequestTable();
     }
     
+    private void setField(boolean boo){
+        namefield.setEditable(boo);
+        notefield.setEditable(boo);
+        agefield.setEditable(boo);
+    }
+    private void setfieldtext(String name,String age,String note,String pic){
+        namefield.setText(name);
+        agefield.setText(age);
+        notefield.setText(note);
+        ImageIcon im=new ImageIcon(pic);
+        pictureLabel.setIcon(im);
+    }
     private String convertArrayToString(ArrayList<String> arr){
         String toReturn="";
         if(arr.size()!=0){
@@ -92,7 +109,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     public void populateRequestTable(){
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         model.setRowCount(0);
         for (WorkRequest_documentDoctor request : organization.getWorkQueue_documentDoctor().getWorkRequestList()){
             Object[] row = new Object[7];
@@ -111,7 +128,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     
     public void popTestTable(People p){
         DefaultTableModel model = (DefaultTableModel) testTable.getModel();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         model.setRowCount(0);
         for(WorkRequest_doctorQuarantine quarantine:p.getQuarantineTesting().getWorkRequestList()){
             Object row[]=new Object[4];
@@ -181,6 +198,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         completebtn = new javax.swing.JButton();
         medicineCatelogcombo = new javax.swing.JComboBox();
         medicinescombo = new javax.swing.JComboBox();
+        pictureLabel = new javax.swing.JLabel();
+        namefield = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        agefield = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        notefield = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -243,10 +267,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         diagnosisArea.setRows(5);
         jScrollPane2.setViewportView(diagnosisArea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 250, 130));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 250, 250, 130));
 
         jLabel7.setText("diagnosis");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, 20));
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 250, -1, 20));
 
         medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -273,7 +297,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             medicineTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 129));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 419, -1, 140));
 
         jLabel8.setText("type");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 570, -1, 20));
@@ -296,7 +320,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 finishbtnActionPerformed(evt);
             }
         });
-        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 680, 155, 50));
+        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 690, 155, 50));
 
         testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -325,7 +349,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             testTable.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 516, 140));
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 516, 140));
 
         sendbtn.setText("send to quarantine organization");
         sendbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -333,11 +357,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 sendbtnActionPerformed(evt);
             }
         });
-        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 370, 310, -1));
-        add(testingfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 330, 207, -1));
+        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, 310, -1));
+        add(testingfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 570, 207, -1));
 
         jLabel9.setText("testing type");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, 20));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, -1, 20));
 
         patientbtn.setText("patient detail");
         patientbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -370,6 +394,19 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(medicinescombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 600, 160, -1));
+        add(pictureLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 190, 120));
+        add(namefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 210, -1));
+
+        jLabel1.setText("name");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 256, 70, 30));
+        add(agefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 210, -1));
+
+        jLabel2.setText("age");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, 70, 30));
+        add(notefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 210, -1));
+
+        jLabel3.setText("note");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 320, 70, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -399,6 +436,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 thispeople=request.getPeople();
                 thisrequest=request;
                 //populatePatientMedicalRecord(thispeople,thisrequest);
+                setfieldtext(thispeople.getName(),String.valueOf(thispeople.getAge()),((LabTest_documentDoctor)thisrequest).getMessage(),thispeople.getPicture());
                 populateRequestTable();
                 popMedicineTable();
                 popTestTable(thispeople);
@@ -448,19 +486,40 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "please give medicine");
             return;
         }
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        if(doctorNote.equals("")){
+            JOptionPane.showMessageDialog(null, "please enter your diagnosis");
+            return;
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String d=formatter.format(date);
         diagnosis.setDate(d);
         diagnosis.setDiagnosis(doctorNote);
         diagnosis.setMedicine(medicinetoAdd);
         thispeople.getMedicalRecord().getDoctorNote().add(diagnosis);
-//        String doctorDiagnosis=d+"@"+doctorNote+"@"+medicine.trim();
-//        thispeople.getMedicalRecord().getDoctorNote().add(doctorDiagnosis);
-        //System.out.println(doctorDiagnosis);
         populateRequestTable();
+        
+        WorkRequest_doctorPharmacy docPharmacy=new WorkRequest_doctorPharmacy();
+        docPharmacy.setDoctor(userAccount);
+        docPharmacy.setSendDate(date);
+        docPharmacy.setMedicineArr(medicineArr);
+        docPharmacy.setPatient(thispeople);
+        docPharmacy.setStatus("pending");
+        docPharmacy.setDiagnosis(doctorNote);
+        PharmacyOrganization org=null;
+        for(Organization o:enterprise.getOrganizationDirectory().getOrganizationList()){
+            System.out.println("test org:"+o);
+            if(o instanceof PharmacyOrganization){
+                org=(PharmacyOrganization)o;
+                System.out.println("test org 2:"+org);
+                break;
+            }
+        }
+        org.getWorkQueue_doctorPharmacy().getWorkRequestList().add(docPharmacy);
+        
         medicineArr=new ArrayList();
         popMedicineTable();
         diagnosisArea.setText("");
+        setfieldtext("","","","");
         finishbtn.setEnabled(false);
         sendbtn.setEnabled(false);
     }//GEN-LAST:event_finishbtnActionPerformed
@@ -531,6 +590,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 thispeople=request.getPeople();
                 thisrequest=request;
                 //populateRequestTable();
+                setfieldtext(thispeople.getName(),String.valueOf(thispeople.getAge()),((LabTest_documentDoctor)thisrequest).getMessage(),thispeople.getPicture());
+                populateRequestTable();
                 popMedicineTable();
                 popTestTable(thispeople);
                 diagnosisArea.setText("");
@@ -566,13 +627,17 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addmedicinebtn;
+    private javax.swing.JTextField agefield;
     private javax.swing.JTextField amountfield;
     private javax.swing.JButton assignbtn;
     private javax.swing.JButton completebtn;
     private javax.swing.JTextArea diagnosisArea;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JButton finishbtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -583,7 +648,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> medicineCatelogcombo;
     private javax.swing.JTable medicineTable;
     private javax.swing.JComboBox<String> medicinescombo;
+    private javax.swing.JTextField namefield;
+    private javax.swing.JTextField notefield;
     private javax.swing.JButton patientbtn;
+    private javax.swing.JLabel pictureLabel;
     private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton sendbtn;
     private javax.swing.JTable testTable;

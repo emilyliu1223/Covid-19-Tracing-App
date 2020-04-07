@@ -244,9 +244,8 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(enterpriseTypeJComboBox, 0, 159, Short.MAX_VALUE)
-                                    .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(16, 16, 16)))))
+                                    .addComponent(enterpriseTypeJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -271,11 +270,11 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(positive)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(negative)
-                        .addGap(13, 13, 13)
+                        .addGap(25, 25, 25)
                         .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(savebtn)
                             .addComponent(reportbtn)))
@@ -320,7 +319,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
    
     public void popQuarantineTable(){
         DefaultTableModel model = (DefaultTableModel) quarantineTable.getModel();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         model.setRowCount(0);
         for(WorkRequest_doctorQuarantine request:organization.getWorkQueue_doctorQuarantine().getWorkRequestList()){
             Object row[]=new Object[7];
@@ -372,7 +371,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             negative.setEnabled(true);positive.setEnabled(true);
             savebtn.setEnabled(true);reportbtn.setEnabled(true);
             WorkRequest_doctorQuarantine request=(WorkRequest_doctorQuarantine) quarantineTable.getValueAt(select, 0);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             this.request=request;
            
             typefield.setText(request.getTestType());

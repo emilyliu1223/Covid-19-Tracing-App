@@ -7,6 +7,7 @@ package Business.UserAccount;
 import Business.Employee.Employee;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
+import Business.WorkQueue.WorkQueue_doctorPharmacy;
 import Business.WorkQueue.WorkQueue_doctorQuarantine;
 import Business.WorkQueue.WorkQueue_documentDoctor;
 import Business.WorkQueue.WorkQueue_quarantineCDC;
@@ -25,13 +26,24 @@ public class UserAccount {
     private WorkQueue_documentDoctor workQueue_documentDoctor;
     private WorkQueue_doctorQuarantine workQueue_doctorQuarantine;
     private WorkQueue_quarantineCDC workQueue_quarantineCDC;
+    private WorkQueue_doctorPharmacy workQueue_doctorPharmacy;
     public UserAccount() {
         workQueue = new WorkQueue();
         workQueue_documentDoctor=new WorkQueue_documentDoctor();
         workQueue_doctorQuarantine=new WorkQueue_doctorQuarantine();
         workQueue_quarantineCDC=new WorkQueue_quarantineCDC();
+        workQueue_doctorPharmacy=new WorkQueue_doctorPharmacy();
     }
 
+    public WorkQueue_doctorPharmacy getWorkQueue_doctorPharmacy() {
+        return workQueue_doctorPharmacy;
+    }
+
+    public void setWorkQueue_doctorPharmacy(WorkQueue_doctorPharmacy workQueue_doctorPharmacy) {
+        this.workQueue_doctorPharmacy = workQueue_doctorPharmacy;
+    }
+
+    
     public WorkQueue_quarantineCDC getWorkQueue_quarantineCDC() {
         return workQueue_quarantineCDC;
     }
