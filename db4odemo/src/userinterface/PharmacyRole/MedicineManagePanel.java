@@ -10,7 +10,9 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
 import MedicineCatelog.Medicine;
+import MedicineCatelog.MedicineDetail;
 import MedicineCatelog.MedicineDirectory;
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -73,6 +75,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         descriptionfield = new javax.swing.JTextArea();
         addbtn = new javax.swing.JButton();
         deletebtn = new javax.swing.JButton();
+        backbtn2 = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,84 +144,88 @@ public class MedicineManagePanel extends javax.swing.JPanel {
             }
         });
 
+        backbtn2.setBackground(new java.awt.Color(255, 255, 255));
+        backbtn2.setText("back");
+        backbtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtn2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
+                .addComponent(backbtn2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(29, 29, 29)
                         .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(backbtn2)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void popTable(Medicine m){
         DefaultTableModel model = (DefaultTableModel) medicineTable.getModel();
         model.setRowCount(0);
-        for(String str:m.getMedicinearr()){
+        for(MedicineDetail detail:m.getMedicinearr()){
             Object row[]=new Object[4];
             
             row[0]=m;
-            row[1]=str.split("/")[0];
-            row[2]=str.split("/")[1];
-            row[3]=str.split("/")[2];
+            row[1]=detail;
+            row[2]=detail.getTreatment();
+            row[3]=detail.getDescription();
             model.addRow(row);
             
         }
@@ -231,6 +238,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     }
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
+        MedicineDetail detail=new MedicineDetail();
         String name=namefield.getText();
         String treatment=treatmentfield.getText();
         String description=descriptionfield.getText();
@@ -238,9 +246,12 @@ public class MedicineManagePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"please enter three field");
             return;
         }
-        String medicineToadd=name;
-        medicineToadd=medicineToadd+"/"+treatment+"/"+description;
-        medicine.getMedicinearr().add(medicineToadd);
+//        String medicineToadd=name;
+//        medicineToadd=medicineToadd+"/"+treatment+"/"+description;
+        detail.setName(name);
+        detail.setTreatment(treatment);
+        detail.setDescription(description);
+        medicine.getMedicinearr().add(detail);
         namefield.setText("");
         treatmentfield.setText("");
         descriptionfield.setText("");
@@ -251,13 +262,17 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     private void catelogcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catelogcomboActionPerformed
         // TODO add your handling code here:
         String medicinestr= (String) catelogcombo.getSelectedItem();
-        
+        System.out.println("in combo:"+medicinestr);
         for(Medicine m:medicineDir.getMedicines()){
             if(m.getMedicineCatelog().equals(medicinestr)){
                 this.medicine=m;
                 break;
             }
         }  
+        System.out.println("find success");
+        for(int i=0;i<medicine.getMedicinearr().size();i++){
+            System.out.println(medicine.getMedicinearr().get(i)+","+medicine.getMedicinearr().get(i).getDescription());
+        }
         popTable(medicine);
     }//GEN-LAST:event_catelogcomboActionPerformed
 
@@ -270,14 +285,14 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         }else{
             Medicine selectMedicine=(Medicine)medicineTable.getValueAt(select, 0);
             System.out.println("select medicine caelog:"+selectMedicine);
-            String medicine1=(String) medicineTable.getValueAt(select, 1);
-            String medicine2=(String) medicineTable.getValueAt(select, 2);
-            String medicine3=(String) medicineTable.getValueAt(select, 3);
-            String toDelete="";
-            toDelete=medicine1+"/"+medicine2+"/"+medicine3;
+            MedicineDetail medicineDetail=(MedicineDetail) medicineTable.getValueAt(select, 1);
+//            String medicine2=(String) medicineTable.getValueAt(select, 2);
+//            String medicine3=(String) medicineTable.getValueAt(select, 3);
+          
             int a=JOptionPane.showConfirmDialog(null, "sure to delete?","confirm",JOptionPane.YES_NO_OPTION);
             if(a==JOptionPane.YES_OPTION){
-                selectMedicine.getMedicinearr().remove(toDelete);
+                
+                selectMedicine.getMedicinearr().remove(medicineDetail);
             }else if(a==JOptionPane.NO_OPTION){
                 return;
             }
@@ -287,9 +302,19 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_deletebtnActionPerformed
 
+    private void backbtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtn2ActionPerformed
+        // TODO add your handling code here:
+         jpanel.remove(this);
+        CardLayout layout = (CardLayout) jpanel.getLayout();
+        layout.previous(jpanel);
+    }//GEN-LAST:event_backbtn2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbtn;
+    private javax.swing.JButton backbtn;
+    private javax.swing.JButton backbtn1;
+    private javax.swing.JButton backbtn2;
     private javax.swing.JComboBox<String> catelogcombo;
     private javax.swing.JButton deletebtn;
     private javax.swing.JTextArea descriptionfield;

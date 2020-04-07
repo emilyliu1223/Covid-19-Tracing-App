@@ -6,6 +6,7 @@
 package userinterface.DoctorRole;
 
 import Business.WorkQueue.WorkRequest_documentDoctor;
+import People.Diagnosis;
 import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import javax.swing.JPanel;
@@ -21,31 +22,29 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
      * Creates new form PatientDetailJPanel
      */
     private JPanel jpanel;
-    private String detail;
-    private String medicine;
-    private String date;
-    public PatientDetailJPanel(JPanel jpanel, String date,String detail,String medicine) {
+//    private String detail;
+//    private String medicine;
+    private Diagnosis diagnosis;
+    public PatientDetailJPanel(JPanel jpanel, Diagnosis diagnosis) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         initComponents();
         this.jpanel=jpanel;
-        this.detail=detail;
-        this.medicine=medicine;
-        this.date=date;
-        dateLabel.setText("Date: "+date);
+        this.diagnosis=diagnosis;
+        dateLabel.setText("Date: "+this.diagnosis.getDate());
         popMedicine();
-        diagnosis.setEditable(false);
-        diagnosis.setText(detail);
+        diagnosisfield.setEditable(false);
+        diagnosisfield.setText(diagnosis.getDiagnosis());
      
     }
 
     private void popMedicine(){
        DefaultTableModel model = (DefaultTableModel) medicinetable.getModel();
         model.setRowCount(0);
-        for (String str:medicine.split(" ")){
+        for (String str:diagnosis.getMedicine()){
             String a=str;
             Object[] row = new Object[2];
-            row[0]=a.split(",")[0];
-            row[1]=a.split(",")[1];
+            row[0]=a.split(":")[0];
+            row[1]=a.split(":")[1];
 //              row[0]=a;
 //              row[1]=a;
             model.addRow(row);
@@ -61,7 +60,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        diagnosis = new javax.swing.JTextArea();
+        diagnosisfield = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         medicinetable = new javax.swing.JTable();
         backbtn1 = new javax.swing.JButton();
@@ -71,9 +70,9 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        diagnosis.setColumns(20);
-        diagnosis.setRows(5);
-        jScrollPane1.setViewportView(diagnosis);
+        diagnosisfield.setColumns(20);
+        diagnosisfield.setRows(5);
+        jScrollPane1.setViewportView(diagnosisfield);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 169, 445, 92));
 
@@ -132,7 +131,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backbtn1;
     private javax.swing.JLabel dateLabel;
-    private javax.swing.JTextArea diagnosis;
+    private javax.swing.JTextArea diagnosisfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

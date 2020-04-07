@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Medicine {
     private String medicineCatelog;
-    private ArrayList<String> medicinearr;
+    private ArrayList<MedicineDetail> medicinearr;
     
     public Medicine(){
         this.medicinearr=new ArrayList();
@@ -31,11 +31,11 @@ public class Medicine {
         this.medicineCatelog = medicineCatelog;
     }
 
-    public ArrayList<String> getMedicinearr() {
+    public ArrayList<MedicineDetail> getMedicinearr() {
         return medicinearr;
     }
 
-    public void setMedicinearr(ArrayList<String> medicinearr) {
+    public void setMedicinearr(ArrayList<MedicineDetail> medicinearr) {
         this.medicinearr = medicinearr;
     }
     @Override
