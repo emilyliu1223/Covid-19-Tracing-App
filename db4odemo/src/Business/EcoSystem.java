@@ -9,6 +9,7 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.SystemAdminRole;
+import MedicineCatelog.MedicineDirectory;
 import People.PeopleDirectory;
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private PeopleDirectory peopleDirectory;
+    private MedicineDirectory medicineDir;
     private ArrayList<Network> networkList;
     public static EcoSystem getInstance(){
         if(business==null){
@@ -43,8 +45,18 @@ public class EcoSystem extends Organization{
         super(null);
         networkList=new ArrayList<Network>();
         peopleDirectory=new PeopleDirectory();
+        medicineDir=new MedicineDirectory();
     }
 
+    public MedicineDirectory getMedicineDir() {
+        return medicineDir;
+    }
+
+    public void setMedicineDir(MedicineDirectory medicineDir) {
+        this.medicineDir = medicineDir;
+    }
+
+    
     public PeopleDirectory getPeopleDirectory() {
         return peopleDirectory;
     }

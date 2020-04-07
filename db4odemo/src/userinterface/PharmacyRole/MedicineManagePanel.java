@@ -5,6 +5,17 @@
  */
 package userinterface.PharmacyRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.PharmacyOrganization;
+import Business.UserAccount.UserAccount;
+import MedicineCatelog.Medicine;
+import MedicineCatelog.MedicineDirectory;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author user
@@ -14,8 +25,26 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     /**
      * Creates new form MedicineManagePanel
      */
-    public MedicineManagePanel() {
+
+    private JPanel jpanel;
+    private PharmacyOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EcoSystem system;
+    private MedicineDirectory medicineDir;
+    Medicine medicine;
+    public MedicineManagePanel(JPanel jpanel, UserAccount userAccount, PharmacyOrganization organization, Enterprise enterprise,EcoSystem system) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.jpanel = jpanel;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        this.system=system;
+        this.medicineDir=system.getMedicineDir();
+        this.medicine=new Medicine();
         initComponents();
+        setCombo();
+       
     }
 
     /**
@@ -30,21 +59,20 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        medicineTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
+        catelogcombo = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        namefield = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        treatmentfield = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        descriptionfield = new javax.swing.JTextArea();
+        addbtn = new javax.swing.JButton();
+        deletebtn = new javax.swing.JButton();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,7 +87,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         ));
         jScrollPane5.setViewportView(jTable2);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        medicineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -70,41 +98,48 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 "Disease Cataloge", "Medicine", "Treatment", "Description"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(medicineTable);
 
         jLabel1.setText("Disease Cataloge:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        catelogcombo.setModel(new javax.swing.DefaultComboBoxModel(new Object[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        catelogcombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                catelogcomboActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Medicine Name:");
 
         jLabel3.setText("Treatment:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        namefield.setColumns(20);
+        namefield.setRows(5);
+        jScrollPane2.setViewportView(namefield);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jTextArea2.setText("The effect of medicine\n");
-        jScrollPane3.setViewportView(jTextArea2);
+        treatmentfield.setColumns(20);
+        treatmentfield.setRows(5);
+        jScrollPane3.setViewportView(treatmentfield);
 
         jLabel4.setText("Description:");
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane4.setViewportView(jTextArea3);
+        descriptionfield.setColumns(20);
+        descriptionfield.setRows(5);
+        jScrollPane4.setViewportView(descriptionfield);
 
-        jButton1.setText("Add medicine");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addbtn.setText("Add medicine");
+        addbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addbtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Delete Medicine");
-
-        jLabel5.setText("click on row and delete");
+        deletebtn.setText("Delete Medicine");
+        deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,16 +167,12 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(159, 159, 159))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,27 +182,21 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(catelogcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(deletebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -184,29 +209,102 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    public void popTable(Medicine m){
+        DefaultTableModel model = (DefaultTableModel) medicineTable.getModel();
+        model.setRowCount(0);
+        for(String str:m.getMedicinearr()){
+            Object row[]=new Object[4];
+            
+            row[0]=m;
+            row[1]=str.split("/")[0];
+            row[2]=str.split("/")[1];
+            row[3]=str.split("/")[2];
+            model.addRow(row);
+            
+        }
+    }
+    public void setCombo(){
+        catelogcombo.removeAllItems();
+        for(Medicine m:system.getMedicineDir().getMedicines()){
+            catelogcombo.addItem(m.getMedicineCatelog());
+        }
+    }
+    private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String name=namefield.getText();
+        String treatment=treatmentfield.getText();
+        String description=descriptionfield.getText();
+        if(name.equals("")||treatment.equals("")||description.equals("")){
+            JOptionPane.showMessageDialog(null,"please enter three field");
+            return;
+        }
+        String medicineToadd=name;
+        medicineToadd=medicineToadd+"/"+treatment+"/"+description;
+        medicine.getMedicinearr().add(medicineToadd);
+        namefield.setText("");
+        treatmentfield.setText("");
+        descriptionfield.setText("");
+        popTable(medicine);
+                
+    }//GEN-LAST:event_addbtnActionPerformed
+
+    private void catelogcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catelogcomboActionPerformed
+        // TODO add your handling code here:
+        String medicinestr= (String) catelogcombo.getSelectedItem();
+        
+        for(Medicine m:medicineDir.getMedicines()){
+            if(m.getMedicineCatelog().equals(medicinestr)){
+                this.medicine=m;
+                break;
+            }
+        }  
+        popTable(medicine);
+    }//GEN-LAST:event_catelogcomboActionPerformed
+
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        // TODO add your handling code here:
+        int select=medicineTable.getSelectedRow();
+        if(select<0){
+            JOptionPane.showMessageDialog(null, "please select");
+            return;
+        }else{
+            Medicine selectMedicine=(Medicine)medicineTable.getValueAt(select, 0);
+            System.out.println("select medicine caelog:"+selectMedicine);
+            String medicine1=(String) medicineTable.getValueAt(select, 1);
+            String medicine2=(String) medicineTable.getValueAt(select, 2);
+            String medicine3=(String) medicineTable.getValueAt(select, 3);
+            String toDelete="";
+            toDelete=medicine1+"/"+medicine2+"/"+medicine3;
+            int a=JOptionPane.showConfirmDialog(null, "sure to delete?","confirm",JOptionPane.YES_NO_OPTION);
+            if(a==JOptionPane.YES_OPTION){
+                selectMedicine.getMedicinearr().remove(toDelete);
+            }else if(a==JOptionPane.NO_OPTION){
+                return;
+            }
+            
+            popTable(selectMedicine);
+            JOptionPane.showMessageDialog(null, "delete success");
+        }
+    }//GEN-LAST:event_deletebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton addbtn;
+    private javax.swing.JComboBox<String> catelogcombo;
+    private javax.swing.JButton deletebtn;
+    private javax.swing.JTextArea descriptionfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTable medicineTable;
+    private javax.swing.JTextArea namefield;
+    private javax.swing.JTextArea treatmentfield;
     // End of variables declaration//GEN-END:variables
 }

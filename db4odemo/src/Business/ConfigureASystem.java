@@ -15,6 +15,7 @@ import Business.Role.PharmacyRole;
 import Business.Role.QuarantineRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
+import MedicineCatelog.Medicine;
 import People.MedicalRecord;
 import People.People;
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class ConfigureASystem {
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         //create people
-        People p=system.getPeopleDirectory().createPeople("123","Mickey Mouse","1990/01/11",30,"339019","143 park drive","boston","MA","female","//Users/stacyhuang/twoGirls/db4odemo/mickey.png");
+        People p=system.getPeopleDirectory().createPeople("123","Mickey Mouse","1990/01/11",30,"339019","143 park drive","boston","Massachusetts","female","//Users/stacyhuang/twoGirls/db4odemo/mickey.png");
             MedicalRecord mr=p.getMedicalRecord();
             mr.setBloodType("O");
             ArrayList<String> past=new ArrayList();
@@ -98,8 +99,15 @@ public class ConfigureASystem {
             mr.setPregancy("yes");
             mr.setEmergency_contactName("amy");mr.setEmergency_contactPhone("778837");
            
-        People p2=system.getPeopleDirectory().createPeople("456","Thresseyes Joesph","1991/12/20",29,"103384","1 Manhatton avenue","new york","New York","male","/Users/stacyhuang/twoGirls/db4odemo/threeeyes.png");
+        People p2=system.getPeopleDirectory().createPeople("456","Thresseyes Joesph","1991/12/20",29,"103384","12 bolyston street","boston","Massachusetts","male","/Users/stacyhuang/twoGirls/db4odemo/threeeyes.png");
    
+        Medicine medicine=system.getMedicineDir().createMedicineCatelog("Diabete");
+        medicine.getMedicinearr().add("Tolbutamide/diabete/no");
+        medicine.getMedicinearr().add("Glibenclamide/diabete/no");
+        Medicine medicine2=system.getMedicineDir().createMedicineCatelog("Vitamin");
+        medicine2.getMedicinearr().add("Vitamin A/prevent and cure/no");
+        medicine2.getMedicinearr().add("Vitamin C/prevent and cure/no");
+        medicine2.getMedicinearr().add("Vitamin E/eye care/no");
         return system;
     }
     
