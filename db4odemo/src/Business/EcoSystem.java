@@ -23,6 +23,8 @@ public class EcoSystem extends Organization{
     private PeopleDirectory peopleDirectory;
     private MedicineDirectory medicineDir;
     private ArrayList<Network> networkList;
+    private CountSymptoms countSymtoms;
+    
     public static EcoSystem getInstance(){
         if(business==null){
             business=new EcoSystem();
@@ -46,8 +48,18 @@ public class EcoSystem extends Organization{
         networkList=new ArrayList<Network>();
         peopleDirectory=new PeopleDirectory();
         medicineDir=new MedicineDirectory();
+        countSymtoms=new CountSymptoms();
     }
 
+    public CountSymptoms getCountSymtoms() {
+        return countSymtoms;
+    }
+
+    public void setCountSymtoms(CountSymptoms countSymtoms) {
+        this.countSymtoms = countSymtoms;
+    }
+
+    
     public MedicineDirectory getMedicineDir() {
         return medicineDir;
     }

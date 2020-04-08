@@ -20,7 +20,16 @@ public class WorkRequest_doctorQuarantine {
     private UserAccount doctor;
     private People patient;
     private String result;
+    private UserAccount inspector;
     private int id;
+
+    public UserAccount getInspector() {
+        return inspector;
+    }
+
+    public void setInspector(UserAccount inspector) {
+        this.inspector = inspector;
+    }
 
     public String getResult() {
         return result;

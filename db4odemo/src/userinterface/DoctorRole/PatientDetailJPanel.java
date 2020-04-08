@@ -34,9 +34,17 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         popMedicine();
         diagnosisfield.setEditable(false);
         diagnosisfield.setText(diagnosis.getDiagnosis());
+        setSymptoms(diagnosis);
      
     }
 
+    private void setSymptoms(Diagnosis dia){
+        String symptoms="";
+        for(String str:dia.getSymptoms()){
+            symptoms+=str+",";
+        }
+        symptomsarea.setText(symptoms);
+    }
     private void popMedicine(){
        DefaultTableModel model = (DefaultTableModel) medicinetable.getModel();
         model.setRowCount(0);
@@ -67,6 +75,9 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         dateLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        symptomsarea = new javax.swing.JTextArea();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -74,7 +85,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         diagnosisfield.setRows(5);
         jScrollPane1.setViewportView(diagnosisfield);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 169, 445, 92));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 445, 92));
 
         medicinetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -101,7 +112,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             medicinetable.getColumnModel().getColumn(1).setResizable(false);
         }
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 308, 445, 111));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 445, 111));
 
         backbtn1.setBackground(new java.awt.Color(255, 255, 255));
         backbtn1.setText("back");
@@ -114,10 +125,19 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 72, 169, 36));
 
         jLabel1.setText("diagnosis detail");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 147, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
 
         jLabel2.setText("medicine list");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 286, 192, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 192, -1));
+
+        jLabel3.setText("symptoms");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+
+        symptomsarea.setColumns(20);
+        symptomsarea.setRows(5);
+        jScrollPane3.setViewportView(symptomsarea);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, 450, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtn1ActionPerformed
@@ -134,8 +154,11 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea diagnosisfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable medicinetable;
+    private javax.swing.JTextArea symptomsarea;
     // End of variables declaration//GEN-END:variables
 }

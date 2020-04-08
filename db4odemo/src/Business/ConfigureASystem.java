@@ -31,6 +31,7 @@ public class ConfigureASystem {
         
         EcoSystem system = EcoSystem.getInstance();
         
+        system.getCountSymtoms().setCountAndType();
         //Create a network
         Network createNetwork=new Network();
         createNetwork.setName("Massachusetts");

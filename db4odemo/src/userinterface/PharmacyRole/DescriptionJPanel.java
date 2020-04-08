@@ -223,7 +223,10 @@ public class DescriptionJPanel extends javax.swing.JPanel {
             ImageIcon im=new ImageIcon(getRequest.getPatient().getPicture());
             picLabel.setIcon(im);
             popMedicineTable(getRequest.getMedicineArr());
-            checkbtn.setEnabled(true);
+            if(getRequest.getStatus().equals("pending")){
+                checkbtn.setEnabled(true);
+            }
+            
         }
     }//GEN-LAST:event_selectbtnActionPerformed
 
