@@ -15,9 +15,19 @@ public class Diagnosis {
     private String date;
     private String diagnosis;
     private ArrayList<String> medicine;
+    private ArrayList<String> symptoms;
     
     public Diagnosis(){
         medicine=new ArrayList();
+        symptoms=new ArrayList();
+    }
+
+    public ArrayList<String> getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(ArrayList<String> symptoms) {
+        this.symptoms = symptoms;
     }
 
     public String getDate() {

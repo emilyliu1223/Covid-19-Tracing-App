@@ -6,6 +6,7 @@
 package Business.WorkQueue;
 
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
 import People.People;
 import java.util.Date;
 
@@ -19,6 +20,34 @@ public class WorkRequest_quarantineCDC {
     private Enterprise enterprise;
     private String status;
     private Date date;
+    private String symptons;
+    private UserAccount receiver;
+    private String message;
+    
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+
+    public UserAccount getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(UserAccount receiver) {
+        this.receiver = receiver;
+    }
+
+    public String getSymptons() {
+        return symptons;
+    }
+
+    public void setSymptons(String symptons) {
+        this.symptons = symptons;
+    }
 
     public int getCaseNumber() {
         return caseNumber;

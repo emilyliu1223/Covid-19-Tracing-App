@@ -7,6 +7,7 @@ package Business.WorkQueue;
 
 import Business.UserAccount.UserAccount;
 import People.People;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -20,7 +21,34 @@ public class WorkRequest_doctorQuarantine {
     private UserAccount doctor;
     private People patient;
     private String result;
+    private UserAccount inspector;
     private int id;
+    private ArrayList<String> symptoms;
+    private String diagnosis;
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public ArrayList<String> getSymptoms() {
+        return symptoms;
+    }
+
+    public void setSymptoms(ArrayList<String> symptoms) {
+        this.symptoms = symptoms;
+    }
+
+    public UserAccount getInspector() {
+        return inspector;
+    }
+
+    public void setInspector(UserAccount inspector) {
+        this.inspector = inspector;
+    }
 
     public String getResult() {
         return result;

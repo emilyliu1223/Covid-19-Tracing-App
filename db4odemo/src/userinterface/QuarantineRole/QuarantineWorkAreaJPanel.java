@@ -37,8 +37,8 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
-    private int caseNumber=0;
-    private WorkRequest_doctorQuarantine request;
+    //private int caseNumber=0;
+    private WorkRequest_doctorQuarantine thisrequest;
     public QuarantineWorkAreaJPanel(JPanel jpanel, UserAccount userAccount, QuarantineOrganization organization, Enterprise enterprise, EcoSystem system) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         initComponents();
@@ -47,14 +47,12 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system=system;
-        this.request=null;
+        //this.request=null;
         ButtonGroup b=new ButtonGroup();
         b.add(positive);
         b.add(negative);
-        negative.setEnabled(false);positive.setEnabled(false);
-        savebtn.setEnabled(false);reportbtn.setEnabled(false);
-        typefield.setEditable(false);doctorfield.setEditable(false);
-        resultfield.setEditable(false);
+        setField(false);
+        messagearea.setEditable(false);
         popQuarantineTable();
         setCombo();
     }
@@ -81,7 +79,6 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         savebtn = new javax.swing.JButton();
         reportbtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         selectbtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         typefield = new javax.swing.JTextField();
@@ -91,6 +88,13 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         networkJComboBox = new javax.swing.JComboBox();
         enterpriseTypeJComboBox = new javax.swing.JComboBox();
+        inspectorfield = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        messagearea = new javax.swing.JTextArea();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         quarantineTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -122,19 +126,25 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             quarantineTable.getColumnModel().getColumn(6).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 38, 997, 153));
+
         jLabel1.setText("Symptons:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, -1, -1));
 
         symptonfield.setColumns(20);
         symptonfield.setRows(5);
-        symptonfield.setText("same with diagnos\n");
         jScrollPane2.setViewportView(symptonfield);
 
-        jLabel2.setText("Diagnos:");
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 180, -1));
+
+        jLabel2.setText("Diagnosis:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, -1, -1));
 
         diagnosisfield.setColumns(20);
         diagnosisfield.setRows(5);
-        diagnosisfield.setText("click on table row diagnos \nshow here\n");
         jScrollPane3.setViewportView(diagnosisfield);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, 177, -1));
 
         positive.setText("Positive");
         positive.addActionListener(new java.awt.event.ActionListener() {
@@ -142,10 +152,13 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 positiveActionPerformed(evt);
             }
         });
+        add(positive, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 232, -1, -1));
 
         negative.setText("Negative");
+        add(negative, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 266, -1, -1));
 
         jLabel3.setText("Result:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 202, -1, -1));
 
         savebtn.setText("Save to Document");
         savebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -153,6 +166,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 savebtnActionPerformed(evt);
             }
         });
+        add(savebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, 167, -1));
 
         reportbtn.setText("Report it to CDC");
         reportbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -160,8 +174,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 reportbtnActionPerformed(evt);
             }
         });
-
-        jLabel6.setText("People information will contains more detail in CDC receptions button jump to receptionWorkArea");
+        add(reportbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 460, 159, -1));
 
         selectbtn.setText("select");
         selectbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -169,12 +182,19 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(922, 197, -1, -1));
 
         jLabel5.setText("testing type");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 202, 79, -1));
+        add(typefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 197, 174, -1));
+        add(resultfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 180, -1));
 
         jLabel8.setText("result");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 79, -1));
+        add(doctorfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 232, 174, -1));
 
         jLabel9.setText("responsible doctor");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 237, 124, -1));
 
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -182,127 +202,33 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 networkJComboBoxActionPerformed(evt);
             }
         });
+        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 370, 159, -1));
 
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 410, 159, -1));
+        add(inspectorfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(196, 270, 174, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(reportbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1))
-                                .addGap(46, 46, 46)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(63, 63, 63)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(typefield)
-                                    .addComponent(doctorfield, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(resultfield, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(83, 83, 83)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(selectbtn))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(positive)
-                                            .addComponent(jLabel3))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(negative)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(enterpriseTypeJComboBox, 0, 159, Short.MAX_VALUE)
-                                    .addComponent(networkJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(16, 16, 16)))))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(selectbtn)
-                    .addComponent(jLabel5)
-                    .addComponent(typefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(positive)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(negative)
-                        .addGap(13, 13, 13)
-                        .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(savebtn)
-                            .addComponent(reportbtn)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(doctorfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(resultfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)))
-                        .addGap(7, 7, 7)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel10.setText("responsible inspector");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 275, -1, -1));
+
+        jLabel4.setText("message to CDC");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(639, 202, -1, -1));
+
+        messagearea.setColumns(20);
+        messagearea.setRows(5);
+        jScrollPane4.setViewportView(messagearea);
+
+        add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 230, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setField(boolean boo){
+        negative.setEnabled(boo);positive.setEnabled(boo);
+        savebtn.setEnabled(boo);reportbtn.setEnabled(boo);
+        typefield.setEditable(boo);doctorfield.setEditable(boo);
+        inspectorfield.setEditable(boo);diagnosisfield.setEditable(boo);
+        resultfield.setEditable(boo);symptonfield.setEditable(boo);doctorfield.setEditable(boo);
+        
+    }
     public void setCombo(){
         networkJComboBox.removeAllItems();
         for (Network network : system.getNetworkList()) {
@@ -320,7 +246,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
    
     public void popQuarantineTable(){
         DefaultTableModel model = (DefaultTableModel) quarantineTable.getModel();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         model.setRowCount(0);
         for(WorkRequest_doctorQuarantine request:organization.getWorkQueue_doctorQuarantine().getWorkRequestList()){
             Object row[]=new Object[7];
@@ -348,14 +274,16 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }else{
             if(positive.isSelected()){
-                (this.request).setResult("positive");
+                (thisrequest).setResult("positive");
             }else{
-                (this.request).setResult("negative");
+                (thisrequest).setResult("negative");
             }
-            this.request.setDate(date);
-            this.request.setStatus("finish test");
+            thisrequest.setDate(date);
+            thisrequest.setStatus("finish test");
+            thisrequest.setInspector(userAccount);
             JOptionPane.showMessageDialog(null, "save success");
-            resultfield.setText(this.request.getResult());
+            resultfield.setText(thisrequest.getResult());
+            inspectorfield.setText(thisrequest.getInspector().getEmployee().getName());
             negative.setEnabled(false);positive.setEnabled(false);
            
             popQuarantineTable();
@@ -371,14 +299,34 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         }else{
             negative.setEnabled(true);positive.setEnabled(true);
             savebtn.setEnabled(true);reportbtn.setEnabled(true);
+            messagearea.setEditable(true);
             WorkRequest_doctorQuarantine request=(WorkRequest_doctorQuarantine) quarantineTable.getValueAt(select, 0);
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-            this.request=request;
+           
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            this.thisrequest=request;
            
             typefield.setText(request.getTestType());
             doctorfield.setText(request.getDoctor().getEmployee().getName());
-            //datefield.setText(formatter.format(request.getDate()));
             resultfield.setText(request.getResult());
+            if(!request.getResult().equals("")){
+                if(request.getResult().equals("positive")){
+                    positive.setSelected(true);
+                }else if(request.getResult().equals("negative")){
+                    negative.setSelected(true);
+                }
+            }
+            diagnosisfield.setText(request.getDiagnosis());
+            String sym="";
+            for(String str:request.getSymptoms()){
+                sym+=(str+",");
+            }
+            symptonfield.setText(sym);
+            String inspector=request.getInspector().getEmployee().getName();
+            if(inspector!=null){
+                inspectorfield.setText(inspector);
+            }else{
+                inspectorfield.setText("");
+            }
             
         }
     }//GEN-LAST:event_selectbtnActionPerformed
@@ -387,29 +335,34 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ReceptionOrganization org=null;
         Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-        System.out.println("send to enterprise:"+en.toString());
         int select=quarantineTable.getSelectedRow();
         if(select<0){
             JOptionPane.showMessageDialog(null, "please select");
             return;
         }else{
-            WorkRequest_doctorQuarantine request = (WorkRequest_doctorQuarantine)quarantineTable.getValueAt(select, 0);
-            if(request.getStatus().equals("finish test")){
-                System.out.println("send to CDC:"+request.getPatient().getName());
+            //WorkRequest_doctorQuarantine request = (WorkRequest_doctorQuarantine)quarantineTable.getValueAt(select, 0);
+            if(thisrequest.getStatus().equals("finish test")){
+                thisrequest.setStatus("sent to CDC");
+                popQuarantineTable();
                 WorkRequest_quarantineCDC toCDC=new WorkRequest_quarantineCDC();
-                toCDC.setCaseNumber(++caseNumber);
-                toCDC.setDate(request.getDate());
-                toCDC.setPatient(request.getPatient());
+                int c=system.getCaseCount()+1;
+                String message=messagearea.getText();
+                toCDC.setMessage(message);
+                toCDC.setCaseNumber(c);
+                toCDC.setDate(thisrequest.getDate());
+                toCDC.setPatient(thisrequest.getPatient());
                 toCDC.setStatus("sent to CDC");
                 toCDC.setEnterprise(enterprise);
+                toCDC.setSymptons(symptonfield.getText());
                 for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
                     if(o instanceof ReceptionOrganization){
                         org=(ReceptionOrganization) o;
                         break;
                     }
                 }
+                System.out.println("send to:"+org);
                 org.getWorkQueue_quarantineCDC().getWorkRequestList().add(toCDC);
-                
+                System.out.println("size:"+org.getWorkQueue_quarantineCDC().getWorkRequestList().size());
             }else{
                 JOptionPane.showMessageDialog(null, "need to update result");
                 return;
@@ -430,16 +383,20 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextArea diagnosisfield;
     private javax.swing.JTextField doctorfield;
     private javax.swing.JComboBox enterpriseTypeJComboBox;
+    private javax.swing.JTextField inspectorfield;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea messagearea;
     private javax.swing.JRadioButton negative;
     private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JRadioButton positive;
