@@ -19,7 +19,8 @@ public class CountSymptoms {
     private int diarrheaCount;
     private int runningNoseCount;
     private int breathDifficultCount;
-
+    private int no;
+    
     private HashMap<String,Integer> countwithType;
     public CountSymptoms(){
 //        this.coughcount=0;
@@ -41,9 +42,18 @@ public class CountSymptoms {
         countwithType.put("diarrhea", 0);
         countwithType.put("running nose", 0);
         countwithType.put("breath difficult", 0);
+        countwithType.put("noSymptoms", 0);
     }
     public HashMap<String, Integer> getCountwithType() {
         return countwithType;
+    }
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 
     public void setCountwithType(HashMap<String, Integer> countwithType) {

@@ -251,14 +251,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="finishbtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="finish"/>
+        <Property name="text" type="java.lang.String" value="finish and send to pharmacy"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="finishbtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="500" y="720" width="155" height="50"/>
+          <AbsoluteConstraints x="470" y="720" width="220" height="50"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -543,13 +543,16 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="breathcheck">
+    <Component class="javax.swing.JCheckBox" name="nocheck">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Breath Difficult"/>
+        <Property name="text" type="java.lang.String" value="no symptom"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nocheckActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="780" y="320" width="-1" height="-1"/>
+          <AbsoluteConstraints x="780" y="290" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -587,6 +590,16 @@
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="590" y="380" width="330" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="breathcheck1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Breath Difficult"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="780" y="260" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

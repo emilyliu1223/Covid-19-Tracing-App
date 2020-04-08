@@ -52,8 +52,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private WorkRequest_documentDoctor thisrequest;
     private MedicineDirectory medicineDir;
     private ArrayList<String> othersymptoms;
+    private ArrayList<String> symptoms;
+    private ArrayList<String> finalSymptoms;
+    private HashMap<String,Integer> setCount;
     private Medicine thismedicine;
-    private int quarantine_id=0;
+    //private int quarantine_id=0;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
@@ -70,8 +73,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.medicineDir=system.getMedicineDir();
         this.thismedicine=new Medicine();
         valueLabel.setText(userAccount.getUsername());
-        finishbtn.setEnabled(false);
-        sendbtn.setEnabled(false);
+        setCount=system.getCountSymtoms().getCountwithType();
+        setBtn(false);
         showother.setEditable(false);
         setField(false);
         setfieldtext("","","","");
@@ -79,6 +82,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         populateRequestTable();
     }
     
+    private void setBtn(boolean boo){
+        finishbtn.setEnabled(boo);
+        sendbtn.setEnabled(boo);
+        addmedicinebtn.setEnabled(boo);
+        addbtn.setEnabled(boo);
+    }
     private void setField(boolean boo){
         namefield.setEditable(boo);
         notefield.setEditable(boo);
@@ -169,54 +178,59 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         return boo;
     }
     public void setSymptoms(){
-        HashMap<String,Integer> setCount=system.getCountSymtoms().getCountwithType();
+        symptoms=new ArrayList();
+        if(nocheck.isSelected()){
+            int nocount=setCount.get("noSymptoms");
+            setCount.put("noSymptoms", ++nocount);
+            symptoms.add("no symptom");
+        }
         if(coughcheck.isSelected()){
             int coughcount=setCount.get("cough");
             setCount.put("cough", ++coughcount);
-            othersymptoms.add("cough");
-            System.out.println("cough select");
+            symptoms.add("cough");
+            
         }
         if(sorethroatcheck.isSelected()){
             int sorecount=setCount.get("sore throat");
             setCount.put("sore throat", ++sorecount);
-            othersymptoms.add("sore throat");
+            symptoms.add("sore throat");
         }
         if(headachecheck.isSelected()){
             int headachecount=setCount.get("headache");
             setCount.put("headache", ++headachecount);
-            othersymptoms.add("headache");
+            symptoms.add("headache");
         }
         if(fevercheck.isSelected()){
             int fevercount=setCount.get("fever");
             setCount.put("fever", ++fevercount);
-            othersymptoms.add("fever");
+            symptoms.add("fever");
         }
         if(diarrheacheck.isSelected()){
             int diacount=setCount.get("diarrhea");
             setCount.put("diarrhea", ++diacount);
-            othersymptoms.add("diarrhea");
+            symptoms.add("diarrhea");
         }
         if(nosecheck.isSelected()){
             int nosecount=setCount.get("running nose");
             setCount.put("running nose", ++nosecount);
-            othersymptoms.add("running nose");
+            symptoms.add("running nose");
         }
-        if(breathcheck.isSelected()){
+        if(nocheck.isSelected()){
             int breathcount=setCount.get("breath difficult");
             setCount.put("breath difficult", ++breathcount);
-            othersymptoms.add("breath difficult");
+            symptoms.add("breath difficult");
         }
-        System.out.println("count:"+setCount.get("cough"));
     }
     public void setSymptomsField(boolean boo){
         showother.setText("");
-        breathcheck.setSelected(boo);
+        nocheck.setSelected(boo);
         nosecheck.setSelected(boo);
         diarrheacheck.setSelected(boo);
         fevercheck.setSelected(boo);
         headachecheck.setSelected(boo);
         sorethroatcheck.setSelected(boo);
         coughcheck.setSelected(boo);
+        nocheck.setSelected(boo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -266,11 +280,12 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         diarrheacheck = new javax.swing.JCheckBox();
         sorethroatcheck = new javax.swing.JCheckBox();
         nosecheck = new javax.swing.JCheckBox();
-        breathcheck = new javax.swing.JCheckBox();
+        nocheck = new javax.swing.JCheckBox();
         jLabel5 = new javax.swing.JLabel();
         otherfield = new javax.swing.JTextField();
         addbtn = new javax.swing.JButton();
         showother = new javax.swing.JTextField();
+        breathcheck1 = new javax.swing.JCheckBox();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -380,13 +395,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(addmedicinebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 640, 210, 30));
 
-        finishbtn.setText("finish");
+        finishbtn.setText("finish and send to pharmacy");
         finishbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 finishbtnActionPerformed(evt);
             }
         });
-        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 720, 155, 50));
+        add(finishbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 720, 220, 50));
 
         testTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -505,8 +520,13 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         nosecheck.setText("Running Nose");
         add(nosecheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 320, -1, -1));
 
-        breathcheck.setText("Breath Difficult");
-        add(breathcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 320, -1, -1));
+        nocheck.setText("no symptom");
+        nocheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nocheckActionPerformed(evt);
+            }
+        });
+        add(nocheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, -1, -1));
 
         jLabel5.setText("others:");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 350, -1, -1));
@@ -520,6 +540,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, -1, -1));
         add(showother, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 330, -1));
+
+        breathcheck1.setText("Breath Difficult");
+        add(breathcheck1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -543,8 +566,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             if(request.getAssignedDoctor()==null){
                 this.medicineArr=new ArrayList();
                 this.othersymptoms=new ArrayList();
-                finishbtn.setEnabled(true);
-                sendbtn.setEnabled(true);
+                finalSymptoms=new ArrayList();
+                setBtn(true);
                 request.setAssignedDoctor(userAccount);
                 request.setStatus("checking");
                 thispeople=request.getPeople();
@@ -585,7 +608,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Date date = new Date();
         Diagnosis diagnosis=new Diagnosis();
-        ArrayList<Diagnosis> diagnosisarr=new ArrayList();
+        //finalSymptoms=new ArrayList();
         ArrayList<String>medicinetoAdd=new ArrayList();
         thisrequest.setStatus("finish");
         thisrequest.setDate(date);
@@ -604,13 +627,18 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "please enter your diagnosis");
             return;
         }
-        setSymptoms();
+        if(finalSymptoms.isEmpty()){
+            JOptionPane.showMessageDialog(null, "please choose symptoms");
+            return;
+        }
+
+        System.out.println("in finish btn:"+finalSymptoms);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String d=formatter.format(date);
         diagnosis.setDate(d);
         diagnosis.setDiagnosis(doctorNote);
         diagnosis.setMedicine(medicinetoAdd);
-        diagnosis.setSymptoms(othersymptoms);
+        diagnosis.setSymptoms(finalSymptoms);
         thispeople.getMedicalRecord().getDoctorNote().add(diagnosis);
         populateRequestTable();
         
@@ -636,27 +664,50 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         diagnosisArea.setText("");
         setfieldtext("","","","");
         setSymptomsField(false);
-        finishbtn.setEnabled(false);
-        sendbtn.setEnabled(false);
+        setBtn(false);
     }//GEN-LAST:event_finishbtnActionPerformed
 
     private void sendbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendbtnActionPerformed
         // TODO add your handling code here:
         //send to Quarantine or;
 //        this.quarantine_id++;
+        //finalSymptoms=new ArrayList();
         Date date=new Date();
         String type=testingfield.getText();
         if(type.equals("")){
             JOptionPane.showMessageDialog(null, "please enter testing type");
             return;
         }else{
+            
             WorkRequest_doctorQuarantine toQuarantine =new WorkRequest_doctorQuarantine();
+            String diagnosis=diagnosisArea.getText();
+            if(diagnosis.equals("")){
+                JOptionPane.showMessageDialog(null, "please enter your diagnosis");
+                return;
+            }
+            setSymptoms();
+            System.out.println("sym in sendbtn:"+symptoms);
+            if(symptoms.isEmpty()&&othersymptoms.isEmpty()){
+                JOptionPane.showMessageDialog(null, "please choose symptoms");
+                return;
+            }
+            if(!othersymptoms.isEmpty()){
+                finalSymptoms.addAll(othersymptoms);
+            }
+            if(!symptoms.isEmpty()){
+                finalSymptoms.addAll(symptoms);
+            }
+            System.out.println("in sendbtn"+finalSymptoms);
+           
+            toQuarantine.setDiagnosis(diagnosis);
+            toQuarantine.setSymptoms(finalSymptoms);
             toQuarantine.setDate(date);
             toQuarantine.setDoctor(userAccount);
             toQuarantine.setStatus("pending");
             toQuarantine.setTestType(type);
             toQuarantine.setPatient(thispeople);
-            toQuarantine.setId(++this.quarantine_id);
+            int c=system.getQuarantineCount()+1;
+            toQuarantine.setId(c);
             QuarantineOrganization org=null;
             for(Organization o:enterprise.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof QuarantineOrganization){
@@ -699,8 +750,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             WorkRequest_documentDoctor request=(WorkRequest_documentDoctor) workRequestJTable.getValueAt(select, 0);
             if(request.getAssignedDoctor().equals(userAccount)&&request.getStatus().equals("checking")){
                 this.medicineArr=new ArrayList();
-                finishbtn.setEnabled(true);
-                sendbtn.setEnabled(true);
+                finalSymptoms=new ArrayList();
+                setBtn(true);
                 request.setAssignedDoctor(userAccount);
                 request.setStatus("checking");
                 thispeople=request.getPeople();
@@ -750,17 +801,24 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
-        String other=otherfield.getText();
+        String other=otherfield.getText().toLowerCase();
         if(other.equals("")){
             JOptionPane.showMessageDialog(null, "please enter other field to add");
             return;
         }else{
+            int c=setCount.getOrDefault(other, 0);
             othersymptoms.add(other);
+            setCount.put(other,++c);
+            System.out.println("put:"+other+","+c);
             otherField(othersymptoms);
             otherfield.setText("");
         }
         
     }//GEN-LAST:event_addbtnActionPerformed
+
+    private void nocheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nocheckActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nocheckActionPerformed
     private void otherField(ArrayList<String> arr){
         String show="";
         for(String str:arr){
@@ -775,7 +833,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField agefield;
     private javax.swing.JTextField amountfield;
     private javax.swing.JButton assignbtn;
-    private javax.swing.JCheckBox breathcheck;
+    private javax.swing.JCheckBox breathcheck1;
     private javax.swing.JButton completebtn;
     private javax.swing.JCheckBox coughcheck;
     private javax.swing.JTextArea diagnosisArea;
@@ -784,8 +842,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox fevercheck;
     private javax.swing.JButton finishbtn;
     private javax.swing.JCheckBox headachecheck;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -803,6 +859,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTable medicineTable;
     private javax.swing.JComboBox<String> medicinescombo;
     private javax.swing.JTextField namefield;
+    private javax.swing.JCheckBox nocheck;
     private javax.swing.JCheckBox nosecheck;
     private javax.swing.JTextField notefield;
     private javax.swing.JTextField otherfield;

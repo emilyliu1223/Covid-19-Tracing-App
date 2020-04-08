@@ -5,14 +5,20 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.DocumentOrganization;
+import Business.Organization.InvestigationOrganization;
 import Business.Organization.Organization;
 import Business.Organization.PharmacyOrganization;
+import Business.Organization.PoliceOrganization;
 import Business.Organization.QuarantineOrganization;
+import Business.Organization.ReceptionOrganization;
 import Business.Role.AdminRole;
 import Business.Role.DoctorRole;
 import Business.Role.DocumentRole;
+import Business.Role.InvestigationRole;
 import Business.Role.PharmacyRole;
+import Business.Role.PoliceRole;
 import Business.Role.QuarantineRole;
+import Business.Role.ReceptionRole;
 import Business.Role.SystemAdminRole;
 import Business.UserAccount.UserAccount;
 import MedicineCatelog.Medicine;
@@ -74,11 +80,30 @@ public class ConfigureASystem {
         //create employee & user account for cdc enterprise-cdc
         Employee em2=e2.getEmployeeDirectory().createEmployee("cdc_boston");
         e2.getUserAccountDirectory().createUserAccount("cdc_boston", "cdc_boston", em2, new AdminRole());
-        
+        ReceptionOrganization o_reception=null;
+        InvestigationOrganization o_investigation=null;
+        for(Organization o_e2:e2.getOrganizationDirectory().getOrganizationList()){
+            if(o_e2 instanceof ReceptionOrganization){
+                o_reception=(ReceptionOrganization)o_e2;
+            }else if(o_e2 instanceof InvestigationOrganization){
+                o_investigation=(InvestigationOrganization)o_e2;
+            }
+        }
+        Employee em2_reception=o_reception.getEmployeeDirectory().createEmployee("reception");
+        o_reception.getUserAccountDirectory().createUserAccount("recep", "recep", em2_reception, new ReceptionRole());
+        Employee em2_investigation=o_investigation.getEmployeeDirectory().createEmployee("investigation");
+        o_investigation.getUserAccountDirectory().createUserAccount("inves", "inves", em2_investigation, new InvestigationRole());
         //create employee & user account for police enterprise-boston police
         Employee em3=e3.getEmployeeDirectory().createEmployee("boston pd");
         e3.getUserAccountDirectory().createUserAccount("boston_pd", "boston_pd", em3, new AdminRole());
-
+        PoliceOrganization o_police=null;
+        for(Organization o_e3:e3.getOrganizationDirectory().getOrganizationList()){
+            if(o_e3 instanceof PoliceOrganization){
+                o_police=(PoliceOrganization)o_e3;
+            }
+        }
+        Employee em3_police=o_police.getEmployeeDirectory().createEmployee("police");
+        o_police.getUserAccountDirectory().createUserAccount("police", "police", em3_police, new PoliceRole());
          
         Employee employee = system.getEmployeeDirectory().createEmployee("RRH");    
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
