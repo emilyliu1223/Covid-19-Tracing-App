@@ -15,7 +15,9 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest_quarantineCDC;
 import Business.WorkQueue.WorkRequest_receptionInvestigation;
 import People.People;
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -70,7 +72,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         addressfield = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         statefield = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -117,7 +118,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             patientTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 24, 906, 188));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1070, 188));
 
         jLabel2.setText("Symptons");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 242, -1, -1));
@@ -134,7 +135,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 sendbtnActionPerformed(evt);
             }
         });
-        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 469, -1, -1));
+        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
 
         jLabel1.setText("phone");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 231, -1, -1));
@@ -146,7 +147,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("state");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 339, -1, -1));
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 355, 120, -1));
 
         jLabel5.setText("state");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 339, -1, -1));
@@ -170,16 +170,16 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
-        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(918, 192, -1, -1));
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 230, -1, -1));
 
         jLabel9.setText("message from quarantine inspector");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 231, -1, -1));
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, -1, -1));
 
         messagearea.setColumns(20);
         messagearea.setRows(5);
         jScrollPane2.setViewportView(messagearea);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(601, 265, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 290, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void setFieldEdible(boolean boo){
@@ -218,6 +218,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             agefield.setText(String.valueOf(thispeople.getAge()));
             symptonfield.setText(request.getSymptons());
             messagearea.setText(request.getMessage());
+            messagearea.setEditable(true);
             sendbtn.setEnabled(true);
         }
     }//GEN-LAST:event_selectbtnActionPerformed
@@ -228,6 +229,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "already sent to investigation");
             return;
         }else{
+            Date date =new Date();
             thisrequest.setReceiver(userAccount);
             WorkRequest_receptionInvestigation toInvestigation=new WorkRequest_receptionInvestigation();
             toInvestigation.setCaseNumber(thisrequest.getCaseNumber());
@@ -236,6 +238,9 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             toInvestigation.setSender(userAccount);
             toInvestigation.setSymptons(thisrequest.getSymptons());
             toInvestigation.setStatus("pending");
+            toInvestigation.setDiagnosisDate(thisrequest.getDate());
+            toInvestigation.setSentDate(date);
+            toInvestigation.setMessage(messagearea.getText());
             thisrequest.setStatus("sent");
             InvestigationOrganization invesorg=null;
             for(Organization o:enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -288,7 +293,6 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextArea messagearea;
     private javax.swing.JTable patientTable;
     private javax.swing.JTextField phonefield;

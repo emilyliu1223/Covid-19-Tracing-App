@@ -5,6 +5,15 @@
  */
 package userinterface.InvestigationRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.InvestigationOrganization;
+import Business.Organization.QuarantineOrganization;
+import Business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import userinterface.PharmacyRole.MedicineManagePanel;
+
 /**
  *
  * @author user
@@ -14,8 +23,19 @@ public class MainInvestigationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form MainInvestigationJPanel
      */
-    public MainInvestigationJPanel() {
-        initComponents();
+    private JPanel jpanel;
+    private InvestigationOrganization organization;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
+    private EcoSystem system;
+    public MainInvestigationJPanel(JPanel jpanel, UserAccount userAccount, InvestigationOrganization organization, Enterprise enterprise, EcoSystem system) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       initComponents();
+        this.jpanel = jpanel;
+        this.organization = organization;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        this.system=system;
     }
 
     /**
@@ -30,9 +50,19 @@ public class MainInvestigationJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        jButton1.setText("Build Up Quarantine List");
+        jButton1.setText("Patient Detail");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("ManageQuarantine");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -40,10 +70,10 @@ public class MainInvestigationJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(99, 99, 99)
-                .addComponent(jButton1)
-                .addGap(120, 120, 120)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -55,6 +85,20 @@ public class MainInvestigationJPanel extends javax.swing.JPanel {
                 .addContainerGap(207, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout=(CardLayout)jpanel.getLayout();
+        jpanel.add("magage patient detail",new PatientDetailJPanel(jpanel,userAccount,organization,enterprise,system));
+        layout.next(jpanel);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout=(CardLayout)jpanel.getLayout();
+        jpanel.add("magage quarantine detail",new ManageQuarantineJPanel(jpanel,userAccount,organization,enterprise,system));
+        layout.next(jpanel);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -33,6 +33,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         dateLabel.setText("Date: "+this.diagnosis.getDate());
         popMedicine();
         diagnosisfield.setEditable(false);
+        symptomsarea.setEditable(false);
         diagnosisfield.setText(diagnosis.getDiagnosis());
         setSymptoms(diagnosis);
      

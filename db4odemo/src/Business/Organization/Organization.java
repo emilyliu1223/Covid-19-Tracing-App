@@ -11,7 +11,9 @@ import Business.WorkQueue.WorkQueue;
 import Business.WorkQueue.WorkQueue_doctorPharmacy;
 import Business.WorkQueue.WorkQueue_doctorQuarantine;
 import Business.WorkQueue.WorkQueue_documentDoctor;
+import Business.WorkQueue.WorkQueue_investigationPolice;
 import Business.WorkQueue.WorkQueue_quarantineCDC;
+import Business.WorkQueue.WorkQueue_quarantineList;
 import Business.WorkQueue.WorkQueue_receptionInvestigation;
 import java.util.ArrayList;
 
@@ -30,6 +32,8 @@ public abstract class Organization {
     private WorkQueue_quarantineCDC workQueue_quarantineCDC;
     private WorkQueue_doctorPharmacy workQueue_doctorPharmacy;
     private WorkQueue_receptionInvestigation workQueue_receptionInvestigation;
+    private WorkQueue_quarantineList workQueue_quarantineList;
+    private WorkQueue_investigationPolice workQueue_investigationPolice;
     private int organizationID;
     private static int counter=0;
     
@@ -57,8 +61,27 @@ public abstract class Organization {
         workQueue_quarantineCDC=new WorkQueue_quarantineCDC();
         workQueue_doctorPharmacy=new WorkQueue_doctorPharmacy();
         workQueue_receptionInvestigation=new WorkQueue_receptionInvestigation();
+        workQueue_quarantineList=new WorkQueue_quarantineList();
+        workQueue_investigationPolice=new WorkQueue_investigationPolice();
         organizationID = counter;
         ++counter;
+    }
+
+    public WorkQueue_investigationPolice getWorkQueue_investigationPolice() {
+        return workQueue_investigationPolice;
+    }
+
+    public void setWorkQueue_investigationPolice(WorkQueue_investigationPolice workQueue_investigationPolice) {
+        this.workQueue_investigationPolice = workQueue_investigationPolice;
+    }
+
+    
+    public WorkQueue_quarantineList getWorkQueue_quarantineList() {
+        return workQueue_quarantineList;
+    }
+
+    public void setWorkQueue_quarantineList(WorkQueue_quarantineList workQueue_quarantineList) {
+        this.workQueue_quarantineList = workQueue_quarantineList;
     }
 
     public WorkQueue_receptionInvestigation getWorkQueue_receptionInvestigation() {

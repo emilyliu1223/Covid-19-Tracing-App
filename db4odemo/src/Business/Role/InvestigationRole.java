@@ -13,7 +13,8 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.DocumentRole.DocumentWorkAreaJPanel;
-import userinterface.InvestigationRole.InvestigationWorkAreaJPanel;
+import userinterface.InvestigationRole.CreateRelatedCaseJPanel;
+import userinterface.InvestigationRole.MainInvestigationJPanel;
 
 /**
  *
@@ -23,6 +24,6 @@ public class InvestigationRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new InvestigationWorkAreaJPanel(userProcessContainer, account, (InvestigationOrganization)organization, enterprise,business);
+        return new MainInvestigationJPanel(userProcessContainer, account, (InvestigationOrganization)organization, enterprise,business);
     }
 }

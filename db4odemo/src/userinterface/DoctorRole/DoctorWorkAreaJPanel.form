@@ -593,7 +593,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="breathcheck1">
+    <Component class="javax.swing.JCheckBox" name="breathcheck">
       <Properties>
         <Property name="text" type="java.lang.String" value="Breath Difficult"/>
       </Properties>

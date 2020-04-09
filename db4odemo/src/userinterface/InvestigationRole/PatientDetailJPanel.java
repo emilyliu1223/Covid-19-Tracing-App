@@ -8,14 +8,18 @@ package userinterface.InvestigationRole;
 import userinterface.ReceptionRole.*;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Organization.InvestigationOrganization;
 import Business.Organization.QuarantineOrganization;
 import Business.Organization.ReceptionOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest_quarantineList;
 import Business.WorkQueue.WorkRequest_receptionInvestigation;
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.DocumentRole.SendPatientJPanel;
 
 /**
  *
@@ -27,12 +31,12 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
      * Creates new form ReceptionWorkAreaJPanel
      */
     private JPanel jpanel;
-    private ReceptionOrganization organization;
+    private InvestigationOrganization organization;
     private Enterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
     private WorkRequest_receptionInvestigation thisrequest;
-    public PatientDetailJPanel(JPanel jpanel, UserAccount userAccount, ReceptionOrganization organization, Enterprise enterprise, EcoSystem system) {
+    public PatientDetailJPanel(JPanel jpanel, UserAccount userAccount, InvestigationOrganization organization, Enterprise enterprise, EcoSystem system) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         initComponents();
         this.jpanel = jpanel;
@@ -41,6 +45,8 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.system=system;
         setField(false);
+        messagearea.setEditable(false);
+        setTextField("");
         popTable();
     }
 
@@ -70,20 +76,28 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         hospitalfield = new javax.swing.JTextField();
         selectbtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        messagearea = new javax.swing.JTextArea();
+        jLabel8 = new javax.swing.JLabel();
+        diagnosisfield = new javax.swing.JTextField();
+        backbtn = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         needquarantinelist.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Case Number", "ID", "Name", "Age", "Gender", "State", "status"
+                "Case Number", "ID", "Name", "Age", "Gender", "State", "status", "send date", "sender"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,13 +113,20 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             needquarantinelist.getColumnModel().getColumn(4).setResizable(false);
             needquarantinelist.getColumnModel().getColumn(5).setResizable(false);
             needquarantinelist.getColumnModel().getColumn(6).setResizable(false);
+            needquarantinelist.getColumnModel().getColumn(7).setResizable(false);
+            needquarantinelist.getColumnModel().getColumn(8).setResizable(false);
         }
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 879, 188));
+
         jLabel2.setText("Syptoms");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 252, -1, -1));
 
         symptonarea.setColumns(20);
         symptonarea.setRows(5);
         jScrollPane3.setViewportView(symptonarea);
+
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 274, 219, -1));
 
         recordbtn.setText("Record List");
         recordbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -113,16 +134,27 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
                 recordbtnActionPerformed(evt);
             }
         });
+        add(recordbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 458, -1, -1));
 
         jLabel1.setText("phone");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 279, -1, -1));
+        add(phonefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 274, 166, -1));
 
         jLabel4.setText("address");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 311, -1, -1));
+        add(addressfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 306, 166, -1));
 
         jLabel5.setText("state");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 349, -1, -1));
+        add(statefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 344, 166, -1));
 
         jLabel6.setText("county");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 381, -1, -1));
+        add(countyfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(428, 376, 166, -1));
 
         jLabel7.setText("from hospital");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 419, -1, -1));
+        add(hospitalfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 414, 196, -1));
 
         selectbtn.setText("select");
         selectbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -130,93 +162,29 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(addressfield, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(phonefield, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(statefield, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(countyfield, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(hospitalfield, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selectbtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(recordbtn)
-                                .addGap(0, 147, Short.MAX_VALUE)))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(selectbtn)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(148, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(phonefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(addressfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(statefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(countyfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(hospitalfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(recordbtn))
-                .addGap(72, 72, 72))
-        );
+        jLabel3.setText("message");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 279, -1, -1));
+
+        messagearea.setColumns(20);
+        messagearea.setRows(5);
+        jScrollPane2.setViewportView(messagearea);
+
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 306, -1, -1));
+
+        jLabel8.setText("diagnosis date");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 451, -1, -1));
+        add(diagnosisfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 446, 196, -1));
+
+        backbtn.setBackground(new java.awt.Color(255, 255, 255));
+        backbtn.setText("back");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void popTable(){
@@ -224,7 +192,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         model.setRowCount(0);
         for(WorkRequest_receptionInvestigation request: organization.getWorkQueue_receptionInvestigation().getWorkRequestList()){
-            Object row[]=new Object[7];
+            Object row[]=new Object[9];
             row[0]=request;
             row[1]=request.getPatient().getId();
             row[2]=request.getPatient().getName();
@@ -232,6 +200,8 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             row[4]=request.getPatient().getGender();
             row[5]=request.getPatient().getState();
             row[6]=request.getStatus();
+            row[7]=request.getSentDate()==null?"":formatter.format(request.getSentDate());
+            row[8]=request.getSender().getEmployee().getName();
             model.addRow(row);
         }
     }
@@ -242,11 +212,44 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         countyfield.setEditable(boo);
         hospitalfield.setEditable(boo);
         symptonarea.setEditable(boo);
+        diagnosisfield.setEditable(boo);
+    }
+    private void setTextField(String s){
+        phonefield.setText(s);
+        addressfield.setText(s);
+        statefield.setText(s);
+        countyfield.setText(s);
+        hospitalfield.setText(s);
+        symptonarea.setText(s);
+        diagnosisfield.setText(s);
     }
     private void recordbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recordbtnActionPerformed
         // TODO add your handling code here:
-        thisrequest.setStatus("recorded");
+        WorkRequest_quarantineList requestToRecord=null;
+        if(!thisrequest.getStatus().equals("recording")){
+            System.out.println("inves:is recording");
+            thisrequest.setStatus("recording");
+            WorkRequest_quarantineList mainList=new WorkRequest_quarantineList();
+            mainList.setCaseNumber(thisrequest.getCaseNumber());
+            mainList.setPatient(thisrequest.getPatient());
+            mainList.setDiagnosisDate(thisrequest.getDiagnosisDate());
+            mainList.setSentDate(thisrequest.getSentDate());
+            organization.getWorkQueue_quarantineList().getWorkRequestList().add(mainList);
+            requestToRecord=mainList;
+        }else{
+            System.out.println("inves:not recording");
+            for(WorkRequest_quarantineList findRequest: organization.getWorkQueue_quarantineList().getWorkRequestList()){
+                if(findRequest.getCaseNumber()==thisrequest.getCaseNumber()){
+                    requestToRecord=findRequest;
+                    break;
+                }
+            }
+        }
+        System.out.println(requestToRecord.getCaseNumber()+requestToRecord.getPatient().getName());
         popTable();
+        CardLayout layout=(CardLayout)jpanel.getLayout();
+        jpanel.add("create related case",new CreateRelatedCaseJPanel(jpanel,userAccount,organization,enterprise,system,requestToRecord));
+        layout.next(jpanel);
     }//GEN-LAST:event_recordbtnActionPerformed
 
     private void selectbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectbtnActionPerformed
@@ -263,23 +266,39 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             statefield.setText(request.getPatient().getState());
             countyfield.setText(request.getPatient().getCounty());
             hospitalfield.setText(request.getHospital().getName());
+            messagearea.setText(request.getMessage());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            diagnosisfield.setText(formatter.format(request.getDiagnosisDate()));
             thisrequest=request;
         }
     }//GEN-LAST:event_selectbtnActionPerformed
 
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        // TODO add your handling code here:
+        jpanel.remove(this);
+        CardLayout layout = (CardLayout) jpanel.getLayout();
+        layout.previous(jpanel);
+    }//GEN-LAST:event_backbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressfield;
+    private javax.swing.JButton backbtn;
     private javax.swing.JTextField countyfield;
+    private javax.swing.JTextField diagnosisfield;
     private javax.swing.JTextField hospitalfield;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea messagearea;
     private javax.swing.JTable needquarantinelist;
     private javax.swing.JTextField phonefield;
     private javax.swing.JButton recordbtn;

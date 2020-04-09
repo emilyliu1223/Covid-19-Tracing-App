@@ -6,6 +6,7 @@
 package People;
 
 import Business.WorkQueue.WorkQueue_doctorQuarantine;
+import Business.WorkQueue.WorkQueue_quarantineList;
 import Business.WorkQueue.WorkRequest_doctorQuarantine;
 
 /**
@@ -25,7 +26,6 @@ public class People {
     private String gender;
    private WorkQueue_doctorQuarantine quarantineTesting;
     private MedicalRecord medicalRecord;
-    
     public People(){
         this.medicalRecord=new MedicalRecord();
     }
@@ -41,9 +41,10 @@ public class People {
         this.picture=picture; 
         this.birthday=birthday;
         this.gender=gender;
-        quarantineTesting=new WorkQueue_doctorQuarantine();      
+        quarantineTesting=new WorkQueue_doctorQuarantine();  
     }
 
+    
     public WorkQueue_doctorQuarantine getQuarantineTesting() {
         return quarantineTesting;
     }

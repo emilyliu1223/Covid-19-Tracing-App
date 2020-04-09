@@ -53,6 +53,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         b.add(negative);
         setField(false);
         messagearea.setEditable(false);
+        messagearea.setText("");
         popQuarantineTable();
         setCombo();
     }
@@ -285,7 +286,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             resultfield.setText(thisrequest.getResult());
             inspectorfield.setText(thisrequest.getInspector().getEmployee().getName());
             negative.setEnabled(false);positive.setEnabled(false);
-           
+            thisrequest.setMessage(messagearea.getText());
             popQuarantineTable();
         }
     }//GEN-LAST:event_savebtnActionPerformed
@@ -308,26 +309,23 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             typefield.setText(request.getTestType());
             doctorfield.setText(request.getDoctor().getEmployee().getName());
             resultfield.setText(request.getResult());
-            if(!request.getResult().equals("")){
-                if(request.getResult().equals("positive")){
-                    positive.setSelected(true);
-                }else if(request.getResult().equals("negative")){
-                    negative.setSelected(true);
-                }
-            }
+//            if(request.getResult().equals("positive")){
+//                    positive.setSelected(true);
+//                }else if(request.getResult().equals("negative")){
+//                    negative.setSelected(true);
+//                }
             diagnosisfield.setText(request.getDiagnosis());
             String sym="";
             for(String str:request.getSymptoms()){
                 sym+=(str+",");
             }
             symptonfield.setText(sym);
-            String inspector=request.getInspector().getEmployee().getName();
-            if(inspector!=null){
-                inspectorfield.setText(inspector);
+            messagearea.setText(request.getMessage());
+            if(request.getInspector()!=null){
+                inspectorfield.setText(request.getInspector().getEmployee().getName());
             }else{
                 inspectorfield.setText("");
             }
-            
         }
     }//GEN-LAST:event_selectbtnActionPerformed
 
@@ -335,17 +333,16 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ReceptionOrganization org=null;
         Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-        int select=quarantineTable.getSelectedRow();
-        if(select<0){
-            JOptionPane.showMessageDialog(null, "please select");
-            return;
-        }else{
+        //int select=quarantineTable.getSelectedRow();
+       
             //WorkRequest_doctorQuarantine request = (WorkRequest_doctorQuarantine)quarantineTable.getValueAt(select, 0);
             if(thisrequest.getStatus().equals("finish test")){
                 thisrequest.setStatus("sent to CDC");
                 popQuarantineTable();
                 WorkRequest_quarantineCDC toCDC=new WorkRequest_quarantineCDC();
                 int c=system.getCaseCount()+1;
+                system.setCaseCount(c);
+                System.out.println("in quarantine: case number "+c);
                 String message=messagearea.getText();
                 toCDC.setMessage(message);
                 toCDC.setCaseNumber(c);
@@ -360,14 +357,13 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                         break;
                     }
                 }
-                System.out.println("send to:"+org);
                 org.getWorkQueue_quarantineCDC().getWorkRequestList().add(toCDC);
-                System.out.println("size:"+org.getWorkQueue_quarantineCDC().getWorkRequestList().size());
+                JOptionPane.showMessageDialog(null, "send to CDC reception organization");
             }else{
                 JOptionPane.showMessageDialog(null, "need to update result");
                 return;
             }
-        }
+        
     }//GEN-LAST:event_reportbtnActionPerformed
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
