@@ -81,6 +81,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         messagearea = new javax.swing.JTextArea();
         jLabel8 = new javax.swing.JLabel();
         diagnosisfield = new javax.swing.JTextField();
+        backbtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,7 +117,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             needquarantinelist.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 24, 879, 188));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 879, 188));
 
         jLabel2.setText("Syptoms");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 252, -1, -1));
@@ -161,7 +162,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
-        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(804, 218, -1, -1));
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
 
         jLabel3.setText("message");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 279, -1, -1));
@@ -175,6 +176,15 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         jLabel8.setText("diagnosis date");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 451, -1, -1));
         add(diagnosisfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(398, 446, 196, -1));
+
+        backbtn.setBackground(new java.awt.Color(255, 255, 255));
+        backbtn.setText("back");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void popTable(){
@@ -263,9 +273,17 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_selectbtnActionPerformed
 
+    private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
+        // TODO add your handling code here:
+        jpanel.remove(this);
+        CardLayout layout = (CardLayout) jpanel.getLayout();
+        layout.previous(jpanel);
+    }//GEN-LAST:event_backbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressfield;
+    private javax.swing.JButton backbtn;
     private javax.swing.JTextField countyfield;
     private javax.swing.JTextField diagnosisfield;
     private javax.swing.JTextField hospitalfield;

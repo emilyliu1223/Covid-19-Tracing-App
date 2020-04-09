@@ -31,7 +31,7 @@ public class CountSymptoms {
 //        this.diarrheaCount=0;
 //        this.runningNoseCount=0;
         this.countwithType=new HashMap<String,Integer>();
-        //setCountAndType();
+        setCountAndType();
     }
 
     public void setCountAndType(){

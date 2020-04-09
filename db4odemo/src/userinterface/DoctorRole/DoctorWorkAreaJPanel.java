@@ -74,6 +74,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.thismedicine=new Medicine();
         valueLabel.setText(userAccount.getUsername());
         setCount=system.getCountSymtoms().getCountwithType();
+        System.out.println(setCount);
         setBtn(false);
         showother.setEditable(false);
         setField(false);
@@ -813,9 +814,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "please enter other field to add");
             return;
         }else{
-            int c=setCount.getOrDefault(other, 0);
+            int c=setCount.getOrDefault(other, 0)+1;
             othersymptoms.add(other);
-            setCount.put(other,++c);
+            setCount.put(other,c);
             System.out.println("put:"+other+","+c);
             otherField(othersymptoms);
             otherfield.setText("");

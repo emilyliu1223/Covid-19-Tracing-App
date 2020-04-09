@@ -39,6 +39,26 @@ public class ConfigureASystem {
         
         system.getCountSymtoms().setCountAndType();
         //Create a network
+        ArrayList<String> states=new ArrayList();
+   
+        states.add("Alabama");states.add("Alaska");states.add("Arizona");
+        states.add("Arkansas");states.add("Alabama");states.add("California");
+        states.add("Colorado");states.add("Connecticut");states.add("Delaware");
+        states.add("Florida");states.add("Georgia");states.add("Hawaii");
+        states.add("Idaho");  states.add("Illinois");states.add("Indiana");states.add("Iowa");
+        states.add( "Kansas");  states.add("Kentucky");  states.add("Louisiana");  states.add("Maine");  states.add("Maryland");
+        states.add("Michigan");  states.add("Minnesota");  states.add("Mississippi");  states.add("Missouri");
+        states.add("Montana");  states.add("Nebraska");  states.add("Nevada");  states.add("New Hampshire");  states.add("New Jersey");
+        states.add("New Mexico");  states.add("New York");  states.add("North Carolina");  states.add("North Dakota");  states.add("New Jersey");
+        states.add("Ohio");  states.add("Oklahoma");  states.add("Oregon");  states.add("Pennsylvania");  states.add("Rhode Island");
+        states.add("South Carolina");  states.add("South Dakota");  states.add("Tennessee");  states.add("Texas");  states.add("Utah");
+        states.add("Vermont");  states.add("Virginia");  states.add("Washington");  states.add("West Virginia");  states.add("Wisconsin");
+        states.add("Wyoming");  
+        for(String r:states){
+            Network network=new Network();
+            network.setName(r);
+            system.getNetworkList().add(network);
+            }
         Network createNetwork=new Network();
         createNetwork.setName("Massachusetts");
         system.getNetworkList().add(createNetwork);
@@ -109,8 +129,9 @@ public class ConfigureASystem {
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
         //create people
-        People p=system.getPeopleDirectory().createPeople("123","Mickey Mouse","1990/01/11",30,"339019","143 park drive","boston","Massachusetts","female","//Users/stacyhuang/twoGirls/db4odemo/mickey.png");
+        People p=system.getPeopleDirectory().createPeople("111","Mickey Mouse","1990/01/11",30,"339019","143 park drive","Boston","Massachusetts","female","//Users/stacyhuang/twoGirls/db4odemo/mickey.png");
             MedicalRecord mr=p.getMedicalRecord();
+            mr.setWeight(50);mr.setHeight(150.5);
             mr.setBloodType("O");
             ArrayList<String> past=new ArrayList();
             ArrayList<String> family=new ArrayList();
@@ -126,8 +147,13 @@ public class ConfigureASystem {
             mr.setPregancy("yes");
             mr.setEmergency_contactName("amy");mr.setEmergency_contactPhone("778837");
            
-        People p2=system.getPeopleDirectory().createPeople("456","Thresseyes Joesph","1991/12/20",29,"103384","12 bolyston street","boston","Massachusetts","male","/Users/stacyhuang/twoGirls/db4odemo/threeeyes.png");
-   
+        People p2=system.getPeopleDirectory().createPeople("222","Thresseyes Joesph","1991/12/20",29,"103384","12 bolyston street","Boston","Massachusetts","male","/Users/stacyhuang/twoGirls/db4odemo/threeeyes.png");
+        People p3=system.getPeopleDirectory().createPeople("333","Stitch Krayon","1980/12/20",40,"394728","121 W 45th St","New Yrok","New York","male","/Users/stacyhuang/twoGirls/db4odemo/stitch.png");
+        People p4=system.getPeopleDirectory().createPeople("444","Winnie Pooh","2000/02/02",20,"234544","139 Tremont St","Boston","Massachusetts","male","/Users/stacyhuang/twoGirls/db4odemo/winnie.png");
+
+        People p5=system.getPeopleDirectory().createPeople("555","Elsa Lawarence","1997/03/20",23,"390003","151 Huntington","Boston","Massachusetts","female","/Users/stacyhuang/twoGirls/db4odemo/elsa.png");
+  
+        
         Medicine medicine=system.getMedicineDir().createMedicineCatelog("Diabete");
         MedicineDetail m=new MedicineDetail();
         m.setName("Tolbutamide");

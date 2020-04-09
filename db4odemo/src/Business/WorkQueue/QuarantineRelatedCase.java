@@ -6,6 +6,9 @@
 package Business.WorkQueue;
 
 import People.People;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -15,6 +18,49 @@ public class QuarantineRelatedCase {
     private int caseNumber;
     private People quarantinePeople;
     private int relatedCaseNumber;
+    private String startdate;
+    private String enddate;
+    private String status;
+    private ArrayList<String> details;
+
+    public QuarantineRelatedCase(){
+        details=new ArrayList();
+    }
+    public ArrayList<String> getDetails() {
+        return details;
+    }
+
+    public void setDetails(ArrayList<String> details) {
+        this.details = details;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+
+    public String getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
+    public String getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    
+    
 
     public int getRelatedCaseNumber() {
         return relatedCaseNumber;

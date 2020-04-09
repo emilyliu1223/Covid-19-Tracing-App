@@ -17,6 +17,8 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -85,8 +87,6 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         relatedCasetable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         createbtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -116,17 +116,17 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
 
         relatedCasetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Case Number", "ID", "Name", "State", "Address", "Phone", "related case number"
+                "Case Number", "ID", "Name", "State", "Address", "Phone", "related case number", "creation date", "status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -142,13 +142,11 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
             relatedCasetable.getColumnModel().getColumn(4).setResizable(false);
             relatedCasetable.getColumnModel().getColumn(5).setResizable(false);
             relatedCasetable.getColumnModel().getColumn(6).setResizable(false);
+            relatedCasetable.getColumnModel().getColumn(7).setResizable(false);
+            relatedCasetable.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 960, 183));
-
-        jLabel1.setText("Case:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(54, 27, -1, -1));
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(127, 22, 147, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 1140, 183));
 
         createbtn.setText("Create");
         createbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +217,7 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 960, 90));
 
         jLabel11.setText("search ID");
-        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, -1, 30));
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, 30));
         add(searchfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 179, -1));
 
         searchbtn.setText("search");
@@ -267,7 +265,7 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) relatedCasetable.getModel();
         model.setRowCount(0);
         for(QuarantineRelatedCase related:RequesttoRecord.getRelatedCase()){
-            Object[] row=new Object[7];
+            Object[] row=new Object[9];
             row[0]=related.getCaseNumber();
             row[1]=related.getQuarantinePeople().getId();
             row[2]=related.getQuarantinePeople().getName();
@@ -275,6 +273,8 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
             row[4]=related.getQuarantinePeople().getAddress();
             row[5]=related.getQuarantinePeople().getPhone();
             row[6]=related.getRelatedCaseNumber();
+            row[7]=related.getStartdate();
+            row[8]=related.getStatus();
             model.addRow(row);
         }
     }
@@ -326,16 +326,23 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         QuarantineRelatedCase related=new QuarantineRelatedCase();
         boolean boo=true;
         for(QuarantineRelatedCase r:RequesttoRecord.getRelatedCase()){
-            if(relatedPeople.getId().equals(r.getQuarantinePeople().getId())){
+            if(relatedPeople.getId().equals(r.getQuarantinePeople().getId())||RequesttoRecord.getPatient().getId().equals(r.getQuarantinePeople().getId())){
                 boo=false;
                 break;
             }
         }
         if(boo==true){
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Calendar cal=Calendar.getInstance();
             related.setQuarantinePeople(relatedPeople);
             int c=system.getCaseCount()+1;
+            system.setCaseCount(c);
             System.out.println("in create related case:"+c);
             related.setCaseNumber(c);
+            related.setStatus("pending");
+            related.setStartdate(formatter.format(cal.getTime()));
+            cal.add(Calendar.DAY_OF_MONTH, 14);
+            related.setEnddate(formatter.format(cal.getTime()));
             related.setRelatedCaseNumber(RequesttoRecord.getCaseNumber());
             RequesttoRecord.getRelatedCase().add(related);
             popRelated();
@@ -361,7 +368,6 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField countyfield;
     private javax.swing.JButton createbtn;
     private javax.swing.JTextField genderfield;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -374,7 +380,6 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable mainTable;
     private javax.swing.JTextField namefield;
     private javax.swing.JTextField phonefield;

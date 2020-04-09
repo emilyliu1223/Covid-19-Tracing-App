@@ -15,6 +15,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest_quarantineCDC;
 import Business.WorkQueue.WorkRequest_receptionInvestigation;
 import People.People;
+import java.awt.CardLayout;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -117,7 +118,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             patientTable.getColumnModel().getColumn(7).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 24, 1070, 188));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 1070, 188));
 
         jLabel2.setText("Symptons");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 242, -1, -1));
@@ -134,7 +135,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 sendbtnActionPerformed(evt);
             }
         });
-        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 469, -1, -1));
+        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 480, -1, -1));
 
         jLabel1.setText("phone");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(285, 231, -1, -1));
@@ -169,7 +170,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
-        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 210, -1, -1));
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 230, -1, -1));
 
         jLabel9.setText("message from quarantine inspector");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 250, -1, -1));

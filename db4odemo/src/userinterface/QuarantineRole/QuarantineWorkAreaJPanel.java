@@ -309,11 +309,11 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
             typefield.setText(request.getTestType());
             doctorfield.setText(request.getDoctor().getEmployee().getName());
             resultfield.setText(request.getResult());
-            if(request.getResult().equals("positive")){
-                    positive.setSelected(true);
-                }else if(request.getResult().equals("negative")){
-                    negative.setSelected(true);
-                }
+//            if(request.getResult().equals("positive")){
+//                    positive.setSelected(true);
+//                }else if(request.getResult().equals("negative")){
+//                    negative.setSelected(true);
+//                }
             diagnosisfield.setText(request.getDiagnosis());
             String sym="";
             for(String str:request.getSymptoms()){
@@ -357,9 +357,8 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                         break;
                     }
                 }
-                System.out.println("send to:"+org);
                 org.getWorkQueue_quarantineCDC().getWorkRequestList().add(toCDC);
-                System.out.println("size:"+org.getWorkQueue_quarantineCDC().getWorkRequestList().size());
+                JOptionPane.showMessageDialog(null, "send to CDC reception organization");
             }else{
                 JOptionPane.showMessageDialog(null, "need to update result");
                 return;
