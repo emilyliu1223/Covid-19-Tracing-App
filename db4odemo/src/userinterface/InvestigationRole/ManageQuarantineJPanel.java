@@ -369,6 +369,11 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "already sent to Police Department");
             return;
         }else{
+             Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+            if(en==null){
+                JOptionPane.showMessageDialog(null, "please select");
+                return;
+            }else{
             relatedCase.setStatus("sent to Police");
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date date=new Date();
@@ -384,7 +389,7 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
             sendToPolice.setEnddate(relatedCase.getEnddate());
             sendToPolice.setQuarantinePeople(relatedCase.getQuarantinePeople());
             PoliceOrganization policeorg=null;
-            Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+           
             for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof PoliceOrganization){
                     policeorg=(PoliceOrganization) o;
@@ -395,6 +400,7 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "sent to police organization");
             messagearea.setText("");
             popTable();
+            }
         }
     }//GEN-LAST:event_reportbtnActionPerformed
 

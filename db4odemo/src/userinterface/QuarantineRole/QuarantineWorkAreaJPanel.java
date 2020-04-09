@@ -334,7 +334,10 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
         ReceptionOrganization org=null;
         Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
         //int select=quarantineTable.getSelectedRow();
-       
+        if(en==null){
+            JOptionPane.showMessageDialog(null, "please select");
+            return;
+        }else{
             //WorkRequest_doctorQuarantine request = (WorkRequest_doctorQuarantine)quarantineTable.getValueAt(select, 0);
             if(thisrequest.getStatus().equals("finish test")){
                 thisrequest.setStatus("sent to CDC");
@@ -363,7 +366,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "need to update result");
                 return;
             }
-        
+        }
     }//GEN-LAST:event_reportbtnActionPerformed
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
