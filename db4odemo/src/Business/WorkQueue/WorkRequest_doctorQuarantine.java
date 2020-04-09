@@ -25,7 +25,16 @@ public class WorkRequest_doctorQuarantine {
     private int id;
     private ArrayList<String> symptoms;
     private String diagnosis;
+    private String message;
 
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
     public String getDiagnosis() {
         return diagnosis;
     }

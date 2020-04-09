@@ -215,7 +215,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             setCount.put("running nose", ++nosecount);
             symptoms.add("running nose");
         }
-        if(nocheck.isSelected()){
+        if(breathcheck.isSelected()){
             int breathcount=setCount.get("breath difficult");
             setCount.put("breath difficult", ++breathcount);
             symptoms.add("breath difficult");
@@ -231,6 +231,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         sorethroatcheck.setSelected(boo);
         coughcheck.setSelected(boo);
         nocheck.setSelected(boo);
+        breathcheck.setSelected(boo);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -285,7 +286,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         otherfield = new javax.swing.JTextField();
         addbtn = new javax.swing.JButton();
         showother = new javax.swing.JTextField();
-        breathcheck1 = new javax.swing.JCheckBox();
+        breathcheck = new javax.swing.JCheckBox();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -541,8 +542,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, -1, -1));
         add(showother, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, 330, -1));
 
-        breathcheck1.setText("Breath Difficult");
-        add(breathcheck1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, -1, -1));
+        breathcheck.setText("Breath Difficult");
+        add(breathcheck, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 260, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
@@ -628,10 +629,14 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         if(finalSymptoms.isEmpty()){
-            JOptionPane.showMessageDialog(null, "please choose symptoms");
-            return;
+            setSymptoms();
+            if(!othersymptoms.isEmpty()){
+                finalSymptoms.addAll(othersymptoms);
+            }
+            if(!symptoms.isEmpty()){
+                finalSymptoms.addAll(symptoms);
+            }
         }
-
         System.out.println("in finish btn:"+finalSymptoms);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String d=formatter.format(date);
@@ -707,6 +712,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             toQuarantine.setTestType(type);
             toQuarantine.setPatient(thispeople);
             int c=system.getQuarantineCount()+1;
+            system.setQuarantineCount(c);
             toQuarantine.setId(c);
             QuarantineOrganization org=null;
             for(Organization o:enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -750,6 +756,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             WorkRequest_documentDoctor request=(WorkRequest_documentDoctor) workRequestJTable.getValueAt(select, 0);
             if(request.getAssignedDoctor().equals(userAccount)&&request.getStatus().equals("checking")){
                 this.medicineArr=new ArrayList();
+                this.othersymptoms=new ArrayList();
                 finalSymptoms=new ArrayList();
                 setBtn(true);
                 request.setAssignedDoctor(userAccount);
@@ -833,7 +840,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField agefield;
     private javax.swing.JTextField amountfield;
     private javax.swing.JButton assignbtn;
-    private javax.swing.JCheckBox breathcheck1;
+    private javax.swing.JCheckBox breathcheck;
     private javax.swing.JButton completebtn;
     private javax.swing.JCheckBox coughcheck;
     private javax.swing.JTextArea diagnosisArea;

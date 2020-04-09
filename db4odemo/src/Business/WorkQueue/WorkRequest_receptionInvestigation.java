@@ -8,6 +8,7 @@ package Business.WorkQueue;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import People.People;
+import java.util.Date;
 
 /**
  *
@@ -20,7 +21,36 @@ public class WorkRequest_receptionInvestigation {
     private UserAccount sender;
     private String symptons;
     private String status;
+    private String message;
+    private Date diagnosisDate;
+    private Date sentDate;
 
+    public Date getDiagnosisDate() {
+        return diagnosisDate;
+    }
+
+    public void setDiagnosisDate(Date diagnosisDate) {
+        this.diagnosisDate = diagnosisDate;
+    }
+
+    public Date getSentDate() {
+        return sentDate;
+    }
+
+    public void setSentDate(Date sentDate) {
+        this.sentDate = sentDate;
+    }
+    
+    
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    
     public String getStatus() {
         return status;
     }

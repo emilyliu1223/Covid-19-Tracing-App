@@ -5,6 +5,12 @@
  */
 package userinterface.InvestigationRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.InvestigationOrganization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author user
@@ -14,7 +20,9 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageQuarantineJPanel
      */
-    public ManageQuarantineJPanel() {
+
+    public ManageQuarantineJPanel(JPanel jpanel, UserAccount userAccount, InvestigationOrganization organization, Enterprise enterprise, EcoSystem system) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         initComponents();
     }
 
