@@ -118,7 +118,7 @@ public class SendPatientJPanel extends javax.swing.JPanel {
             patientTable.getColumnModel().getColumn(7).setHeaderValue("note");
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 274, 1370, 194));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 274, 1290, 194));
 
         textarea.setColumns(20);
         textarea.setRows(5);
