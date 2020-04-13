@@ -70,7 +70,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.system=system;
         this.thispeople=null;
         this.thisrequest=null;
-        this.medicineDir=system.getMedicineDir();
+        this.medicineDir=enterprise.getMedicineDir();
         this.thismedicine=new Medicine();
         valueLabel.setText(userAccount.getUsername());
         setCount=system.getCountSymtoms().getCountwithType();
@@ -756,7 +756,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }else{
             WorkRequest_documentDoctor request=(WorkRequest_documentDoctor) workRequestJTable.getValueAt(select, 0);
-            if(request.getAssignedDoctor().equals(userAccount)&&request.getStatus().equals("checking")){
+            if((request.getStatus().equals("pending"))){
+                JOptionPane.showMessageDialog(null, "you need to assign to you first");
+                return;
+            }
+            else if((request.getAssignedDoctor().equals(userAccount)&&request.getStatus().equals("checking"))){
                 this.medicineArr=new ArrayList();
                 this.othersymptoms=new ArrayList();
                 finalSymptoms=new ArrayList();
@@ -771,9 +775,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 popMedicineTable();
                 popTestTable(thispeople);
                 diagnosisArea.setText("");
-            }else{
-                JOptionPane.showMessageDialog(null, "cannot process to see this patient");
-                return;
             }
         }
     }//GEN-LAST:event_completebtnActionPerformed

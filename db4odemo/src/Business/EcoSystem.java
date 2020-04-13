@@ -21,7 +21,7 @@ public class EcoSystem extends Organization{
     
     private static EcoSystem business;
     private PeopleDirectory peopleDirectory;
-    private MedicineDirectory medicineDir;
+    //private MedicineDirectory medicineDir;
     private ArrayList<Network> networkList;
     private CountSymptoms countSymtoms;
     private int caseCount;
@@ -48,7 +48,7 @@ public class EcoSystem extends Organization{
         super(null);
         networkList=new ArrayList<Network>();
         peopleDirectory=new PeopleDirectory();
-        medicineDir=new MedicineDirectory();
+        //medicineDir=new MedicineDirectory();
         countSymtoms=new CountSymptoms();
         this.caseCount=0;
         this.quarantineCount=0;
@@ -79,13 +79,13 @@ public class EcoSystem extends Organization{
     }
 
     
-    public MedicineDirectory getMedicineDir() {
-        return medicineDir;
-    }
-
-    public void setMedicineDir(MedicineDirectory medicineDir) {
-        this.medicineDir = medicineDir;
-    }
+//    public MedicineDirectory getMedicineDir() {
+//        return medicineDir;
+//    }
+//
+//    public void setMedicineDir(MedicineDirectory medicineDir) {
+//        this.medicineDir = medicineDir;
+//    }
 
     
     public PeopleDirectory getPeopleDirectory() {

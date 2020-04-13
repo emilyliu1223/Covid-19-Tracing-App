@@ -47,10 +47,16 @@ public class ConfigureASystem {
 //        Enterprise e1=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Fenway Health", Enterprise.EnterpriseType.Hospital);
 //        Enterprise e2=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("CDC-boston branch", Enterprise.EnterpriseType.CDC);
 //        Enterprise e3=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Boston PD", Enterprise.EnterpriseType.Police);
-
         //create employee & user account for hospital enterprise-fenway health
 //        Employee em1=e1.getEmployeeDirectory().createEmployee("fenway health");
 //        e1.getUserAccountDirectory().createUserAccount("fenwayhealth", "fenwayhealth", em1, new AdminRole());
+//        
+//        Medicine medicine=e1.getMedicineDir().createMedicineCatelog("Vitamin");
+//        MedicineDetail m=new MedicineDetail();
+//        m.setName("Vitamin A");
+//        m.setTreatment("prevent and cure");
+//        m.setDescription("no");
+//        medicine.getMedicinearr().add(m);
 //        DocumentOrganization o_document=null;
 //        DoctorOrganization o_doctor=null;
 //        PharmacyOrganization o_pharmacy=null;
@@ -77,7 +83,7 @@ public class ConfigureASystem {
 //        
 //        Employee em1_quarantine=o_quarantine.getEmployeeDirectory().createEmployee("quarantine");
 //        o_quarantine.getUserAccountDirectory().createUserAccount("quarantine", "quarantine", em1_quarantine, new QuarantineRole());
-//        
+        
 //        //create employee & user account for cdc enterprise-cdc
 //        Employee em2=e2.getEmployeeDirectory().createEmployee("cdc_boston");
 //        e2.getUserAccountDirectory().createUserAccount("cdc_boston", "cdc_boston", em2, new AdminRole());
@@ -135,46 +141,46 @@ public class ConfigureASystem {
         People p5=system.getPeopleDirectory().createPeople("555","Elsa Lawarence","1997/03/20",23,"390003","151 Huntington","Boston","Massachusetts","female","/Users/stacyhuang/twoGirls/db4odemo/elsa.png");
   
         
-        Medicine medicine=system.getMedicineDir().createMedicineCatelog("Diabete");
-        MedicineDetail m=new MedicineDetail();
-        m.setName("Tolbutamide");
-        m.setDescription("diabete");
-        m.setTreatment("diabete"); 
-        MedicineDetail m2=new MedicineDetail();
-        m2.setName("Glibenclamide");
-        m2.setTreatment("diabete");
-        m2.setDescription("no");
-        medicine.getMedicinearr().add(m);
-        medicine.getMedicinearr().add(m2);
-        
-        Medicine medicine2=system.getMedicineDir().createMedicineCatelog("Vitamin");
-        MedicineDetail m3=new MedicineDetail();
-        m3.setName("Vitamin A");
-        m3.setTreatment("prevent and cure");
-        m3.setDescription("no");
-        MedicineDetail m4=new MedicineDetail();
-        m4.setName("Vitamin C");
-        m4.setTreatment("prevent and cure");
-        m4.setDescription("no");
-        MedicineDetail m5=new MedicineDetail();
-        m5.setName("Vitamin E");
-        m5.setTreatment("prevent, eye care and cure");
-        m5.setDescription("no");
-        medicine2.getMedicinearr().add(m3);
-        medicine2.getMedicinearr().add(m4);
-        medicine2.getMedicinearr().add(m5);
-        
-        Medicine medicine3=system.getMedicineDir().createMedicineCatelog("Flu and Cold");
-        MedicineDetail m3_1=new MedicineDetail();
-        m3_1.setName("Zanamivir");
-        m3_1.setTreatment("for flu symptoms");
-        m3_1.setDescription("sleepy");
-        MedicineDetail m3_2=new MedicineDetail();
-        m3_2.setName("Peramivir");
-        m3_2.setDescription("nausea, vomiting");
-        m3_2.setTreatment("flu and cold");
-        medicine3.getMedicinearr().add(m3_1);
-        medicine3.getMedicinearr().add(m3_2);
+//        Medicine medicine=system.getMedicineDir().createMedicineCatelog("Diabete");
+//        MedicineDetail m=new MedicineDetail();
+//        m.setName("Tolbutamide");
+//        m.setDescription("diabete");
+//        m.setTreatment("diabete"); 
+//        MedicineDetail m2=new MedicineDetail();
+//        m2.setName("Glibenclamide");
+//        m2.setTreatment("diabete");
+//        m2.setDescription("no");
+//        medicine.getMedicinearr().add(m);
+//        medicine.getMedicinearr().add(m2);
+//        
+//        Medicine medicine2=system.getMedicineDir().createMedicineCatelog("Vitamin");
+//        MedicineDetail m3=new MedicineDetail();
+//        m3.setName("Vitamin A");
+//        m3.setTreatment("prevent and cure");
+//        m3.setDescription("no");
+//        MedicineDetail m4=new MedicineDetail();
+//        m4.setName("Vitamin C");
+//        m4.setTreatment("prevent and cure");
+//        m4.setDescription("no");
+//        MedicineDetail m5=new MedicineDetail();
+//        m5.setName("Vitamin E");
+//        m5.setTreatment("prevent, eye care and cure");
+//        m5.setDescription("no");
+//        medicine2.getMedicinearr().add(m3);
+//        medicine2.getMedicinearr().add(m4);
+//        medicine2.getMedicinearr().add(m5);
+//        
+//        Medicine medicine3=system.getMedicineDir().createMedicineCatelog("Flu and Cold");
+//        MedicineDetail m3_1=new MedicineDetail();
+//        m3_1.setName("Zanamivir");
+//        m3_1.setTreatment("for flu symptoms");
+//        m3_1.setDescription("sleepy");
+//        MedicineDetail m3_2=new MedicineDetail();
+//        m3_2.setName("Peramivir");
+//        m3_2.setDescription("nausea, vomiting");
+//        m3_2.setTreatment("flu and cold");
+//        medicine3.getMedicinearr().add(m3_1);
+//        medicine3.getMedicinearr().add(m3_2);
         return system;
     }
     
