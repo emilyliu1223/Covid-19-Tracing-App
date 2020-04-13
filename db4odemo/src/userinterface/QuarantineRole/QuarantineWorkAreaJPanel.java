@@ -345,7 +345,6 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 WorkRequest_quarantineCDC toCDC=new WorkRequest_quarantineCDC();
                 int c=system.getCaseCount()+1;
                 system.setCaseCount(c);
-                System.out.println("in quarantine: case number "+c);
                 String message=messagearea.getText();
                 toCDC.setMessage(message);
                 toCDC.setCaseNumber(c);
@@ -354,6 +353,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                 toCDC.setStatus("sent to CDC");
                 toCDC.setEnterprise(enterprise);
                 toCDC.setSymptons(symptonfield.getText());
+                toCDC.setSendtoEnterprise(en);
                 for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
                     if(o instanceof ReceptionOrganization){
                         org=(ReceptionOrganization) o;
@@ -361,6 +361,7 @@ public class QuarantineWorkAreaJPanel extends javax.swing.JPanel {
                     }
                 }
                 org.getWorkQueue_quarantineCDC().getWorkRequestList().add(toCDC);
+                System.out.println("sent to:"+toCDC.getSendtoEnterprise().getName());
                 JOptionPane.showMessageDialog(null, "send to CDC reception organization");
             }else{
                 JOptionPane.showMessageDialog(null, "need to update result");

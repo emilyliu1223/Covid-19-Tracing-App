@@ -117,7 +117,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
             needquarantinelist.getColumnModel().getColumn(8).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 879, 188));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 1140, 188));
 
         jLabel2.setText("Syptoms");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 252, -1, -1));
@@ -134,7 +134,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
                 recordbtnActionPerformed(evt);
             }
         });
-        add(recordbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 458, -1, -1));
+        add(recordbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 440, -1, -1));
 
         jLabel1.setText("phone");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 279, -1, -1));
@@ -162,7 +162,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
                 selectbtnActionPerformed(evt);
             }
         });
-        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 240, -1, -1));
 
         jLabel3.setText("message");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(641, 279, -1, -1));

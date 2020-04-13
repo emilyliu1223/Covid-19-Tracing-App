@@ -46,7 +46,7 @@ ArrayList<String> states=new ArrayList();
                  states.add("Hawaii");
                    states.add("Idaho");  states.add("Illinois");states.add("Indiana");states.add("Iowa");
                    states.add( "Kansas");  states.add("Kentucky");  states.add("Louisiana");  states.add("Maine");  states.add("Maryland");
-                        states.add("Michigan");  states.add("Minnesota");  states.add("Mississippi");  states.add("Missouri");
+                        states.add("Massachusetts");states.add("Michigan");  states.add("Minnesota");  states.add("Mississippi");  states.add("Missouri");
                          states.add("Montana");  states.add("Nebraska");  states.add("Nevada");  states.add("New Hampshire");  states.add("New Jersey");
          states.add("New Mexico");  states.add("New York");  states.add("North Carolina");  states.add("North Dakota");  states.add("New Jersey");
         states.add("Ohio");  states.add("Oklahoma");  states.add("Oregon");  states.add("Pennsylvania");  states.add("Rhode Island");
@@ -228,7 +228,7 @@ ArrayList<String> states=new ArrayList();
         String name = nameJTextField.getText();
 
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
+        nameJTextField.setText("");
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed

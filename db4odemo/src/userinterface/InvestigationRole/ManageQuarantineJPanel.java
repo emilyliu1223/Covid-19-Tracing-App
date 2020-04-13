@@ -350,7 +350,10 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
         if(relatedCase.getStatus().equals("under recording")){
             JOptionPane.showMessageDialog(null, "already under recording");
             return;
-        }else{
+        }else if(relatedCase.getStatus().equals("sent to Police")){
+            JOptionPane.showMessageDialog(null, "already sent to police");
+            return;
+        }else if(relatedCase.getStatus().equals("pending")){
             relatedCase.setStatus("under recording");
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Date date=new Date();
@@ -368,7 +371,10 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
         if(relatedCase.getStatus().equals("sent to Police")){
             JOptionPane.showMessageDialog(null, "already sent to Police Department");
             return;
-        }else{
+        }else if(relatedCase.getStatus().equals("pending")){
+            JOptionPane.showMessageDialog(null, "you cannot process now, list need to be recorded");
+            return;
+        }else if(relatedCase.getStatus().equals("under recording")){
              Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
             if(en==null){
                 JOptionPane.showMessageDialog(null, "please select");

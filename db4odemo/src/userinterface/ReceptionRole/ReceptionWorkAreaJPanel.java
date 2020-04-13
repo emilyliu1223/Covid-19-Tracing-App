@@ -273,6 +273,8 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
             row[6]=request.getReceiver()==null?"":request.getReceiver().getEmployee().getName();
             row[7]=request.getStatus().equals("sent to CDC")?"pending":"sent";
             model.addRow(row);
+            
+            
         }
     }
 
