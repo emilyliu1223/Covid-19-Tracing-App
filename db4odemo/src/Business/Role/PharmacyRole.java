@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
+import MedicineCatelog.Medicine;
 import javax.swing.JPanel;
 import userinterface.DocumentRole.DocumentWorkAreaJPanel;
 import userinterface.PharmacyRole.DescriptionJPanel;

@@ -34,18 +34,19 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private EcoSystem system;
     private MedicineDirectory medicineDir;
-    Medicine medicine;
+    private Medicine medicine;
     public MedicineManagePanel(JPanel jpanel, UserAccount userAccount, PharmacyOrganization organization, Enterprise enterprise,EcoSystem system) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
         this.jpanel = jpanel;
         this.organization = organization;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system=system;
-        this.medicineDir=system.getMedicineDir();
-        this.medicine=new Medicine();
-        initComponents();
+        this.medicineDir=enterprise.getMedicineDir();
+        //this.medicine=new Medicine();
         setCombo();
+        
        
     }
 
@@ -105,7 +106,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(medicineTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 153, 653, 172));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 770, 172));
 
         jLabel1.setText("Disease Cataloge:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(61, 97, -1, -1));
@@ -151,7 +152,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 addbtnActionPerformed(evt);
             }
         });
-        add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(585, 75, -1, 63));
+        add(addbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 80, -1, 63));
 
         deletebtn.setText("Delete Medicine");
         deletebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +160,7 @@ public class MedicineManagePanel extends javax.swing.JPanel {
                 deletebtnActionPerformed(evt);
             }
         });
-        add(deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 75, 139, 63));
+        add(deletebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 139, 63));
 
         backbtn2.setBackground(new java.awt.Color(255, 255, 255));
         backbtn2.setText("back");
@@ -174,20 +175,27 @@ public class MedicineManagePanel extends javax.swing.JPanel {
     public void popTable(Medicine m){
         DefaultTableModel model = (DefaultTableModel) medicineTable.getModel();
         model.setRowCount(0);
+        if(m==null){
+            Object row[]=new Object[4];
+                row[0]="";
+                row[1]="";
+                row[2]="";
+                row[3]="";
+                model.addRow(row);
+            }else{
         for(MedicineDetail detail:m.getMedicinearr()){
             Object row[]=new Object[4];
-            
             row[0]=m;
             row[1]=detail;
             row[2]=detail.getTreatment();
             row[3]=detail.getDescription();
             model.addRow(row);
-            
+        }
         }
     }
     public void setCombo(){
         catelogcombo.removeAllItems();
-        for(Medicine m:system.getMedicineDir().getMedicines()){
+        for(Medicine m:medicineDir.getMedicines()){ 
             catelogcombo.addItem(m.getMedicineCatelog());
         }
     }
@@ -201,8 +209,6 @@ public class MedicineManagePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"please enter three field");
             return;
         }
-//        String medicineToadd=name;
-//        medicineToadd=medicineToadd+"/"+treatment+"/"+description;
         detail.setName(name);
         detail.setTreatment(treatment);
         detail.setDescription(description);
@@ -216,16 +222,21 @@ public class MedicineManagePanel extends javax.swing.JPanel {
 
     private void catelogcomboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_catelogcomboActionPerformed
         // TODO add your handling code here:
-        String medicinestr= (String) catelogcombo.getSelectedItem();
+        //String medicinestr= (String) catelogcombo.getSelectedItem();
+        this.medicine=null;
+        System.out.println("combo select:"+(String) catelogcombo.getSelectedItem());
         for(Medicine m:medicineDir.getMedicines()){
-            if(m.getMedicineCatelog().equals(medicinestr)){
-                this.medicine=m;
+            System.out.println("m:"+m);
+            if(!m.getMedicineCatelog().equals((String) catelogcombo.getSelectedItem())){
+                System.out.println("no");
+            } else {
+                System.out.println("yes");
+                medicine=m;
                 break;
             }
         }  
-        for(int i=0;i<medicine.getMedicinearr().size();i++){
-            System.out.println(medicine.getMedicinearr().get(i)+","+medicine.getMedicinearr().get(i).getDescription());
-        }
+        System.out.println("catch medicine:"+medicine);
+        //System.out.println("catch medicine2:"+medicine.getMedicineCatelog());
         popTable(medicine);
     }//GEN-LAST:event_catelogcomboActionPerformed
 
@@ -237,11 +248,8 @@ public class MedicineManagePanel extends javax.swing.JPanel {
             return;
         }else{
             Medicine selectMedicine=(Medicine)medicineTable.getValueAt(select, 0);
-            //System.out.println("select medicine caelog:"+selectMedicine);
             MedicineDetail medicineDetail=(MedicineDetail) medicineTable.getValueAt(select, 1);
-//            String medicine2=(String) medicineTable.getValueAt(select, 2);
-//            String medicine3=(String) medicineTable.getValueAt(select, 3);
-          
+           
             int a=JOptionPane.showConfirmDialog(null, "sure to delete?","confirm",JOptionPane.YES_NO_OPTION);
             if(a==JOptionPane.YES_OPTION){
                 

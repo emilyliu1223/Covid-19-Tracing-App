@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.PharmacyOrganization;
 import Business.UserAccount.UserAccount;
+import MedicineCatelog.Medicine;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import userinterface.DoctorRole.PatientDetailJPanel;
@@ -48,18 +49,26 @@ public class PharmacyWorkAreaJpanel extends javax.swing.JPanel {
 
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        createcatelogbtn = new javax.swing.JButton();
 
-        jButton1.setText("Manage Stocking(MedicineManagePanel)");
+        jButton1.setText("Manage Stocking");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Dispatch Prescription(PharmacyWorkAreaJPanel)");
+        jButton2.setText("Dispatch Prescription");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
+            }
+        });
+
+        createcatelogbtn.setText("Create Catelog");
+        createcatelogbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createcatelogbtnActionPerformed(evt);
             }
         });
 
@@ -70,18 +79,22 @@ public class PharmacyWorkAreaJpanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                        .addComponent(createcatelogbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(createcatelogbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -99,8 +112,16 @@ public class PharmacyWorkAreaJpanel extends javax.swing.JPanel {
         layout.next(jpanel);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void createcatelogbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createcatelogbtnActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout=(CardLayout)jpanel.getLayout();
+        jpanel.add("create catelog",new CreateCatelogJPanel(jpanel,organization,enterprise));
+        layout.next(jpanel);
+    }//GEN-LAST:event_createcatelogbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createcatelogbtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     // End of variables declaration//GEN-END:variables

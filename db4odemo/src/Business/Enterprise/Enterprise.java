@@ -7,6 +7,7 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import MedicineCatelog.MedicineDirectory;
 
 /**
  *
@@ -16,6 +17,7 @@ public abstract class Enterprise extends Organization{
     
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private MedicineDirectory medicineDir;
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
@@ -48,9 +50,21 @@ public abstract class Enterprise extends Organization{
         this.enterpriseType = enterpriseType;
     }
     
+     public MedicineDirectory getMedicineDir() {
+        return medicineDir;
+    }
+
+    public void setMedicineDir(MedicineDirectory medicineDir) {
+        this.medicineDir = medicineDir;
+    }
+    
     public Enterprise(String name,EnterpriseType type){
         super(name);
         this.enterpriseType=type;
         organizationDirectory=new OrganizationDirectory();
+        if(type==Enterprise.EnterpriseType.Hospital){
+            medicineDir=new MedicineDirectory();
+        }
+        
     }
 }
