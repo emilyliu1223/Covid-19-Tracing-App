@@ -23,6 +23,15 @@ public class WorkRequest_quarantineCDC {
     private String symptons;
     private UserAccount receiver;
     private String message;
+    private Enterprise sendtoEnterprise;
+
+    public Enterprise getSendtoEnterprise() {
+        return sendtoEnterprise;
+    }
+
+    public void setSendtoEnterprise(Enterprise sendtoEnterprise) {
+        this.sendtoEnterprise = sendtoEnterprise;
+    }
     
     public String getMessage() {
         return message;

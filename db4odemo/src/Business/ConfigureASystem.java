@@ -39,93 +39,73 @@ public class ConfigureASystem {
         
         system.getCountSymtoms().setCountAndType();
         //Create a network
-//        ArrayList<String> states=new ArrayList();
-//   
-//        states.add("Alabama");states.add("Alaska");states.add("Arizona");
-//        states.add("Arkansas");states.add("Alabama");states.add("California");
-//        states.add("Colorado");states.add("Connecticut");states.add("Delaware");
-//        states.add("Florida");states.add("Georgia");states.add("Hawaii");
-//        states.add("Idaho");  states.add("Illinois");states.add("Indiana");states.add("Iowa");
-//        states.add( "Kansas");  states.add("Kentucky");  states.add("Louisiana");  states.add("Maine");  states.add("Maryland");
-//        states.add("Massachusetts");
-//        states.add("Michigan");  states.add("Minnesota");  states.add("Mississippi");  states.add("Missouri");
-//        states.add("Montana");  states.add("Nebraska");  states.add("Nevada");  states.add("New Hampshire");  states.add("New Jersey");
-//        states.add("New Mexico");  states.add("New York");  states.add("North Carolina");  states.add("North Dakota");  states.add("New Jersey");
-//        states.add("Ohio");  states.add("Oklahoma");  states.add("Oregon");  states.add("Pennsylvania");  states.add("Rhode Island");
-//        states.add("South Carolina");  states.add("South Dakota");  states.add("Tennessee");  states.add("Texas");  states.add("Utah");
-//        states.add("Vermont");  states.add("Virginia");  states.add("Washington");  states.add("West Virginia");  states.add("Wisconsin");
-//        states.add("Wyoming");  
-//        for(String r:states){
-//            Network network=new Network();
-//            network.setName(r);
-//            system.getNetworkList().add(network);
-//            }
-        Network createNetwork=new Network();
-        createNetwork.setName("Massachusetts");
-        system.getNetworkList().add(createNetwork);
+//        
+//        Network createNetwork=new Network();
+//        createNetwork.setName("Massachusetts");
+//        system.getNetworkList().add(createNetwork);
         //create an enterprise
-        Enterprise e1=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Fenway Health", Enterprise.EnterpriseType.Hospital);
-        Enterprise e2=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("CDC-boston branch", Enterprise.EnterpriseType.CDC);
-        Enterprise e3=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Boston PD", Enterprise.EnterpriseType.Police);
+//        Enterprise e1=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Fenway Health", Enterprise.EnterpriseType.Hospital);
+//        Enterprise e2=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("CDC-boston branch", Enterprise.EnterpriseType.CDC);
+//        Enterprise e3=createNetwork.getEnterpriseDirectory().createAndAddEnterprise("Boston PD", Enterprise.EnterpriseType.Police);
 
         //create employee & user account for hospital enterprise-fenway health
-        Employee em1=e1.getEmployeeDirectory().createEmployee("fenway health");
-        e1.getUserAccountDirectory().createUserAccount("fenwayhealth", "fenwayhealth", em1, new AdminRole());
-        DocumentOrganization o_document=null;
-        DoctorOrganization o_doctor=null;
-        PharmacyOrganization o_pharmacy=null;
-        QuarantineOrganization o_quarantine=null;
-        for(Organization org:e1.getOrganizationDirectory().getOrganizationList()){
-            if(org instanceof DocumentOrganization){
-                o_document=(DocumentOrganization)org;
-            }else if(org instanceof DoctorOrganization){
-                o_doctor=(DoctorOrganization)org;
-            }else if(org instanceof PharmacyOrganization){
-                o_pharmacy=(PharmacyOrganization)org;
-            }else if(org instanceof QuarantineOrganization){
-                o_quarantine=(QuarantineOrganization)org;
-            }
-        }
-        Employee em1_document=o_document.getEmployeeDirectory().createEmployee("document");
-        o_document.getUserAccountDirectory().createUserAccount("doc", "doc", em1_document, new DocumentRole());
-        
-        Employee em1_doctor=o_doctor.getEmployeeDirectory().createEmployee("doctor");
-        o_doctor.getUserAccountDirectory().createUserAccount("doctor", "doctor", em1_doctor, new DoctorRole());
-           
-        Employee em1_pharmacy=o_pharmacy.getEmployeeDirectory().createEmployee("pharmacy");
-        o_pharmacy.getUserAccountDirectory().createUserAccount("pharmacy", "pharmacy", em1_pharmacy, new PharmacyRole());
-        
-        Employee em1_quarantine=o_quarantine.getEmployeeDirectory().createEmployee("quarantine");
-        o_quarantine.getUserAccountDirectory().createUserAccount("quarantine", "quarantine", em1_quarantine, new QuarantineRole());
-        
-        //create employee & user account for cdc enterprise-cdc
-        Employee em2=e2.getEmployeeDirectory().createEmployee("cdc_boston");
-        e2.getUserAccountDirectory().createUserAccount("cdc_boston", "cdc_boston", em2, new AdminRole());
-        ReceptionOrganization o_reception=null;
-        InvestigationOrganization o_investigation=null;
-        for(Organization o_e2:e2.getOrganizationDirectory().getOrganizationList()){
-            if(o_e2 instanceof ReceptionOrganization){
-                o_reception=(ReceptionOrganization)o_e2;
-            }else if(o_e2 instanceof InvestigationOrganization){
-                o_investigation=(InvestigationOrganization)o_e2;
-            }
-        }
-        Employee em2_reception=o_reception.getEmployeeDirectory().createEmployee("reception");
-        o_reception.getUserAccountDirectory().createUserAccount("recep", "recep", em2_reception, new ReceptionRole());
-        Employee em2_investigation=o_investigation.getEmployeeDirectory().createEmployee("investigation");
-        o_investigation.getUserAccountDirectory().createUserAccount("inves", "inves", em2_investigation, new InvestigationRole());
-        //create employee & user account for police enterprise-boston police
-        Employee em3=e3.getEmployeeDirectory().createEmployee("boston pd");
-        e3.getUserAccountDirectory().createUserAccount("boston_pd", "boston_pd", em3, new AdminRole());
-        PoliceOrganization o_police=null;
-        for(Organization o_e3:e3.getOrganizationDirectory().getOrganizationList()){
-            if(o_e3 instanceof PoliceOrganization){
-                o_police=(PoliceOrganization)o_e3;
-            }
-        }
-        Employee em3_police=o_police.getEmployeeDirectory().createEmployee("police");
-        o_police.getUserAccountDirectory().createUserAccount("police", "police", em3_police, new PoliceRole());
-         
+//        Employee em1=e1.getEmployeeDirectory().createEmployee("fenway health");
+//        e1.getUserAccountDirectory().createUserAccount("fenwayhealth", "fenwayhealth", em1, new AdminRole());
+//        DocumentOrganization o_document=null;
+//        DoctorOrganization o_doctor=null;
+//        PharmacyOrganization o_pharmacy=null;
+//        QuarantineOrganization o_quarantine=null;
+//        for(Organization org:e1.getOrganizationDirectory().getOrganizationList()){
+//            if(org instanceof DocumentOrganization){
+//                o_document=(DocumentOrganization)org;
+//            }else if(org instanceof DoctorOrganization){
+//                o_doctor=(DoctorOrganization)org;
+//            }else if(org instanceof PharmacyOrganization){
+//                o_pharmacy=(PharmacyOrganization)org;
+//            }else if(org instanceof QuarantineOrganization){
+//                o_quarantine=(QuarantineOrganization)org;
+//            }
+//        }
+//        Employee em1_document=o_document.getEmployeeDirectory().createEmployee("document");
+//        o_document.getUserAccountDirectory().createUserAccount("doc", "doc", em1_document, new DocumentRole());
+//        
+//        Employee em1_doctor=o_doctor.getEmployeeDirectory().createEmployee("doctor");
+//        o_doctor.getUserAccountDirectory().createUserAccount("doctor", "doctor", em1_doctor, new DoctorRole());
+//           
+//        Employee em1_pharmacy=o_pharmacy.getEmployeeDirectory().createEmployee("pharmacy");
+//        o_pharmacy.getUserAccountDirectory().createUserAccount("pharmacy", "pharmacy", em1_pharmacy, new PharmacyRole());
+//        
+//        Employee em1_quarantine=o_quarantine.getEmployeeDirectory().createEmployee("quarantine");
+//        o_quarantine.getUserAccountDirectory().createUserAccount("quarantine", "quarantine", em1_quarantine, new QuarantineRole());
+//        
+//        //create employee & user account for cdc enterprise-cdc
+//        Employee em2=e2.getEmployeeDirectory().createEmployee("cdc_boston");
+//        e2.getUserAccountDirectory().createUserAccount("cdc_boston", "cdc_boston", em2, new AdminRole());
+//        ReceptionOrganization o_reception=null;
+//        InvestigationOrganization o_investigation=null;
+//        for(Organization o_e2:e2.getOrganizationDirectory().getOrganizationList()){
+//            if(o_e2 instanceof ReceptionOrganization){
+//                o_reception=(ReceptionOrganization)o_e2;
+//            }else if(o_e2 instanceof InvestigationOrganization){
+//                o_investigation=(InvestigationOrganization)o_e2;
+//            }
+//        }
+//        Employee em2_reception=o_reception.getEmployeeDirectory().createEmployee("reception");
+//        o_reception.getUserAccountDirectory().createUserAccount("recep", "recep", em2_reception, new ReceptionRole());
+//        Employee em2_investigation=o_investigation.getEmployeeDirectory().createEmployee("investigation");
+//        o_investigation.getUserAccountDirectory().createUserAccount("inves", "inves", em2_investigation, new InvestigationRole());
+//        //create employee & user account for police enterprise-boston police
+//        Employee em3=e3.getEmployeeDirectory().createEmployee("boston pd");
+//        e3.getUserAccountDirectory().createUserAccount("boston_pd", "boston_pd", em3, new AdminRole());
+//        PoliceOrganization o_police=null;
+//        for(Organization o_e3:e3.getOrganizationDirectory().getOrganizationList()){
+//            if(o_e3 instanceof PoliceOrganization){
+//                o_police=(PoliceOrganization)o_e3;
+//            }
+//        }
+//        Employee em3_police=o_police.getEmployeeDirectory().createEmployee("police");
+//        o_police.getUserAccountDirectory().createUserAccount("police", "police", em3_police, new PoliceRole());
+//         
         Employee employee = system.getEmployeeDirectory().createEmployee("RRH");    
         UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());
         
@@ -166,8 +146,7 @@ public class ConfigureASystem {
         m2.setDescription("no");
         medicine.getMedicinearr().add(m);
         medicine.getMedicinearr().add(m2);
-//        medicine.getMedicinearr().add("Tolbutamide/diabete/no");
-//        medicine.getMedicinearr().add("Glibenclamide/diabete/no");
+        
         Medicine medicine2=system.getMedicineDir().createMedicineCatelog("Vitamin");
         MedicineDetail m3=new MedicineDetail();
         m3.setName("Vitamin A");

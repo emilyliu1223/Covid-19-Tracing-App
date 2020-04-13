@@ -671,6 +671,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         setfieldtext("","","","");
         setSymptomsField(false);
         setBtn(false);
+        System.out.println("count:"+system.getCountSymtoms().getCountwithType());
     }//GEN-LAST:event_finishbtnActionPerformed
 
     private void sendbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendbtnActionPerformed

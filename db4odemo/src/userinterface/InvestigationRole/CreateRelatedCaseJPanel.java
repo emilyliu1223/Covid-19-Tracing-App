@@ -325,8 +325,14 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         QuarantineRelatedCase related=new QuarantineRelatedCase();
         boolean boo=true;
+        if(RequesttoRecord.getPatient().getId().equals(relatedPeople.getId())){
+            JOptionPane.showMessageDialog(null, "cannot add the same person");
+            boo=false;
+            return;
+        }
         for(QuarantineRelatedCase r:RequesttoRecord.getRelatedCase()){
-            if(relatedPeople.getId().equals(r.getQuarantinePeople().getId())||RequesttoRecord.getPatient().getId().equals(r.getQuarantinePeople().getId())){
+            if(relatedPeople.getId().equals(r.getQuarantinePeople().getId())){
+                System.out.println("1."+relatedPeople.getId()+",2."+r.getQuarantinePeople().getId());
                 boo=false;
                 break;
             }

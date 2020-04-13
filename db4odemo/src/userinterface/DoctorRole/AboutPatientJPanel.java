@@ -291,7 +291,7 @@ public class AboutPatientJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int select=diagnosistable.getSelectedRow();
         if(select<0){
-            JOptionPane.showConfirmDialog(null, "please select");
+            JOptionPane.showMessageDialog(null, "please select");
             return;
         }else{
             Diagnosis date=(Diagnosis)diagnosistable.getValueAt(select, 0);
