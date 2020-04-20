@@ -36,7 +36,7 @@ public class MainJFrame extends javax.swing.JFrame  implements Runnable{
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1650, 900);
+        this.setSize(1800, 900);
         Thread t=new Thread(this);
         t.start();
         panel1.setSize(1260,500);
