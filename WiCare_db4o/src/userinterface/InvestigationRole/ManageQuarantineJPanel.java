@@ -61,7 +61,6 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.userAccount = userAccount;
         this.system=system;
-         System.out.println(enterprise);
         setCombo();
         popTable();
         reportbtn.setEnabled(false);
@@ -107,12 +106,6 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
      } 
     }
     
-  
-   
-   
-   
-   
-    
     private void popTable(){
         DefaultTableModel model = (DefaultTableModel) quarantineTable.getModel();
         model.setRowCount(0);
@@ -140,6 +133,36 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
             row[0]=str;
             model.addRow(row);
         }
+    }
+    
+    private boolean checkList(QuarantineRelatedCase check,Enterprise en){
+        boolean boo=true;
+        PoliceOrganization policeOrg=null;
+        for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
+            if(o instanceof PoliceOrganization){
+                policeOrg=(PoliceOrganization) o;
+            }
+        }
+        for(WorkRequest_investigationPolice w:policeOrg.getWorkQueue_investigationPolice().getWorkRequestList()){
+            if(w.getQuarantinePeople().getId().equals(check.getQuarantinePeople().getId())){
+                boo=false;
+                break;
+            }
+        }
+        return boo;
+    }
+    
+    private double checkDate(Date d){
+        Date date=new Date();
+        double result;
+        if(d!=null){
+            long cha = date.getTime() - d.getTime();
+            result = cha * 1.0 / (1000 * 60 * 60);
+        }else{
+            result=0;
+        }
+        System.out.println("in check date:"+result);
+        return result;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -481,58 +504,53 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
 
     private void reportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportbtnActionPerformed
         // TODO add your handling code here:
-//        if(relatedCase.getStatus().equals("sent to Police")){
-//            JOptionPane.showMessageDialog(null, "already sent to Police Department");
-//            return;
-//        }else
-
-
-
 //Emily Edition
-             if(relatedCase.getStatus().equals("pending")){
+        //double result=0;
+        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        if(relatedCase.getStatus().equals("pending")){
             JOptionPane.showMessageDialog(null, "you cannot process now, list need to be recorded");
             return;
         }else if(relatedCase.getStatus().equals("under recording")){
-            SimpleDateFormat formatter1= new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date date1=new Date();
-            if(relatedCase.getDetails().indexOf(formatter1.format(date1)+":send to police")<0){
-             Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
-            if(en==null){
-                JOptionPane.showMessageDialog(null, "please select");
-                return;
-            }else{
-            relatedCase.setStatus("pending");
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Date date=new Date();
-            relatedCase.getDetails().add(formatter.format(date)+":send to police");
-            if(relatedCase.getDetails()!=null){
-                popDetailTable(relatedCase.getDetails());
-            }
-            String message=messagearea.getText();
-            WorkRequest_investigationPolice sendToPolice=new WorkRequest_investigationPolice();
-            sendToPolice.setStatus("pending");
-            if(test==true){
-            sendToPolice.setMessage("[Coronavirus Case]"+message);}
-            else{sendToPolice.setMessage(message);}
-            sendToPolice.setStartdate(relatedCase.getStartdate());
-            sendToPolice.setEnddate(relatedCase.getEnddate());
-            sendToPolice.setEnt(enterprise);
+                Enterprise en=(Enterprise) enterpriseTypeJComboBox.getSelectedItem();
+                if(en==null){
+                    JOptionPane.showMessageDialog(null, "please select");
+                    return;
+                }else{
+                    Date date=new Date();
+                    if(checkDate(relatedCase.getSendDate())==0||checkDate(relatedCase.getSendDate())>24||checkList(relatedCase,en)==true){
+                        relatedCase.setSendDate(date);
+                        relatedCase.setStatus("pending");
+                        relatedCase.getDetails().add(formatter.format(date)+":send to police");
+                        if(relatedCase.getDetails()!=null){
+                            popDetailTable(relatedCase.getDetails());
+                        }
+                        String message=messagearea.getText();
+                        WorkRequest_investigationPolice sendToPolice=new WorkRequest_investigationPolice();
+                        sendToPolice.setStatus("pending");
+                    if(test==true){
+                        sendToPolice.setMessage("[COVID-19 contact tracing case]\n"+message);}
+                        else{
+                        sendToPolice.setMessage("[COVID-19 case]\n"+message);}
+                        sendToPolice.setStartdate(relatedCase.getStartdate());
+                        sendToPolice.setEnddate(relatedCase.getEnddate());
+                        sendToPolice.setEnt(enterprise); 
+                        sendToPolice.setQuarantinePeople(relatedCase.getQuarantinePeople());
+                        PoliceOrganization policeorg=null;
            
-            sendToPolice.setQuarantinePeople(relatedCase.getQuarantinePeople());
-            PoliceOrganization policeorg=null;
-           
-            for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
-                if(o instanceof PoliceOrganization){
-                    policeorg=(PoliceOrganization) o;
-                    break;
-                }
+                        for(Organization o:en.getOrganizationDirectory().getOrganizationList()){
+                            if(o instanceof PoliceOrganization){
+                                policeorg=(PoliceOrganization) o;
+                                break;
+                            }
+                        }
+                policeorg.getWorkQueue_investigationPolice().getWorkRequestList().add(sendToPolice); 
+                JOptionPane.showMessageDialog(null, "sent to police organization");
+                messagearea.setText("");
+                popTable();
             }
-            policeorg.getWorkQueue_investigationPolice().getWorkRequestList().add(sendToPolice); 
-            JOptionPane.showMessageDialog(null, "sent to police organization");
-            messagearea.setText("");
-            popTable();
+            else{
+                JOptionPane.showMessageDialog(null,"you already contact police department today or this case hasn't finished, we are trying hard on this case");}
             }
-        }else{JOptionPane.showMessageDialog(null,"you already contact police department today, we are trying hard on this case");}
         }
     }//GEN-LAST:event_reportbtnActionPerformed
 
