@@ -41,14 +41,22 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
 
     private void setSymptoms(Diagnosis dia){
         String symptoms="";
-        for(String str:dia.getSymptoms()){
-            symptoms+=str+",";
-        }
-        symptomsarea.setText(symptoms);
-    }
+        if(dia.getSymptoms()==null){
+        
+            symptoms="";
+        }else{
+            for(String str:dia.getSymptoms()){
+                symptoms+=str+"";
+            }
+        
+    }symptomsarea.setText(symptoms);}
     private void popMedicine(){
        DefaultTableModel model = (DefaultTableModel) medicinetable.getModel();
         model.setRowCount(0);
+        if(diagnosis.getMedicine()==null){ Object[] row = new Object[2];
+            row[0]="";
+            row[1]="";
+         model.addRow(row);}else{
         for (String str:diagnosis.getMedicine()){
             String a=str;
             Object[] row = new Object[2];
@@ -58,7 +66,7 @@ public class PatientDetailJPanel extends javax.swing.JPanel {
 //              row[1]=a;
             model.addRow(row);
         }
-    }
+    }}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

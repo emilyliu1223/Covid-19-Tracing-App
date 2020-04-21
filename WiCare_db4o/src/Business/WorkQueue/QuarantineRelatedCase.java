@@ -22,6 +22,16 @@ public class QuarantineRelatedCase {
     private String enddate;
     private String status;
     private ArrayList<String> details;
+    private Date sendDate;
+
+    public Date getSendDate() {
+        return sendDate;
+    }
+
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
+    }
+    
 
     public QuarantineRelatedCase(){
         details=new ArrayList();

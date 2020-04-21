@@ -49,6 +49,11 @@ public class EnterpriseDirectory {
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Police);
             enterpriseList.add(enterprise);
         }
+        else if(type==Enterprise.EnterpriseType.POPULATION){
+            enterprise=new PoliceEnterprise(name);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Population);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;
     }
 }

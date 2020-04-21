@@ -3,42 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/ReceptionRole/CaseJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/CountAge.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Organization/Organization.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkQueue.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/PoliceRole/PoliceWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/InvestigationRole/ManageQuarantineJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/EcoSystem.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/SystemAdminWorkArea/ManageEnterpriseJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkRequest_doctorQuarantine.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkQueue_quarantineCDC.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkQueue_doctorPharmacy.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/ReceptionRole/AnalysisWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/DocumentRole/DocumentWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/ConfigureASystem.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/InvestigationRole/CreateRelatedCaseJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Enterprise/Enterprise.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/QuarantineRole/QuarantineWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Role/SystemAdminRole.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/ReceptionRole/ReceptionWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/DocumentRole/SendPatientJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Organization/OrganizationDirectory.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/DoctorRole/PatientDetailJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/LabTest_documentDoctor.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/ReceptionRole/MainJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/RegionData.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkRequest_quarantineCDC.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Network/Network.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/WorkQueue_receptionInvestigation.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/RegionDataSet.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/WorkQueue/QuarantineRelatedCase.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/DoctorRole/DoctorWorkAreaJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/CountSymptoms.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/Business/Organization/DoctorOrganization.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/InvestigationRole/PatientDetailJPanel.java</file>
-            <file>file:/C:/Users/user/Downloads/twoGirls-master/db4odemo/src/userinterface/DocumentRole/ManagePatientJPanel.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/Business/DB4OUtil/DB4OUtil.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/userinterface/DoctorRole/DoctorWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/Business/Network/Network.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/userinterface/MainJFrame.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/userinterface/SystemAdminWorkArea/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/userinterface/InvestigationRole/CreateRelatedCaseJPanel.java</file>
+            <file>file:/C:/Users/user/Desktop/twoGirls-master/twoGirls-master/WiCare_db4o/src/Business/ConfigureASystem.java</file>
         </group>
     </open-files>
 </project-private>

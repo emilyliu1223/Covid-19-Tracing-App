@@ -54,7 +54,7 @@ public abstract class Organization {
         Admin("Admin Organization"), Document("Document Organization"),Pharmacy("Pharmacy Organization"),Doctor("Doctor Organization")
         ,Quarantine("Quarantine Organization"),Reception("Reception Organization"),Investigation("Investigation Organization"), 
         Publish("Publish Organization"),Police("Police Organization"),
-        Lab("Lab Organization");
+        Lab("Lab Organization"),Population("Population Organization");
         private String value;
         private Type(String value) {
             this.value = value;

@@ -50,6 +50,10 @@ public class OrganizationDirectory {
             organization = new ReceptionOrganization();
             organizationList.add(organization);
         }
+        else if(type.getValue().equals(Type.Population.getValue())){
+            organization = new PopulationOrganization();
+            organizationList.add(organization);
+        }
 
         return organization;
     }

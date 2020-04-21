@@ -21,7 +21,7 @@ public abstract class Role {
         Admin("Admin"),
         Doctor("Doctor"),
         Document("Document"),Pharmacy("Pharmacy"),Quarantine("Quarantine"),Reception("Reception")
-        ,Investigation("Investigation"),Publish("Publish"),Police("Police");
+        ,Investigation("Investigation"),Publish("Publish"),Police("Police"),Population("Population");
         
         private String value;
         private RoleType(String value){

@@ -25,8 +25,13 @@ import MedicineCatelog.Medicine;
 import MedicineCatelog.MedicineDetail;
 import People.MedicalRecord;
 import People.People;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,12 +45,26 @@ public class ConfigureASystem {
         
         system.getCountSymtoms().setCountAndType();
         system.getCountage().setCountByAge();
+      //People p=system.getPeopleDirectory().createPeople("111","Mickey Mouse","1990/01/11",30,"339019","143 park drive","Boston","Massachusetts","female","//Users/stacyhuang/twoG  
+         try{
+            
+         Class.forName("oracle.jdbc.driver.OracleDriver");
+         Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/orcl", "administrator", "admin");
+         String query1="select * from people";
+         Statement st=conn.createStatement();
+         ResultSet rs=st.executeQuery(query1);
+         
+         while(rs.next()){
+            system.getPeopleDirectory().createPeople(rs.getString("ID"), rs.getString("NAME"), rs.getString("BIRTHDATE"), rs.getInt("AGE"), rs.getString("PHONE"), rs.getString("ADDRESS"), rs.getString("COUNTY"), rs.getString("STATE"), rs.getString("GENDER"),rs.getString("PICTURE"));
+            
+         }
+    }catch(Exception e){
+    JOptionPane.showMessageDialog(null, e);
+    
+    }
         
+       
         
-        
-        
-        //Create a network
-//        
 //        Network createNetwork=new Network();
 //        createNetwork.setName("Massachusetts");
 //        system.getNetworkList().add(createNetwork);
@@ -187,6 +206,7 @@ public class ConfigureASystem {
 //        m3_2.setTreatment("flu and cold");
 //        medicine3.getMedicinearr().add(m3_1);
 //        medicine3.getMedicinearr().add(m3_2);
+
         return system;
     }
     

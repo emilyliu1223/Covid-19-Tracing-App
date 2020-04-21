@@ -12,11 +12,15 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.opencv.core.Core;
+import userinterface.PopulationRole.CamFrame;
 
 /**
  *
@@ -32,16 +36,18 @@ public class MainJFrame extends javax.swing.JFrame  implements Runnable{
     int hour, second, minute;
     int day, month, year;
     String timestr, yearstr;
-
+    private Icon a;
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
-        this.setSize(1650, 900);
+        this.setSize(1670, 900);
         Thread t=new Thread(this);
         t.start();
         panel1.setSize(1260,500);
         containerlayer.setSize(1200,700);
         Setting();
+        a=jButton2.getIcon();
+        System.out.println(system.getPeopleDirectory().getPeoples());
         
     }
     public void Setting(){
@@ -157,6 +163,7 @@ jButton2.setContentAreaFilled(false);
         jButton2.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/heartbeat (1).png"))); // NOI18N
         jButton2.setText("WiCare. We Care.");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -197,7 +204,7 @@ jButton2.setContentAreaFilled(false);
 
         //Step1: Check in the system admin user account directory if you have the user
         UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-
+        
         Enterprise inEnterprise=null;
         Organization inOrganization=null;
         Network inNetwork=null;
@@ -259,10 +266,11 @@ jButton2.setContentAreaFilled(false);
 
         userNameJTextField.setText("");
         passwordField.setText("");
-
+        jButton2.setIcon( a);
         container.removeAll();
         JPanel blankJP = new JPanel();
         container.add("blank", blankJP);
+        container.add(jButton2);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
         dB4OUtil.storeSystem(system);
@@ -276,6 +284,7 @@ jButton2.setContentAreaFilled(false);
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -303,6 +312,7 @@ jButton2.setContentAreaFilled(false);
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame().setVisible(true);
+                
             }
         });
     }

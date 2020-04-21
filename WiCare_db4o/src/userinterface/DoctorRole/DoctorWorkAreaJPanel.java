@@ -102,7 +102,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             valueLabel.setText(userAccount.getUsername());
             setSymtomCount=system.getCountSymtoms().getCountwithType();
             setAgeCount=system.getCountage().getCountwithAge();
-            
+            reportbtn.setEnabled(false);
+            deathbtn.setEnabled(false);
+            hospitalizedbtn.setEnabled(false);
 //            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //            Date date1 = sdf.parse("2012-10-4");
 //            Date date2 = sdf.parse("2012-10-4");
@@ -864,6 +866,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 popMedicineTable();
                 popTestTable(thispeople);
                 diagnosisArea.setText("");
+                deathbtn.setEnabled(true);
+                hospitalizedbtn.setEnabled(true);
             }else{
                 JOptionPane.showMessageDialog(null, "not allowed to take this patient");
                 return;
@@ -1054,6 +1058,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 this.othersymptoms=new ArrayList();
                 finalSymptoms=new ArrayList();
                 setBtn(true);
+                hospitalizedbtn.setEnabled(true);
+                deathbtn.setEnabled(true);
                 request.setAssignedDoctor(userAccount);
                 request.setStatus("checking");
                 thispeople=request.getPeople();
