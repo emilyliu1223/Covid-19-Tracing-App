@@ -47,7 +47,7 @@ public class MainJFrame extends javax.swing.JFrame  implements Runnable{
         containerlayer.setSize(1200,700);
         Setting();
         a=jButton2.getIcon();
-        System.out.println(system.getPeopleDirectory().getPeoples());
+      
         
     }
     public void Setting(){

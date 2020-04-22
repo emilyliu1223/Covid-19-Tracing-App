@@ -84,7 +84,7 @@ btnManageAdmin.setContentAreaFilled(false);
                 
                 organizationList=enterprise.getOrganizationDirectory().getOrganizationList();
                 for(int k=0;k<organizationList.size();k++){
-                    organization=organizationList.get(i);
+                    organization=organizationList.get(k);
                     organizationNode=new DefaultMutableTreeNode(organization.getName());
                     enterpriseNode.insert(organizationNode, k);
                 }

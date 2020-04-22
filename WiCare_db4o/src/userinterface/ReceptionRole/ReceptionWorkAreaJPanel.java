@@ -81,7 +81,7 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
     for(WorkRequest_quarantineCDC request:organization.getWorkQueue_quarantineCDC().getWorkRequestList()){
            if(request.getSymptons().contains("HOSPITALIZED")){
            ar1.add(request.getCaseNumber());
-           System.out.println(ar1);
+       //  System.out.println(ar1);
           
            }    
     
@@ -109,237 +109,236 @@ public class ReceptionWorkAreaJPanel extends javax.swing.JPanel {
                 Object value = getModel().getValueAt(rowIndex,columnIndex);
 
                 if(columnIndex == 0){
-
-                    if(ar1.indexOf(Integer.parseInt(value.toString()))>-1){
-                        componenet.setBackground(Color.ORANGE);
-                        componenet.setForeground(Color.BLACK);
-                    }else if(ar.indexOf(Integer.parseInt(value.toString()))>-1){
+                    if(ar.indexOf(Integer.parseInt(value.toString()))>-1){
                         componenet.setBackground(Color.RED);
                         componenet.setForeground(Color.BLACK);
                     }
+                    else if(ar1.indexOf(Integer.parseInt(value.toString()))>-1){
+                        componenet.setBackground(Color.ORANGE);
+                        componenet.setForeground(Color.BLACK);}
 
                     else {componenet.setBackground(Color.WHITE);
                         componenet.setForeground(Color.BLACK);
 
-                    }}
-
-                    return componenet;
+                    }
                 }
-
-            }
-            ;
-            jLabel2 = new javax.swing.JLabel();
-            jScrollPane3 = new javax.swing.JScrollPane();
-            symptonfield = new javax.swing.JTextArea();
-            sendbtn = new javax.swing.JButton();
-            jLabel1 = new javax.swing.JLabel();
-            phonefield = new javax.swing.JTextField();
-            jLabel3 = new javax.swing.JLabel();
-            addressfield = new javax.swing.JTextField();
-            jLabel4 = new javax.swing.JLabel();
-            statefield = new javax.swing.JTextField();
-            jLabel6 = new javax.swing.JLabel();
-            countyfield = new javax.swing.JTextField();
-            jLabel7 = new javax.swing.JLabel();
-            birthfield = new javax.swing.JTextField();
-            jLabel8 = new javax.swing.JLabel();
-            agefield = new javax.swing.JTextField();
-            selectbtn = new javax.swing.JButton();
-            jLabel9 = new javax.swing.JLabel();
-            jScrollPane2 = new javax.swing.JScrollPane();
-            messagearea = new javax.swing.JTextArea();
-            backbtn = new javax.swing.JButton();
-            jLabel10 = new javax.swing.JLabel();
-            jLabel13 = new javax.swing.JLabel();
-            jLabel14 = new javax.swing.JLabel();
-            jLabel15 = new javax.swing.JLabel();
-            a = new javax.swing.JTextField();
-            b = new javax.swing.JTextField();
-            c = new javax.swing.JTextField();
-
-            setBackground(new java.awt.Color(0, 102, 153));
-            setForeground(new java.awt.Color(0, 102, 153));
-            setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-            patientTable.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            patientTable.setForeground(new java.awt.Color(0, 153, 204));
-            patientTable.setModel(new javax.swing.table.DefaultTableModel(
-                new Object [][] {
-                    {null, null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null, null},
-                    {null, null, null, null, null, null, null, null}
-                },
-                new String [] {
-                    "Case Number", "Diagnos Date", "Hospital", "Patient ID", "Name", "Gender", "processor", "status"
-                }
-            ) {
-                boolean[] canEdit = new boolean [] {
-                    false, false, false, false, false, false, false, false
-                };
-
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit [columnIndex];
-                }
-            });
-            patientTable.setGridColor(new java.awt.Color(0, 102, 153));
-            patientTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
-            patientTable.setSelectionForeground(new java.awt.Color(0, 0, 102));
-            jScrollPane1.setViewportView(patientTable);
-            if (patientTable.getColumnModel().getColumnCount() > 0) {
-                patientTable.getColumnModel().getColumn(0).setResizable(false);
-                patientTable.getColumnModel().getColumn(1).setResizable(false);
-                patientTable.getColumnModel().getColumn(2).setResizable(false);
-                patientTable.getColumnModel().getColumn(3).setResizable(false);
-                patientTable.getColumnModel().getColumn(4).setResizable(false);
-                patientTable.getColumnModel().getColumn(5).setResizable(false);
-                patientTable.getColumnModel().getColumn(6).setResizable(false);
-                patientTable.getColumnModel().getColumn(7).setResizable(false);
+                return componenet;
             }
 
-            add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 1090, 188));
+        }
+        ;
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        symptonfield = new javax.swing.JTextArea();
+        sendbtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        phonefield = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        addressfield = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        statefield = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        countyfield = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        birthfield = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        agefield = new javax.swing.JTextField();
+        selectbtn = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        messagearea = new javax.swing.JTextArea();
+        backbtn = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        a = new javax.swing.JTextField();
+        b = new javax.swing.JTextField();
+        c = new javax.swing.JTextField();
 
-            jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel2.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel2.setText("Symptons");
-            add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
+        setBackground(new java.awt.Color(0, 102, 153));
+        setForeground(new java.awt.Color(0, 102, 153));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-            jScrollPane3.setForeground(new java.awt.Color(0, 153, 204));
+        patientTable.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        patientTable.setForeground(new java.awt.Color(0, 153, 204));
+        patientTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Case Number", "Diagnos Date", "Hospital", "Patient ID", "Name", "Gender", "processor", "status"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
 
-            symptonfield.setColumns(20);
-            symptonfield.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-            symptonfield.setForeground(new java.awt.Color(0, 153, 204));
-            symptonfield.setRows(5);
-            jScrollPane3.setViewportView(symptonfield);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        patientTable.setGridColor(new java.awt.Color(0, 102, 153));
+        patientTable.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        patientTable.setSelectionForeground(new java.awt.Color(0, 0, 102));
+        jScrollPane1.setViewportView(patientTable);
+        if (patientTable.getColumnModel().getColumnCount() > 0) {
+            patientTable.getColumnModel().getColumn(0).setResizable(false);
+            patientTable.getColumnModel().getColumn(1).setResizable(false);
+            patientTable.getColumnModel().getColumn(2).setResizable(false);
+            patientTable.getColumnModel().getColumn(3).setResizable(false);
+            patientTable.getColumnModel().getColumn(4).setResizable(false);
+            patientTable.getColumnModel().getColumn(5).setResizable(false);
+            patientTable.getColumnModel().getColumn(6).setResizable(false);
+            patientTable.getColumnModel().getColumn(7).setResizable(false);
+        }
 
-            add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 219, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 1090, 188));
 
-            sendbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            sendbtn.setForeground(new java.awt.Color(255, 153, 51));
-            sendbtn.setText("Send to Investigation");
-            sendbtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    sendbtnActionPerformed(evt);
-                }
-            });
-            add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 600, 290, 80));
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel2.setText("Symptons");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, -1, -1));
 
-            jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel1.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel1.setText("phone");
-            add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
+        jScrollPane3.setForeground(new java.awt.Color(0, 153, 204));
 
-            phonefield.setForeground(new java.awt.Color(0, 153, 204));
-            add(phonefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 268, -1));
+        symptonfield.setColumns(20);
+        symptonfield.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        symptonfield.setForeground(new java.awt.Color(0, 153, 204));
+        symptonfield.setRows(5);
+        jScrollPane3.setViewportView(symptonfield);
 
-            jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel3.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel3.setText("address");
-            add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 219, -1));
 
-            addressfield.setForeground(new java.awt.Color(0, 153, 204));
-            add(addressfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 268, -1));
+        sendbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        sendbtn.setForeground(new java.awt.Color(255, 153, 51));
+        sendbtn.setText("Send to Investigation");
+        sendbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendbtnActionPerformed(evt);
+            }
+        });
+        add(sendbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 600, 290, 80));
 
-            jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel4.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel4.setText("state");
-            add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel1.setText("phone");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, -1, -1));
 
-            statefield.setForeground(new java.awt.Color(0, 153, 204));
-            add(statefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 120, -1));
+        phonefield.setForeground(new java.awt.Color(0, 153, 204));
+        add(phonefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 268, -1));
 
-            jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel6.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel6.setText("county");
-            add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, -1, -1));
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel3.setText("address");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 380, -1, -1));
 
-            countyfield.setForeground(new java.awt.Color(0, 153, 204));
-            add(countyfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 140, -1));
+        addressfield.setForeground(new java.awt.Color(0, 153, 204));
+        add(addressfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 268, -1));
 
-            jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel7.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel7.setText("birthday");
-            add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel4.setText("state");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
 
-            birthfield.setForeground(new java.awt.Color(0, 153, 204));
-            add(birthfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 570, 268, -1));
+        statefield.setForeground(new java.awt.Color(0, 153, 204));
+        add(statefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, 120, -1));
 
-            jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel8.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel8.setText("age");
-            add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel6.setText("county");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, -1, -1));
 
-            agefield.setForeground(new java.awt.Color(0, 153, 204));
-            add(agefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 268, -1));
+        countyfield.setForeground(new java.awt.Color(0, 153, 204));
+        add(countyfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 490, 140, -1));
 
-            selectbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            selectbtn.setForeground(new java.awt.Color(255, 153, 51));
-            selectbtn.setText("select");
-            selectbtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    selectbtnActionPerformed(evt);
-                }
-            });
-            add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 280, 150, 40));
+        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel7.setText("birthday");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
 
-            jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel9.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel9.setText("message from quarantine inspector");
-            add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, -1));
+        birthfield.setForeground(new java.awt.Color(0, 153, 204));
+        add(birthfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 570, 268, -1));
 
-            jScrollPane2.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel8.setText("age");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 610, -1, -1));
 
-            messagearea.setColumns(20);
-            messagearea.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-            messagearea.setForeground(new java.awt.Color(0, 153, 204));
-            messagearea.setRows(5);
-            jScrollPane2.setViewportView(messagearea);
+        agefield.setForeground(new java.awt.Color(0, 153, 204));
+        add(agefield, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 650, 268, -1));
 
-            add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, -1, -1));
+        selectbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        selectbtn.setForeground(new java.awt.Color(255, 153, 51));
+        selectbtn.setText("select");
+        selectbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectbtnActionPerformed(evt);
+            }
+        });
+        add(selectbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 280, 150, 40));
 
-            backbtn.setBackground(new java.awt.Color(255, 255, 255));
-            backbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            backbtn.setForeground(new java.awt.Color(255, 153, 51));
-            backbtn.setText("back");
-            backbtn.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    backbtnActionPerformed(evt);
-                }
-            });
-            add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-            add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 310, -1, -1));
+        jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel9.setText("message from quarantine inspector");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, -1));
 
-            jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel13.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel13.setText("Death");
-            add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 420, -1, 20));
+        jScrollPane2.setForeground(new java.awt.Color(0, 153, 204));
 
-            jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel14.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel14.setText("Hospitalized");
-            add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 460, -1, -1));
+        messagearea.setColumns(20);
+        messagearea.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        messagearea.setForeground(new java.awt.Color(0, 153, 204));
+        messagearea.setRows(5);
+        jScrollPane2.setViewportView(messagearea);
 
-            jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-            jLabel15.setForeground(new java.awt.Color(0, 153, 204));
-            jLabel15.setText("Self Quaratine");
-            add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, -1, -1));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, -1, -1));
 
-            a.setBackground(new java.awt.Color(255, 0, 0));
-            a.setForeground(new java.awt.Color(0, 153, 204));
-            add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 420, 100, 20));
+        backbtn.setBackground(new java.awt.Color(255, 255, 255));
+        backbtn.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        backbtn.setForeground(new java.awt.Color(255, 153, 51));
+        backbtn.setText("back");
+        backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backbtnActionPerformed(evt);
+            }
+        });
+        add(backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 310, -1, -1));
 
-            b.setBackground(new java.awt.Color(255, 204, 51));
-            b.setForeground(new java.awt.Color(0, 153, 204));
-            b.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    bActionPerformed(evt);
-                }
-            });
-            add(b, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 460, 100, 20));
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel13.setText("Death");
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 420, -1, 20));
 
-            c.setForeground(new java.awt.Color(0, 153, 204));
-            add(c, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, 100, 20));
-        }// </editor-fold>//GEN-END:initComponents
+        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel14.setText("Hospitalized");
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 460, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 153, 204));
+        jLabel15.setText("Self Quaratine");
+        add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 500, -1, -1));
+
+        a.setBackground(new java.awt.Color(255, 0, 0));
+        a.setForeground(new java.awt.Color(0, 153, 204));
+        add(a, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 420, 100, 20));
+
+        b.setBackground(new java.awt.Color(255, 204, 51));
+        b.setForeground(new java.awt.Color(0, 153, 204));
+        b.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActionPerformed(evt);
+            }
+        });
+        add(b, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 460, 100, 20));
+
+        c.setForeground(new java.awt.Color(0, 153, 204));
+        add(c, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 500, 100, 20));
+    }// </editor-fold>//GEN-END:initComponents
 
     private void setFieldEdible(boolean boo){
         phonefield.setEditable(boo);

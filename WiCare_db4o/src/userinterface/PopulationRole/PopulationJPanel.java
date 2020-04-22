@@ -8,9 +8,13 @@ package userinterface.PopulationRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.DoctorOrganization;
 import Business.Organization.DocumentOrganization;
+import Business.Organization.Organization;
 import Business.Organization.PopulationOrganization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest_documentDoctor;
+import People.Diagnosis;
 import People.People;
 import java.awt.CardLayout;
 import java.awt.Image;
@@ -63,6 +67,7 @@ public class PopulationJPanel extends javax.swing.JPanel {
         System.out.println(system.getPeopleDirectory().getPeoples());
         populateComboBox();
                 populateComboBox2();
+                jButton3.setEnabled(false);
 //        SimpleDateFormat formate=new SimpleDateFormat("mm-dd-yyyy");
 //        Date tryit=null;
 //       try {
@@ -89,8 +94,11 @@ agefield.setEnabled(false);
         addressfield.setText(address);
         statefield.setText(state);
         countyfield.setText(county);
-        ImageIcon im=new ImageIcon(picture);
-        imageLabel.setIcon(im);
+        ImageIcon c=new ImageIcon(picture);
+        ImageIcon imageIcon = new ImageIcon(c.getImage().getScaledInstance(570, 470, Image.SCALE_DEFAULT));
+        imageLabel.setIcon(imageIcon);
+        genderfield.setEnabled(false);
+        statefield.setEnabled(false);
         genderfield.setText(gender);
         
          b =true;
@@ -214,6 +222,7 @@ agefield.setEnabled(false);
         jButton3 = new javax.swing.JButton();
         genderCombox = new javax.swing.JComboBox();
         networkJComboBox1 = new javax.swing.JComboBox();
+        deathl = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 102, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -390,6 +399,16 @@ agefield.setEnabled(false);
         genderCombox.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         genderCombox.setForeground(new java.awt.Color(0, 153, 204));
         genderCombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        genderCombox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                genderComboxItemStateChanged(evt);
+            }
+        });
+        genderCombox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                genderComboxMouseClicked(evt);
+            }
+        });
         genderCombox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genderComboxActionPerformed(evt);
@@ -400,19 +419,33 @@ agefield.setEnabled(false);
         networkJComboBox1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         networkJComboBox1.setForeground(new java.awt.Color(0, 153, 204));
         networkJComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkJComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                networkJComboBox1ItemStateChanged(evt);
+            }
+        });
+        networkJComboBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                networkJComboBox1MouseClicked(evt);
+            }
+        });
         networkJComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkJComboBox1ActionPerformed(evt);
             }
         });
         add(networkJComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, 130, -1));
+
+        deathl.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        deathl.setForeground(new java.awt.Color(0, 204, 204));
+        add(deathl, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 440, 130, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
         // TODO add your handling code here:
         networkJComboBox1.setEnabled(false);
         genderCombox.setEnabled(false);
-
+       deathl.setText("");
         String searchId=patientIdfield.getText();
         thispeople=null;
         if(searchId.equals("")){
@@ -426,9 +459,38 @@ agefield.setEnabled(false);
                 }
             }
         }
+            boolean death=false;
+        for(Network n:system.getNetworkList()){
+        for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList()){
+             for(Organization o:e.getOrganizationDirectory().getOrganizationList()){
+             if(o instanceof DoctorOrganization){
+               for(WorkRequest_documentDoctor w:o.getWorkQueue_documentDoctor().getWorkRequestList()){
+                    if(w.getPeople().getId().equals(thispeople.getId())){
+                         for(Diagnosis ds:thispeople.getMedicalRecord().getDoctorNote()){
+            if(ds.getDiagnosis().contains("Death")){
+             death=true;
+             break;
+            }}
+                    }
+               }
+             }
+             }        
+        
+        }}
+       
         if(thispeople!=null){
+             if(death==false){
             setField(thispeople.getId(),thispeople.getName(),thispeople.getBirthday(),thispeople.getAge(),thispeople.getPhone(),thispeople.getAddress(),thispeople.getCounty(),thispeople.getState(),thispeople.getPicture(),thispeople.getGender());
+            
+             deathl.setText("");
             setBU(false);
+            jButton3.setEnabled(true);}else{
+             setField(thispeople.getId(),thispeople.getName(),thispeople.getBirthday(),thispeople.getAge(),thispeople.getPhone(),thispeople.getAddress(),thispeople.getCounty(),thispeople.getState(),thispeople.getPicture(),thispeople.getGender());
+            
+            
+            setBU(false);
+            deathl.setText("Death");
+            jButton3.setEnabled(false);}
         }else{
             JOptionPane.showMessageDialog(null, "cannot find this patient, please make sure the id you enter is correct");
             patientIdfield.setText("");
@@ -452,8 +514,7 @@ agefield.setEnabled(false);
         // TODO add your handling code here:
         statefield.setText("");
         idfield.setText("");
-        namefield.setText("")
-                ;
+        namefield.setText("");
         birthdayfield.setText("");
         countyfield.setText("");
         imageLabel.removeAll();
@@ -464,6 +525,9 @@ agefield.setEnabled(false);
         patientIdfield.setText("");
          networkJComboBox1.setEnabled(true);
           genderCombox.setEnabled(true);
+          statefield.setEnabled(false);
+          genderfield.setEnabled(false);
+          deathl.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void createbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createbtnActionPerformed
@@ -542,7 +606,10 @@ agefield.setEnabled(false);
         chooser.showOpenDialog(null);
         File f=chooser.getSelectedFile();
         filename=f.getAbsolutePath();
-        imageLabel.setIcon(new ImageIcon(filename.toString()));
+        ImageIcon c=new ImageIcon(filename.toString());
+        ImageIcon imageIcon = new ImageIcon(c.getImage().getScaledInstance(570, 420, Image.SCALE_DEFAULT));
+        imageLabel.setIcon(imageIcon);
+        
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -556,8 +623,10 @@ agefield.setEnabled(false);
          genderCombox.setEnabled(false);
          networkJComboBox1.setEnabled(true);
         birthdayfield.setEnabled(false);
+        statefield.setEnabled(false);
         genderfield.setEnabled(false);
         idfield.setEnabled(false);
+         if(!phonefield.getText().equals("")&&!countyfield.getText().equals("")&&!addressfield.getText().equals("")){
          for(People p:system.getPeopleDirectory().getPeoples()){
              if(p.getId().equals(idfield.getText())){
                  p.setAddress(addressfield.getText());
@@ -566,12 +635,14 @@ agefield.setEnabled(false);
                  p.setState(statefield.getText());
                  p.setPicture(filename);
                  p.setCounty(countyfield.getText());
-                 
+                 JOptionPane.showMessageDialog(null, "Success");
                  
                  
                  
              }
-    }
+    }}
+        else{
+         JOptionPane.showMessageDialog(null, "No blank");}
         
      
         
@@ -582,11 +653,36 @@ agefield.setEnabled(false);
 
     private void genderComboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderComboxActionPerformed
         // TODO add your handling code here:
+//        genderfield.setEnabled(false);
+//        genderfield.setText(genderCombox.getSelectedItem().toString());
     }//GEN-LAST:event_genderComboxActionPerformed
 
     private void networkJComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBox1ActionPerformed
         // TODO add your handling code here:
+//        statefield.setEnabled(false);
+//        statefield.setText(networkJComboBox1.getSelectedItem().toString());
+        
     }//GEN-LAST:event_networkJComboBox1ActionPerformed
+
+    private void networkJComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_networkJComboBox1ItemStateChanged
+        // TODO add your handling code here:
+      //  statefield.setText(networkJComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_networkJComboBox1ItemStateChanged
+
+    private void genderComboxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_genderComboxItemStateChanged
+        // TODO add your handling code here:
+        //genderfield.setText(genderCombox.getSelectedItem().toString());
+    }//GEN-LAST:event_genderComboxItemStateChanged
+
+    private void networkJComboBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkJComboBox1MouseClicked
+        // TODO add your handling code here:
+         statefield.setText(networkJComboBox1.getSelectedItem().toString());
+    }//GEN-LAST:event_networkJComboBox1MouseClicked
+
+    private void genderComboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_genderComboxMouseClicked
+        // TODO add your handling code here:
+        genderfield.setText(genderCombox.getSelectedItem().toString());
+    }//GEN-LAST:event_genderComboxMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -595,6 +691,7 @@ agefield.setEnabled(false);
     private javax.swing.JTextField birthdayfield;
     private javax.swing.JTextField countyfield;
     private javax.swing.JButton createbtn;
+    private javax.swing.JLabel deathl;
     private javax.swing.JComboBox genderCombox;
     private javax.swing.JTextField genderfield;
     private javax.swing.JTextField idfield;

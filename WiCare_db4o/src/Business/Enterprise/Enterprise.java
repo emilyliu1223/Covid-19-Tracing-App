@@ -27,7 +27,7 @@ public abstract class Enterprise extends Organization{
         Hospital("Hospital"),
         Police("Police"),
         CDC("CDC"),
-        POPULATION("POPULATION");
+        Population("Population");
         
         private String value;
         

@@ -1132,7 +1132,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
     private void deathbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deathbtnActionPerformed
         // TODO add your handling code here:
+        if(!diagnosisArea.getText().equals("")){
         deathReporttoDocu();
+        deathbtn.setEnabled(false);}else{JOptionPane.showMessageDialog(null, "Must write the diagnosis");}
     }//GEN-LAST:event_deathbtnActionPerformed
 
     private void reportbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reportbtnActionPerformed
@@ -1161,6 +1163,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "Send to CDC already");
                         reportbtn.setEnabled(false);
                         deathAge(req.getPatient()); 
+                       
                         SimpleDateFormat formatte = new SimpleDateFormat("yyyy-MM-dd");
                         String e=formatte.format(datesss);
                         
@@ -1199,6 +1202,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(null, "Send to CDC already");
                         reportbtn.setEnabled(false);    
                         deathbtn.setEnabled(false);
+                        hospitalizedbtn.setEnabled(false);
                         symptoms.add("Hospitalized");
         }
         else{

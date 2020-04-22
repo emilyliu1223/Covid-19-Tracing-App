@@ -60,7 +60,7 @@ public class PoliceWorkAreaJPanel extends javax.swing.JPanel {
         messaget.setEditable(false);
         queue=policeOrganization.getWorkQueue_investigationPolice();
         ButtonGroup b=new ButtonGroup();
-        b.add(ok);b.add(suspect);b.add(suspect);
+        b.add(ok);b.add(suspect);b.add(missing);
        // this.request=request;
         
      

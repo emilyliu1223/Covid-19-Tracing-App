@@ -8,17 +8,21 @@ package userinterface.InvestigationRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.DoctorOrganization;
 import Business.Organization.InvestigationOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.QuarantineRelatedCase;
+import Business.WorkQueue.WorkRequest_documentDoctor;
 import Business.WorkQueue.WorkRequest_quarantineList;
 import Business.WorkQueue.WorkRequest_receptionInvestigation;
+import People.Diagnosis;
 import People.People;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -79,6 +83,7 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         p.setGender(RequesttoRecord.getPatient().getGender());
         p.setName(RequesttoRecord.getPatient().getName());
         p.setPhone(RequesttoRecord.getPatient().getPhone());
+       
         p.setPicture(RequesttoRecord.getPatient().getPicture());
         p.setState(RequesttoRecord.getPatient().getState());
         q.setQuarantinePeople(p);
@@ -379,8 +384,12 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         addressfield.setText(people.getAddress());
         statefield.setText(people.getState());
         countyfield.setText(people.getCounty());
-        ImageIcon im=new ImageIcon(people.getPicture());
-        pictureLabel.setIcon(im);
+         ImageIcon c=new ImageIcon(people.getPicture());
+        ImageIcon imageIcon = new ImageIcon(c.getImage().getScaledInstance(230, 220, Image.SCALE_DEFAULT));
+        
+         
+       
+        pictureLabel.setIcon(imageIcon);
     }
     private void countyfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countyfieldActionPerformed
         // TODO add your handling code here:
@@ -475,6 +484,25 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         
         boolean boo=true;
         //Emily Edition
+        boolean death=false;
+        for(Network n:system.getNetworkList()){
+        for(Enterprise e:n.getEnterpriseDirectory().getEnterpriseList()){
+             for(Organization o:e.getOrganizationDirectory().getOrganizationList()){
+               for(WorkRequest_documentDoctor w:o.getWorkQueue_documentDoctor().getWorkRequestList()){
+                    if(w.getPeople().getId().equals(RequesttoRecord.getPatient().getId())){
+                         for(Diagnosis ds:RequesttoRecord.getPatient().getMedicalRecord().getDoctorNote()){
+            if(ds.getDiagnosis().contains("Death")){
+             death=true;
+             
+             break;
+            }}
+                    }
+               
+             }
+             }        
+        
+        }}
+        
        
         for(QuarantineRelatedCase r:RequesttoRecord.getRelatedCase()){
             if(p.getId().equals(r.getQuarantinePeople().getId())){
@@ -483,6 +511,11 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
                 break;
             }
         }
+        if(death==true){
+            JOptionPane.showMessageDialog(null, "This person report to be death, not trackable");
+        }
+        else{
+            
         if(boo==true){
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             Calendar cal=Calendar.getInstance();
@@ -503,7 +536,7 @@ public class CreateRelatedCaseJPanel extends javax.swing.JPanel {
         }else{
             JOptionPane.showMessageDialog(null, "already add to list");
             return;
-        }
+        }}
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

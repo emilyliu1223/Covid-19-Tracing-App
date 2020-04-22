@@ -71,7 +71,7 @@ public class CamFrame extends javax.swing.JFrame {
 			 }
 			 catch(Exception ex)
                          {
-			    System.out.println("Error");
+			    System.out.println("Catch this");
                          }
                 }
             }
@@ -104,7 +104,7 @@ public class CamFrame extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+            .addGap(0, 422, Short.MAX_VALUE)
         );
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -155,8 +155,8 @@ public class CamFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)
@@ -196,6 +196,7 @@ public class CamFrame extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
         File file = jFileChooser1.getSelectedFile();
         Highgui.imwrite(file.getPath(), frame);
+        
         
         
     } else {

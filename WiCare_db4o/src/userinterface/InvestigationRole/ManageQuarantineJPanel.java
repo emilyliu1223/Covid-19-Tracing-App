@@ -21,6 +21,7 @@ import People.People;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 
 import java.time.LocalDateTime;
@@ -466,7 +467,11 @@ public class ManageQuarantineJPanel extends javax.swing.JPanel {
             genderfield.setText(p.getGender());
             addressfield.setText(p.getAddress());
             ImageIcon im=new ImageIcon(p.getPicture());
-            pictureLabel.setIcon(im);
+            
+        ImageIcon imageIcon = new ImageIcon(im.getImage().getScaledInstance(190, 270, Image.SCALE_DEFAULT));
+        
+          pictureLabel.setIcon(imageIcon);
+            
             startdate.setText(getList.getStartdate());
             enddate.setText(getList.getEnddate());
             reportbtn.setEnabled(true);

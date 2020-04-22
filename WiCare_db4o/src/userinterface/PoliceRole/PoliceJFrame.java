@@ -5,6 +5,7 @@
  */
 package userinterface.PoliceRole;
 
+import java.awt.Image;
 import javax.swing.ImageIcon;
 
 /**
@@ -25,7 +26,10 @@ public class PoliceJFrame extends javax.swing.JFrame {
           namet.setText(name);
           pht.setText(phone);
           endt.setText(enddate);
-          imlabel.setIcon(new ImageIcon(picture));
+          ImageIcon c=new ImageIcon(picture);
+        ImageIcon imageIcon = new ImageIcon(c.getImage().getScaledInstance(510, 470, Image.SCALE_DEFAULT));
+        
+          imlabel.setIcon(imageIcon);
           setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }
 

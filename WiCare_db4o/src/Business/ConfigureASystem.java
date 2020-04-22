@@ -63,7 +63,7 @@ public class ConfigureASystem {
     
     }
         
-       
+       System.out.println(system.getPeopleDirectory().getPeoples());
         
 //        Network createNetwork=new Network();
 //        createNetwork.setName("Massachusetts");

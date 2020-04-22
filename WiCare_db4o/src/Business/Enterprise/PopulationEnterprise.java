@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PopulationEnterprise extends Enterprise {
     
     public PopulationEnterprise(String name){
-        super(name,Enterprise.EnterpriseType.POPULATION);
+        super(name,Enterprise.EnterpriseType.Population);
     }
     @Override
     public ArrayList<Role> getSupportedRole() {

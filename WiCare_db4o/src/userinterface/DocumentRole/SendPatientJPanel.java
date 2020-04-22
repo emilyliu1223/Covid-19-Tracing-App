@@ -269,6 +269,13 @@ public class SendPatientJPanel extends javax.swing.JPanel {
                     break;
                 }
             }
+            Boolean f=false;
+            for (WorkRequest_documentDoctor req: org.getWorkQueue_documentDoctor().getWorkRequestList()){
+                    if((req.getPeople().getId().equals(patient.getId())&&req.getStatus().equals("pending"))||(req.getPeople().getId().equals(patient.getId())&&req.getStatus().equals("checking"))){
+                    f=true;
+                    break;
+                    }}
+            
             Boolean d=false;
             
             for(Diagnosis ds:patient.getMedicalRecord().getDoctorNote()){
@@ -277,6 +284,7 @@ public class SendPatientJPanel extends javax.swing.JPanel {
              break;
             }}
             if(d==false){
+               if(f==false) {    
             LabTest_documentDoctor request=new LabTest_documentDoctor();
             request.setDate(date);
             request.setMessage(textarea.getText());
@@ -289,7 +297,9 @@ public class SendPatientJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "send to doctor success");
             populateTable();
             textarea.setText("");
-        }else{JOptionPane.showMessageDialog(null,"This patient is announced to be died, please contact doctor for information");}}
+                                }if(f==true){
+               JOptionPane.showMessageDialog(null, "In the list");
+               }}else{JOptionPane.showMessageDialog(null,"This patient is announced to be died, please contact doctor for information");}}
     }//GEN-LAST:event_sendbtnActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed

@@ -233,7 +233,7 @@ public class AnalysisWorkAreaJPanel extends javax.swing.JPanel {
          int tt=0;
          for(Integer a:agedeath.keySet()){
             
-       tt=agedeath.get(a);
+       tt+=agedeath.get(a);
       
         }
        return tt;}
